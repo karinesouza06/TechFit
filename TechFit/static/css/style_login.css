@@ -1,0 +1,9 @@
+
+.senha_label, .nome_label {
+    display: block;
+    float: left;
+    margin-bottom: 6px;
+    margin-left: 5px;
+}
+
+

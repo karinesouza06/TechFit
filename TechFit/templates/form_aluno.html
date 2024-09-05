@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style_alunos_forms.css">
+    <title>Cadastro do Aluno</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <form action="#">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Dados do Aluno</h1>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="peso">Peso</label>
+                        <input id="peso" type="text" name="peso" placeholder="Seu peso" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="email">Altura</label>
+                        <input id="alt" type="text" name="altura" placeholder="Sua altura" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="objetivo">Foco de treino</label>
+                        <select required>
+                            <option selected>Selecione</option>
+                            <option value="1">Hipertrofia</option>
+                            <option value="2">Resistência</option>
+                            <option value="3">Perda de Peso</option>
+                            <option value="4">Condicionamento Geral</option>
+                            <option value="5">Resistência Cardiovascular</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="comorbidade"> Possui Comorbidade?</label>
+                        <select required>
+                            <option selected>Selecione</option>
+                            <option value="1">Sim</option>
+                            <option value="2">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="comorbidade_input">Se sim, qual?</label>
+                        <input id="cmd" type="text" name="comorbidade_input" placeholder="Digite aqui" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="dias">Dias disponiveis</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">5 dias</option>
+                            <option value="2">4 dias</option>
+                            <option value="3">3 dias</option>
+                            <option value="3">2 dias</option>
+                            <option value="3">1 dia</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="medicamento">Utiliza algum medicamento?</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">Sim</option>
+                            <option value="2">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="historico">Possui histórico de acompanhamento físico?</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">Sim</option>
+                            <option value="2">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="condicionamento">Condicionamento físico atual</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">Sedentário</option>
+                            <option value="2">Iniciante</option>
+                            <option value="3">Intermediário</option>
+                            <option value="4">Avançado</option>
+                            <option value="5">Atleta</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="tempo_sono">Tempo de sono por dia:</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">Mais de 8 horas</option>
+                            <option value="2">8 horas</option>
+                            <option value="3">Menos de 8 horas</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label for="refeicoes">Refeições diárias</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">Mais de 5</option>
+                            <option value="2">5</option>
+                            <option value="3">3</option>
+                            <option value="4">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="treinos">Necessita de treinos adaptados?</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">Sim</option>
+                            <option value="2">Não</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="treinos_input">Se sim, qual?</label>
+                        <input id="ref_i" type="text" name="treinos_input" placeholder="Digite aqui" required>
+                    </div>
+                    
+                </div>
+
+                <div class="continue-button">
+                    <button><a href="#">Continuar</a> </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
