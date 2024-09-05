@@ -22,7 +22,7 @@ def dado_alunos():
 
 @app.route('/inserir_medidas')
 def inserir_medidas():
-    return render_template('Inserir_medidas.html')
+    return render_template('inserir_medidas.html')
 
 @app.route('/calcular_imc')
 def calcular_imc():
