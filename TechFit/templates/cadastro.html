@@ -15,30 +15,33 @@
             <img src="static/images/foto_cad.jpg" alt="">
         </div>
         <div class="form">
-            <form action="#">
+            <form action="#" id="formulario">
                 <div class="form-header">
                     <div class="title">
                         <h1>Cadastre-se</h1>
                     </div>
                     <div class="login-button">
-                        <button><a href="#">Entrar</a></button>
+                        <button><a href="#">Voltar</a></button>
                     </div>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group ">
                     <div class="input-box">
-                        <label for="firstname">Nome</label>
-                        <input id="firstname" type="text" name="firstname" placeholder="Digite seu nome" required>
+                        <label for="firstname" class="labels">Nome<span class="error"></span></label>
+                        <input id="firstname" type="text" name="firstname" placeholder="Digite seu nome">
                     </div>
 
                     <div class="input-box">
-                        <label for="lastname">E-mail</label>
-                        <input id="lastname" type="text" name="email" placeholder="Digite seu email" required>
+                        <label for="email">E-mail</label>
+                        <input id="email" type="text" name="email" placeholder="Digite seu email" required>
+                        <small> error menssage</small>
                     </div>
                     <div class="input-box">
-                        <label for="email">Telefone</label>
-                        <input id="email" type="tel" name="number" placeholder="(xx) xxxx-xxxx" required>
+                        <label for="telefone">Telefone</label>
+                        <input id="telefone" type="tel" name="tel" placeholder="(xx) xxxx-xxxx" required>
                     </div>
+                </div>
+                <div class="input-group">   
 
                     <div class="input-box">
                         <label for="number">Data de nascimento</label>
@@ -55,7 +58,6 @@
                         <label for="confirmPassword">Confirme sua Senha</label>
                         <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Digite sua senha novamente" required>
                     </div>
-
                 </div>
 
                 <div class="gender-inputs">
@@ -112,6 +114,6 @@
     </div>
 </body>
 
-<script src="{{url_for('static', filename='static/scripts/script_cadastro.js')}}"></script>
+ <script src="{{url_for('static', filename='static/scripts/script_cadastro.js')}}"></script>
 
 </html>
