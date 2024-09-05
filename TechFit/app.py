@@ -23,3 +23,11 @@ def dado_alunos():
 @app.route('/inserir_medidas')
 def inserir_medidas():
     return render_template('Inserir_medidas.html')
+
+@app.route('/calcular_imc')
+def calcular_imc():
+    return render_template('calculo_imc.html')
+
+@app.route('/calculo_agua')
+def calcular_agua():
+    return render_template('calculo_agua.html')
