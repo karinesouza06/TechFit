@@ -6,7 +6,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -18,7 +17,6 @@ def cadastro():
 @app.route('/dado_aluno')
 def dado_alunos():
     return render_template('form_aluno.html')
-
 
 @app.route('/inserir_medidas')
 def inserir_medidas():
