@@ -28,6 +28,6 @@ def inserir_medidas():
 def calcular_imc():
     return render_template('calculo_imc.html')
 
-@app.route('/calculo_agua')
+@app.route('/calcular_agua')
 def calcular_agua():
     return render_template('calculo_agua.html')
