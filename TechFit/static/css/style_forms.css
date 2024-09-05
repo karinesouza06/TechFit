@@ -100,11 +100,16 @@ body {
 
 .input-box input {
     margin: 0.6rem 0;
+    margin-left: 9px;
     padding: 0.8rem 1.2rem;
     border: none;
     border-radius: 10px;
     box-shadow: 1px 1px 6px #0000001c;
     font-size: 0.8rem;
+}
+
+.input-box label{
+    margin-left: 20px;
 }
 
 .input-box input:hover {
@@ -148,7 +153,6 @@ body {
     color: #000000c0;
 }
 
-
 .continue-button button {
     width: 50%;
     margin-top: 2.5rem;
@@ -170,6 +174,28 @@ body {
     font-weight: 500;
     color: #fff;
 }
+
+/*Simulação dos inputs error e success(INICIO)*/
+.input-box.success input {
+    border: 1px solid #4ECA64;
+  }
+  
+  .input-box.error input {
+    border: 1px solid #DB5A5A;
+  }
+  
+  .input-box.error small {
+    visibility: visible;
+  }
+  
+  .input-box small {
+    visibility: hidden;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #DB5A5A;
+  }
+
+/*Simulação dos inputs error e success(FIM)*/
 
 @media screen and (max-width: 1560px) {
     .form-image {
