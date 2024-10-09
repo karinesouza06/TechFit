@@ -1,3 +1,16 @@
+/* fonte fina  */
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+/* fonte grossa */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+:root{
+    --techfit-100: #e8f1f2;
+    --techfit-200: #1b98e0;
+    --techfit-300: #247ba0;
+    --techfit-400: #006494;
+    --techfit-500: #13293d;
+}
 
 .senha_label, .nome_label {
     display: block;
@@ -6,4 +19,33 @@
     margin-left: 5px;
 }
 
+.modal-title{
+    /* fonte grossa */
+    font-family: 'Inter', sans-serif;
+    color: #f8fafc;
+}
 
+.modal-content{
+    /* fonte fina  */
+    font-family:"Didact Gothic", sans-serif;
+    background-color: var(--techfit-500);
+    color: #cbd5e1;
+}
+
+.modal-dialog{
+     /* fonte fina  */
+     font-family:"Didact Gothic", sans-serif;
+}
+
+.form-text{
+    color: #cbd5e1;
+}
+
+.modal-body .form-control{
+    color: var(--techfit-500);
+}
+
+.btn-primary{
+    background-color: #1b98e0;
+    border: none;
+}
