@@ -1,9 +1,13 @@
+/* fonte fina  */
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+/* fonte grossa */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -62,6 +66,7 @@ body {
     padding: 0.4rem 1rem;
     border-radius: 5px;
     cursor: pointer;
+    font-family: "Didact Gothic", sans-serif;
 }
 
 .login-button button:hover {
@@ -98,6 +103,11 @@ body {
     margin-bottom: 1.1rem;
 }
 
+.title {
+    /* fonte grossa */
+    font-family: 'Inter', sans-serif;
+}
+
 .input-box input {
     margin: 0.6rem 0;
     margin-left: 9px;
@@ -106,10 +116,13 @@ body {
     border-radius: 10px;
     box-shadow: 1px 1px 6px #0000001c;
     font-size: 0.8rem;
+    /* fonte fina  */
+    font-family: "Didact Gothic", sans-serif;
 }
 
 .input-box label{
     margin-left: 20px;
+    font-family: "Didact Gothic", sans-serif;
 }
 
 .input-box input:hover {
@@ -125,6 +138,7 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     color: #000000c0;
+    font-family: "Didact Gothic", sans-serif;
 }
 
 .input-box input::placeholder {
@@ -145,12 +159,14 @@ body {
 
 .gender-input input {
     margin-right: 0.35rem;
+    
 }
 
 .gender-input label {
     font-size: 0.81rem;
     font-weight: 600;
     color: #000000c0;
+    font-family: "Didact Gothic", sans-serif;
 }
 
 .continue-button button {
@@ -162,6 +178,7 @@ body {
     padding: 0.62rem;
     border-radius: 5px;
     cursor: pointer;
+    font-family: "Didact Gothic", sans-serif;
 }
 
 .continue-button button:hover {
