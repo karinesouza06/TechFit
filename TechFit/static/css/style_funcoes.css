@@ -39,7 +39,7 @@ body {
     gap: 2rem;
     padding: 2rem;
     color: #f8fafc;
-    background-color: var(--techfit-500);
+    background-color: #E2ECED;
     border-radius: 8px;
 }
 
@@ -54,6 +54,7 @@ body {
     font-family: 'Inter', sans-serif;
     font-size: 2.25rem;
     position: relative;
+    color: var(--techfit-500);
 }
 
 #title::after {
@@ -123,7 +124,7 @@ body {
     border: none;
     font-size: 1.25rem;
     font-weight: bold;
-    color: #f8fafc;
+    color: var(--techfit-500);
     background-color: #1b98e0;
     padding: 0.5rem 0;
     border-radius: 3px;
@@ -240,4 +241,8 @@ body {
         /* fonte fina  */
     font-family: "Didact Gothic", sans-serif;
     }
+}
+
+.input-box label{
+    color: var(--techfit-500);
 }
