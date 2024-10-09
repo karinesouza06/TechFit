@@ -45,12 +45,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color:#E2ECED;
     padding: 3rem;
 }
 
 .form-header {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
 }
@@ -70,7 +70,7 @@ body {
 }
 
 .login-button button:hover {
-    background-color: #6b63fff1;
+    background-color: #1c6380
 }
 
 .login-button button a {
@@ -93,14 +93,14 @@ body {
 .input-group {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 1rem 0;
+    justify-content: space-around;
+    padding: 1rem;
+    /* background-color: #6c63ff; */
 }
 
 .input-box {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.1rem;
 }
 
 .title {
@@ -118,6 +118,7 @@ body {
     font-size: 0.8rem;
     /* fonte fina  */
     font-family: "Didact Gothic", sans-serif;
+    width: 200px;
 }
 
 .input-box label{
@@ -126,7 +127,7 @@ body {
 }
 
 .input-box input:hover {
-    background-color: #eeeeee75;
+    background-color: white;
 }
 
 .input-box input:focus-visible {
@@ -139,6 +140,7 @@ body {
     font-weight: 600;
     color: #000000c0;
     font-family: "Didact Gothic", sans-serif;
+    
 }
 
 .input-box input::placeholder {
@@ -150,6 +152,14 @@ body {
     justify-content: space-between;
     margin-top: 0.62rem;
     padding: 0 .5rem;
+}
+
+.gender-group-2 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.62rem;
+    padding: 0 .5rem;
+    /* background-color: #c42020; */
 }
 
 .gender-input {
@@ -182,7 +192,7 @@ body {
 }
 
 .continue-button button:hover {
-    background-color: cadetblue;
+    background-color: #1c6380
 }
 
 .continue-button button a {
@@ -239,6 +249,7 @@ body {
         overflow-y: scroll;
         flex-wrap: nowrap;
     }
+
     .gender-inputs {
         margin-top: 2rem;
     }
