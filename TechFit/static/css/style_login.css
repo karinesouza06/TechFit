@@ -1,3 +1,9 @@
+/* fonte fina  */
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+/* fonte grossa */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
 
 .senha_label, .nome_label {
     display: block;
@@ -41,3 +47,17 @@
     background-color: #247ba0; /* Cor de fundo quando o mouse estiver sobre o botão */
 }
 
+.modal-title{
+    /* fonte grossa */
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-content{
+    /* fonte fina  */
+    font-family:"Didact Gothic", sans-serif;
+}
+
+.modal-dialog{
+     /* fonte fina  */
+     font-family:"Didact Gothic", sans-serif;
+}
