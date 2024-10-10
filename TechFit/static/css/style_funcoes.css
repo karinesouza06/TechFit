@@ -124,7 +124,7 @@ body {
     border: none;
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--techfit-500);
+    color:#E2ECED;
     background-color: #1b98e0;
     padding: 0.5rem 0;
     border-radius: 3px;
@@ -140,6 +140,7 @@ body {
     gap: 2rem;
     align-items: center;
     border-top: 1px solid #ffffff34;
+    color: var(--techfit-500);
     padding: 0.75rem 0;
     /* fonte fina  */
     font-family: "Didact Gothic", sans-serif;
@@ -158,20 +159,20 @@ body {
 
 #bmi span:last-child {
     font-size: 0.875rem;
-    color:#cbd5e1;
+    color:var(--techfit-500);
     /* fonte fina  */
     font-family: "Didact Gothic", sans-serif;
 }
 
 #bmi2 span:last-child{
     font-size: 0.875rem;
-    color:#cbd5e1;
+    color:var(--techfit-500);
     /* fonte fina  */
     font-family: "Didact Gothic", sans-serif;
 }
 
 .normal {
-    color: var(--techfit-200);
+    color: var(--techfit-500);
 }
 
 .attention {
@@ -197,7 +198,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 0.6rem;
-    color: var(--techfit-100);
+    color: var(--techfit-500);
     font-size: 0.875rem;
     text-decoration: none;
     transition: color 0.5s;
