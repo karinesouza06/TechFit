@@ -23,7 +23,7 @@
                         <h1>Cadastre-se</h1>
                     </div>
                     <div class="login-button">
-                        <button><a href="#">Voltar</a></button>
+                        <button><a href="{{url_for('index')}}">Voltar</a></button>
                     </div>
                 </div>
 
@@ -102,13 +102,24 @@
                             <input id="user-student" type="radio" name="user-type">
                             <label for="user-student">Aluno</label>
                         </div>
+
+                        <div class="gender-input">
+                            <input id="user-student" type="radio" name="user-type">
+                            <label for="user-student">Administrador</label>
+                        </div>
+
+                        <div class="gender-input">
+                            <input id="user-student" type="radio" name="user-type">
+                            <label for="user-student">Visitante</label>
+                        </div>
+                        
                     </div>
                 </div>
-
 
                 <div class="continue-button">
                     <button><a href="#">Continuar</a> </button>
                 </div>
+
             </form>
         </div>
     </div>
