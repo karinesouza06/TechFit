@@ -58,6 +58,7 @@ body {
     border-bottom-right-radius: 10px;
     height: 90vh;
 
+
 }
 .form-header {
     margin-bottom: 1rem;
@@ -157,8 +158,8 @@ body {
 #student-inputs, #personal-inputs {
     display: flex;
     justify-content:space-between;
-    margin-top: 10px;
     display: none; /* Oculto por padrão */
+    margin-bottom: 15px;
 
 }
 
@@ -166,6 +167,7 @@ body {
 .input-box-student, .input-box-personal {
     flex: 1; /* Para que cada input ocupe a mesma largura */
     margin-right: 25px; /* Espaço entre os inputs */
+    margin-bottom: 15px;
 }
 
 .input-box-student:last-child {
@@ -239,6 +241,7 @@ body {
 }
 
 .gender-title h6 {
+    /* font-family: 'Inter', sans-serif; */
     font-size: 14px;
 
 }
@@ -304,15 +307,18 @@ select option {
     font-family: "Didact Gothic", sans-serif;
 }
 
-
+.continue-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 .continue-button button {
     width: 50%;
-    margin-top: 2.5rem;
-    margin-left: 9.8rem;
     border: none;
     background-color: #237b9f;
-    padding: 0.62rem;
-    border-radius: 5px;
+    padding: 0.60rem;
+    border-radius: 10px;
     cursor: pointer;
     font-family: "Didact Gothic", sans-serif;
 }
