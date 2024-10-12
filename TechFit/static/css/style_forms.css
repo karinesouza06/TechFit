@@ -284,7 +284,7 @@ select option {
     .gender-inputs {
         margin-top: 2rem;
     }
-    .gender-group {
+    .gender-group, .gender-group-2 {
         flex-direction: column;
     }
     .gender-title h6 {
