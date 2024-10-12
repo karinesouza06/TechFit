@@ -1374,3 +1374,35 @@
 		}
 	} );
 }());
+
+ // Script para abrir o modal de cadastro
+ var modal = document.getElementById("myModal");
+ var btn = document.getElementById("openModal");
+ var span = document.getElementsByClassName("close")[0];
+
+ btn.onclick = function () {
+	 modal.style.display = "block";
+ }
+
+ span.onclick = function () {
+	 modal.style.display = "none";
+ }
+
+ window.onclick = function (event) {
+	 if (event.target == modal) {
+		 modal.style.display = "none";
+	 }
+ }
+
+ const studentInputs = document.getElementById('student-inputs');
+ const userTypeRadios = document.querySelectorAll('input[name="user-type"]');
+
+ userTypeRadios.forEach(radio => {
+   radio.addEventListener('change', () => {
+	 if (document.getElementById('user-student').checked) {
+	   studentInputs.classList.remove('hidden');
+	 } else {
+	   studentInputs.classList.add('hidden');
+	 }
+   });
+ });
