@@ -1,3 +1,24 @@
+// Abrir modal
+const modal = document.getElementById("modal");
+const openModal = document.getElementById("openModal");
+const closeModal = document.querySelector(".close");
+
+openModal.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Fechar modal
+closeModal.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Fechar modal ao clicar fora dele
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 const form = document.getElementById('form');
 form.addEventListener('submit', function(event) {
     /* Previne o comportamento padrão do evento submit do JS, ou seja,
