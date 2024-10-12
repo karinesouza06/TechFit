@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/style_funcoes.css
+    ">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -12,47 +13,55 @@
 </head>
 <body>
 
-    <main id="container"> 
-        <!-- Quadrado principal -->
-        <section id="calculator">
-            <form id="form" method="post">
-                <!-- Titulo do modal -->
-                <h1 id="title">
-                    Ingestão de Água
-                </h1>
-                <!-- label e input para inserir água consumida-->
-                <div class="input-box">
-                    <label for="qtd_agua">
-                        Quantidade em litros
-                    </label>
-                    <div class="input-field">
-                        <!-- Icon peso -->
-                        <i class="fa-solid fa-glass-water" style="color: #13293d;"></i>
-                        <input type="number" id="qtd_agua" name="qtd_agua" required>
-                        <span>
-                            L
-                        </span>
-                    </div>
-                </div>
+    <!-- Botão para abrir o modal -->
+    <button id="openModal" type="button">Abrir Calculadora de água</button>
 
-                <!-- Criação do butão que irá enviar dados -->
-                <button id="calculate" onclick="somar_agua()">
-                    Calcular
-                </button>
-            </form>    
-            
-            <!-- Possível utilização que mostrará o IMC resultante e sua classificação -->
-            <div id="infos2" class="hidden">
-                <div id="result2">
-                    <div id="bmi2"> 
-                        <span id="value"></span>
-                        <span style="font-size: 1.25rem;"> Quantidade total de água bebiba (em litros) </span>
-                    </div>
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <main id="container"> 
+                <!-- Quadrado principal -->
+                <section id="calculator">
+                    <form id="form" method="post">
+                        <!-- Titulo do modal -->
+                        <h1 id="title">
+                            Ingestão de Água
+                        </h1>
+                        <span class="close">&times;</span>
+                        <!-- label e input para inserir água consumida-->
+                        <div class="input-box">
+                            <label for="qtd_agua">
+                                Quantidade em litros
+                            </label>
+                            <div class="input-field">
+                                <!-- Icon peso -->
+                                <i class="fa-solid fa-glass-water" style="color: #247ba0;"></i>
+                                <input type="number" id="qtd_agua" name="qtd_agua" required>
+                                <span>
+                                    L
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Criação do butão que irá enviar dados -->
+                        <button id="calculate" onclick="somar_agua()">
+                            Calcular
+                        </button>
+                    </form>    
                     
-                </div>
-            </div>   
-        </section>
-    </main>
-    <script src="static/js/script.js"></script>
+                    <!-- Possível utilização que mostrará o IMC resultante e sua classificação -->
+                    <div id="infos2" class="hidden">
+                        <div id="result2">
+                            <div id="bmi2"> 
+                                <span id="value"></span>
+                                <span style="font-size: 1.25rem;"> Quantidade total de água bebiba (em litros) </span>
+                            </div> 
+                        </div>
+                    </div>   
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="static/scripts/script_funcoes.js"></script>
 </body>
 </html>
