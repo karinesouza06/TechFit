@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="static/images\TechFit (5).png" type="image/x-icon">
-  <link rel="stylesheet" type="text/css">
+  <link rel="icon" href="static/images/TechFit (5).png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="static/css/bootstrap_inicial.css">
   <link rel="stylesheet" href="static/css/fonts_inicial.css">
+  <link rel="stylesheet" href="static/css/style_inicial.css">
   <link rel="stylesheet" href="static/css/style_login.css">
   <link rel="stylesheet" href="static/css/style_forms.css">
 
@@ -14,8 +15,8 @@
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
   <title>Document</title>
+
 </head>
 <body>
   <!-- Botão para acionar modal -->
@@ -42,55 +43,46 @@
                         <label for="firstname" class="labels">Nome<span class="error"></span></label>
                         <input id="firstname" type="text" name="firstname" placeholder="Digite seu nome">
                     </div>
-          
                     <div class="input-box">
                         <label for="email">E-mail</label>
                         <input id="email" type="text" name="email" placeholder="Digite seu email" required>
-                        <small> error menssage</small>
+                        <small> error message</small>
                     </div>
                     <div class="input-box">
                         <label for="telefone">Telefone</label>
                         <input id="telefone" type="tel" name="tel" placeholder="(xx) xxxx-xxxx" required>
                     </div> 
-                
                     <div class="input-box">
                         <label for="number">Data de nascimento</label>
                         <input id="number" type="date" name="number" placeholder="dd/mm/aaaa" required>
                     </div>
-          
                     <div class="input-box">
                         <label for="password">Senha</label>
                         <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
                     </div>
-          
                     <div class="input-box">
                         <label for="confirmPassword">Confirme sua Senha</label>
                         <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Digite sua senha novamente" required>
                     </div>
-          
                 </div>
-          
+
                 <div class="gender-inputs">
                     <div class="gender-title">
                         <h6>Gênero</h6>
                     </div>
-          
                     <div class="gender-group">
                         <div class="gender-input">
                             <input id="gender-femele" type="radio" name="gender">
                             <label for="gender-femele">Feminino</label>
                         </div>
-          
                         <div class="gender-input">
                             <input id="gender-male" type="radio" name="gender">
                             <label for="gender-male">Masculino</label>
                         </div>
-          
                         <div class="gender-input">
                             <input id="gender-others" type="radio" name="gender">
                             <label for="gender-others">Outros</label>
                         </div>
-          
                         <div class="gender-input">
                             <input id="gender-none" type="radio" name="gender">
                             <label for="gender-none">Prefiro não dizer</label>
@@ -101,47 +93,89 @@
                     <div class="gender-title">
                         <h6>Tipo de Usuário</h6>
                     </div>
-          
                     <div class="gender-group">
                         <div class="gender-input">
-                            <input id="user-personal" type="radio" name="user-type">
+                            <input id="user-personal" type="radio" name="user-type" value="personal">
                             <label for="user-personal">Personal</label>
                         </div>
-          
                         <div class="gender-input">
-                            <input id="user-student" type="radio" name="user-type">
+                            <input id="user-student" type="radio" name="user-type" value="student">
                             <label for="user-student">Aluno</label>
                         </div>
-          
                         <div class="gender-input">
-                            <input id="user-student" type="radio" name="user-type">
-                            <label for="user-student">Administrador</label>
+                            <input id="user-admin" type="radio" name="user-type" value="admin">
+                            <label for="user-admin">Administrador</label>
                         </div>
-          
                         <div class="gender-input">
-                            <input id="user-student" type="radio" name="user-type">
-                            <label for="user-student">Visitante</label>
+                            <input id="user-visitor" type="radio" name="user-type" value="visitor">
+                            <label for="user-visitor">Visitante</label>
                         </div>
                     </div>
                 </div>
 
-                <div id="student-inputs" class="hidden">
-                    <div class="input-box">
-                        <label for="course">Curso</label>
-                        <input id="course" type="text" name="course" placeholder="Digite seu curso">
+                <br>
+
+                <!-- Inputs que aparecem apenas se "Aluno" for selecionado -->
+                <div id="student-inputs">
+
+                    <div class="input-box-student">
+                        <label for="dias">Dias de treino</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">1 dia</option>
+                            <option value="2">2 dias</option>
+                            <option value="3">3 dias</option>
+                            <option value="4">4 dias</option>
+                            <option value="5">5 dias</option>
+                        </select>
                     </div>
-                    <div class="input-box">
-                        <label for="year">Ano de Ingresso</label>
-                        <input id="year" type="text" name="year" placeholder="Digite seu ano de ingresso">
+
+                    <div class="input-box-student">
+                        <label for="horario">Horario de treino</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">Manhã</option>
+                            <option value="2">Tarde</option>
+                            <option value="3">Noite</option>
+                            <option value="4">Variado</option>
+                        </select>
                     </div>
-                    <div class="input-box">
-                        <label for="id">ID do Aluno</label>
-                        <input id="id" type="text" name="id" placeholder="Digite seu ID">
-                    </div>
+
                 </div>
-          
+
+                <!-- Inputs que aparecem apenas se "Personal" for selecionado -->
+                <div id="personal-inputs">
+
+                    <div class="input-box-personal">
+                        <label for="dias">Dias de trabalho</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">1 dia</option>
+                            <option value="2">2 dias</option>
+                            <option value="3">3 dias</option>
+                            <option value="4">4 dias</option>
+                            <option value="5">5 dias</option>
+                        </select>
+                    </div>
+
+                    <div class="input-box-personal">
+                        <label for="horario">Horario de trabalho</label>
+                        <select class="form-select" required>
+                            <option selected>Selecione</option>
+                            <option value="1">Manhã</option>
+                            <option value="2">Manhã - Tarde </option>
+                            <option value="3">Manhã - Noite </option>
+                            <option value="4">Tarde</option>
+                            <option value="5">Tarde - Noite </option>
+                            <option value="6">Noite</option>
+                            <option value="7">Todos</option>
+                        </select>
+                    </div>
+
+                </div>
+                
                 <div class="continue-button">
-                    <button><a href="#">Continuar</a> </button>
+                    <button><a href="#">Continuar</a></button>
                 </div>
                 
             </form>
@@ -151,13 +185,13 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="static/scripts/core.min_inicial.js"></script>
   <script src="static/scripts/script_inicial.js"></script>
   <script src="{{url_for('static', filename='scripts/script_login.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  
+  <script src="static/scripts/script_cadastro02.js"></script>
+
+
 </body>
 </html>
-
-
-
