@@ -247,3 +247,50 @@ body {
 .input-box label{
     color: var(--techfit-300);
 }
+
+
+/* Estilos básicos do modal */
+.modal {
+    display: none;
+    border: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: transparent;
+    background-color: transparent;
+    
+}
+
+.modal-content {
+    background-color: transparent;
+    margin: 15% auto;
+    padding: 20px;
+    border: none;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    color: transparent;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ /* Ajuste no layout do calculator para acomodar o botão de fechar */
+ #calculator {
+    position: relative;
+}
+
