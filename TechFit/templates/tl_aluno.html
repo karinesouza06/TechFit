@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="static/css/style_aluno.css">
+    <link rel="stylesheet" href="static/css/style_personal.css
+    ">
+    <link rel="stylesheet" href="static/css/bootstrap_inicial.css">
+    <link rel="icon" href="static/images\TechFit (5).png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="static/css/fonts_inicial.css">
+    <link rel="stylesheet" href="static/css/style_inicial.css">
+    <link rel="stylesheet" href="static/css/style_login.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="page">
+        <!-- Page Header-->
+        <header class="section page-header">
+          <!-- RD Navbar-->
+          <div class="rd-navbar-wrap">
+            <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+  
+              <div class="rd-navbar-main-outer">
+                <div class="rd-navbar-main">
+                  <!-- RD Navbar Panel-->
+                  <div class="rd-navbar-panel">
+                    <!-- Menu Hamburguer Responsivo -->
+                    <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                    <!-- RD Navbar Brand-->
+                  
+                    <div class="rd-navbar-brand"> <img src="static/images\Logo-techfit.png" alt="" width="180" height="30"/></div>
+                  </div>
+                  <div class="rd-navbar-main-element">
+                    <div class="rd-navbar-nav-wrap">
+                      <!-- RD Navbar Nav-->
+                      <ul class="rd-navbar-nav">
+  
+                        <li class="rd-nav-item">
+                          <a class="rd-nav-link" href="/cadastro" style="color: white; text-decoration: none;">Cadastre-se</a>
+                        </li>
+  
+                        <li class="rd-nav-item" >
+                          <a class="rd-nav-link" href="#" style="color: white; text-decoration: none;" data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-primary" data-bs-whatever="@mdo">
+                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit; ">Login</font></font>
+                          </a>
+                        </li>
+                  
+                      </ul>
+  
+                      <!--button LOGIN MODAL-->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;" >
+                        <div class="modal-dialog" >
+                            <!-- a partir dessa de baixo muda a cor do fundo-->
+  
+                            <div class="modal-content">
+                              <div class="modal-header"> <!--consegue mudar o backgroud-->
+  
+                                  <div class="rd-navbar-brand" id="imagem_recorte"> 
+                                    <img src="static/images\Slider-02-recorte.png"/>
+                                  </div>
+                      
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; color: #247ba0;">Login</font></font></h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                              </div>
+          
+                              <div class="modal-body"> <!--consegue mudar o backgroud-->
+                              
+                                  <label class="nome_label" style="color: #247ba0; ">NOME</label>
+  
+                                  <input  type="text" id="inputNome" class="form-control required" aria-describedby="passwordHelpBlock" >
+  
+                                  <div style="margin-bottom: 20px;" id="passwordHelpBlock" class="form-text"><font style="vertical-align: inherit; "><font style="vertical-align: inherit;">
+                                    <span>Não conter números, caracteres especiais ou emojis.</span>
+                                    </font></font>
+                                  </div>
+                                  <label class="senha_label" style="color: #247ba0;">SENHA</label>
+                                  
+                                  <input type="password" id="inputPassword5" class="form-control required" aria-describedby="passwordHelpBlock">
+  
+                                  <div id="passwordHelpBlock" class="form-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                    <span>Sua senha deve ter de 8 a 20 caracteres, conter letras e números e não deve conter espaços ou emojis.</span>
+                                    </font></font>
+                                  </div>
+                              </div>
+  
+                              <div class="modal-footer" style="background-color: #E2ECED;">
+                                <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fechar</font></font></button>-->
+                                <button type="button" class="btn btn-primary" id="validar_button"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Enviar</font></font></button>
+                              </div>
+                            </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+        </header>
+       
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Painel</h2>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Components</a></li>
+                    <li><a href="#">Forms</a></li>
+                    <li><a href="#">Tables</a></li>
+                    <li><a href="#">Charts</a></li>
+                    <li><a href="#">Icons</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">F.A.Q</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="profile-section">
+            <div class="profile-header">
+                <h1>Profile</h1>
+                <nav class="breadcrumb">
+                    <a href="#">Página Inicial</a> / <a href="#">Personal</a> / <a href="#">Buscar exercícios</a>/<a href="#"> Perfil</a>
+                </nav>
+            </div>
+
+            <div class="profile-info">
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic">
+                    <h4>Perfil</h4>
+                    <p>Aluno</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="profile-details">
+                    <div class="tabs">
+                        <a href="#" class="active">Detalhes</a>
+                        <a href="#">Editar perfil</a>
+                        <a href="#">Configurações</a>
+                        <a href="#">Ficha Técnica</a>
+                        
+                    </div>
+
+                    <div class="about-section">
+                        <h3>Sobre</h3>
+                        <p>Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit.</p>
+                    </div>
+
+                    <div class="profile-details-section">
+                        <h5>Mais Detalhes</h5>
+                        <ul>
+                            <li><strong>Nome:</strong> ' nome do aluno' </li>
+                            <li><strong>Foco de Treino:</strong> ' Musculação '</li>
+                            <li><strong>Cidade:</strong>  Caicó/ RN  </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <section class="dashboard">
+        <div class="dashboard-functions">
+            <div class="function-card">
+                <h3>Ingestão de Água</h3>
+                 <!-- O modal ficara´aqui -->
+                 <div class="chart-placeholder">
+                    <p>Modal aqui</p>
+                </div>
+                
+            </div>
+
+            <div class="function-card">
+                <h3>Gráfico de Evolução</h3>
+                <!-- O gráfico será gerado aqui -->
+                <div class="chart-placeholder">
+                    <p>Gráfico aqui</p>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <h3>Função 3</h3>
+                <p>Descrição da Função 3</p>
+            </div>
+
+            <div class="function-card">
+                <h3>Função 4</h3>
+                <p>Descrição da Função 4</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class='footerContainer'>
+          <div class="socialIcons">
+            <a href="" class="fa-brands fa-facebook "></a>
+            <a href="" class="fa-brands fa-instagram"></a>
+            <a href="" class="fa-brands fa-twitter"></a>
+            <a href="" class="fa-brands fa-youtube"></a>
+            <a href="" class="fa-brands fa-google-plus "></a>
+          </div>
+  
+          <!--<div class="footerNav">
+            <ul>
+              <li><a href="">Home</a></li>
+              <li><a href="">News</a></li>
+              <li><a href="">About</a></li>
+              <li><a href="">Contact Us</a></li>
+              <li><a href="">Our Team</a></li>
+            </ul>
+          </div>-->
+  
+          <div class="footerBottom">
+            <p>Copyright &copy; 2024; Desenvolvido pelos estudantes de Infoweb.</p>
+          </div>
+        </div>
+      </footer>
+
+</body>
+</html>
