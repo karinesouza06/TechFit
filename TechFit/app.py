@@ -65,7 +65,7 @@ def cadastro():
         conn.commit()
  
         if usuario:
-            return redirect(url_for('inicial')) #REDIRECIONA PARA A INICIAL PARA O USUÁRIO FAZER LOGIN.
+            return render_template('inicial.html') #REDIRECIONA PARA A INICIAL PARA O USUÁRIO FAZER LOGIN.
         
         else:
             if senha == confirmasenha:
@@ -92,4 +92,3 @@ def calcular_imc():
 @app.route('/calcular_agua')
 def calcular_agua():
     return render_template('calculo_agua.html')
-
