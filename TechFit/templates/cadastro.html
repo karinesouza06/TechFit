@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <title>Document</title>
+  <title>Cadastro</title>
 
 </head>
 <body>
@@ -36,12 +37,12 @@
         </div>
         <div class="modal-body">
           <div class="form">
-            <form action="#" id="formulario">
+            <form action="{{url_for('cadastro')}}" id="formulario" method="post">
 
                 <div class="input-group ">
                     <div class="input-box">
                         <label for="firstname" class="labels">Nome<span class="error"></span></label>
-                        <input id="firstname" type="text" name="firstname" placeholder="Digite seu nome">
+                        <input id="firstname" type="text" name="nome" placeholder="Digite seu nome">
                     </div>
                     <div class="input-box">
                         <label for="email">E-mail</label>
@@ -50,19 +51,19 @@
                     </div>
                     <div class="input-box">
                         <label for="telefone">Telefone</label>
-                        <input id="telefone" type="tel" name="tel" placeholder="(xx) xxxx-xxxx" required>
+                        <input id="telefone" type="tel" name="telefone" placeholder="(xx) xxxx-xxxx" required>
                     </div> 
                     <div class="input-box">
                         <label for="number">Data de nascimento</label>
-                        <input id="number" type="date" name="number" placeholder="dd/mm/aaaa" required>
+                        <input id="number" type="date" name="data" placeholder="dd/mm/aaaa" required>
                     </div>
                     <div class="input-box">
                         <label for="password">Senha</label>
-                        <input id="password" type="password" name="password" placeholder="Digite sua senha" required>
+                        <input id="password" type="password" name="senha" placeholder="Digite sua senha" required>
                     </div>
                     <div class="input-box">
                         <label for="confirmPassword">Confirme sua Senha</label>
-                        <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Digite sua senha novamente" required>
+                        <input id="confirmPassword" type="password" name="confirmasenha" placeholder="Digite sua senha novamente" required>
                     </div>
                 </div>
 
@@ -72,19 +73,19 @@
                     </div>
                     <div class="gender-group">
                         <div class="gender-input">
-                            <input id="gender-femele" type="radio" name="gender">
+                            <input id="gender-femele" type="radio" name="genero">
                             <label for="gender-femele">Feminino</label>
                         </div>
                         <div class="gender-input">
-                            <input id="gender-male" type="radio" name="gender">
+                            <input id="gender-male" type="radio" name="genero">
                             <label for="gender-male">Masculino</label>
                         </div>
                         <div class="gender-input">
-                            <input id="gender-others" type="radio" name="gender">
+                            <input id="gender-others" type="radio" name="genero">
                             <label for="gender-others">Outros</label>
                         </div>
                         <div class="gender-input">
-                            <input id="gender-none" type="radio" name="gender">
+                            <input id="gender-none" type="radio" name="genero">
                             <label for="gender-none">Prefiro não dizer</label>
                         </div>
                     </div>
@@ -120,7 +121,7 @@
 
                     <div class="input-box-student">
                         <label for="dias">Dias de treino</label>
-                        <select class="form-select" required>
+                        <select class="form-select" required name="dias_treino">
                             <option selected>Selecione</option>
                             <option value="1">1 dia</option>
                             <option value="2">2 dias</option>
@@ -132,7 +133,7 @@
 
                     <div class="input-box-student">
                         <label for="horario">Horario de treino</label>
-                        <select class="form-select" required>
+                        <select class="form-select" name="horario_treino" required>
                             <option selected>Selecione</option>
                             <option value="1">Manhã</option>
                             <option value="2">Tarde</option>
@@ -148,7 +149,7 @@
 
                     <div class="input-box-personal">
                         <label for="dias">Dias de trabalho</label>
-                        <select class="form-select" required>
+                        <select class="form-select" name='dias_trabalho' required>
                             <option selected>Selecione</option>
                             <option value="1">1 dia</option>
                             <option value="2">2 dias</option>
@@ -160,7 +161,7 @@
 
                     <div class="input-box-personal">
                         <label for="horario">Horario de trabalho</label>
-                        <select class="form-select" required>
+                        <select class="form-select" name="horario_trabalho" required>
                             <option selected>Selecione</option>
                             <option value="1">Manhã</option>
                             <option value="2">Manhã - Tarde </option>
@@ -175,7 +176,7 @@
                 </div>
                 
                 <div class="continue-button">
-                    <button><a href="#">Concluir Cadastro</a></button>
+                    <button>Concluir Cadastro</button>
                 </div>
                 
             </form>
@@ -195,3 +196,6 @@
 
 </body>
 </html>
+
+
+
