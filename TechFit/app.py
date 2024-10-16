@@ -104,3 +104,7 @@ def calcular_agua():
 @app.route('/tela_aluno')
 def tela_aluno():
     return render_template('tl_aluno.html')
+
+@app.route('/tela_personal')
+def tela_personal():
+    return render_template('tl_personal.html')
