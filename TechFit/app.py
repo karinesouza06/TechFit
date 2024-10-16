@@ -15,6 +15,7 @@ def index():
     return render_template('inicial.html')
 
 
+#como é um modal, a rota não vai funcionar, então tem que vê uma solução para isso. mas a função vai ser nesse modelo.
 @app.route('/login', methods=['POST', 'GET'])
 def login():
 
