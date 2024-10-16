@@ -73,8 +73,15 @@ def cadastro():
                 conn.execute('INSERT INTO dados_usuarios (nome, senha, email, telefone, data_nascimento, genero, tipo_usuario, dias_treino, horario_treino, dias_trabalho, horario_trabalho) VALUES (?,?,?,?,?,?,?,?,?,?,?)', (nome, senha, email, telefone, data_nascimento, genero, tipo_usuario, dias_treino, horario_treino, dias_trabalho, horario_trabalho,)).fetchone()
                 conn.commit()
                 conn.close() 
-        
-                return render_template('inicial.html')
+
+                if tipo_usuario in ['aluno', 'student']:
+                    return redirect(url_for('tela_aluno'))
+                
+                elif tipo_usuario == 'personal':
+                    return redirect(url_for('calcular_imc')) #FOI SÓ PARA TESTAR
+                
+                else:
+                    return render_template('inicial.html')
             
         return render_template('cadastro.html')
         
@@ -93,3 +100,7 @@ def calcular_imc():
 @app.route('/calcular_agua')
 def calcular_agua():
     return render_template('calculo_agua.html')
+
+@app.route('/tela_aluno')
+def tela_aluno():
+    return render_template('tl_aluno.html')
