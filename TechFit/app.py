@@ -78,7 +78,7 @@ def cadastro():
                     return redirect(url_for('tela_aluno'))
                 
                 elif tipo_usuario == 'personal':
-                    return redirect(url_for('calcular_imc')) #FOI SÓ PARA TESTAR
+                    return redirect(url_for('tela_personal')) 
                 
                 else:
                     return render_template('inicial.html')
