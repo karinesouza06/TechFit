@@ -1037,7 +1037,7 @@ img {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	border: 2px solid #E2ECED;
+	border: 2px solid #363636;
 	transition: all .3s ease;
 	z-index: 0;
 }
@@ -14770,3 +14770,190 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 	border-radius: 4px;
 	border: 1px solid #e1e1e1;
 }
+
+
+
+.carousel-item img {
+	height: 90vh;
+	object-fit: cover; /* Faz com que a imagem cubra toda a área da caixa, mantendo a proporção */
+}
+
+
+
+/*CSS DO RODAPÉ*/
+
+footer {
+	background-color:  #006494;
+}
+
+.footerContainer {
+	width: 100%;
+	padding: 70px 30px 20px ;
+}
+
+.socialIcons {
+	display: flex;
+	justify-content: center;
+}
+
+.socialIcons a {
+	text-decoration: none;
+	padding: 10px;
+	background-color: white;
+	margin: 10px;
+	border-radius: 50%;
+	width: 3%;
+}
+
+.socialIcons a i{
+	font-size: 2em;
+	color: black;
+	opacity: 0.9;
+}
+
+
+.socialIcons a:hover {
+	background-color: #000000;
+	transition: 0.5s;
+}
+
+.socialIcons a:hover  i {
+	color: white;
+	transition: 0.5s;
+}
+
+.footerNav {
+	margin: 30px 0;
+}
+
+.footerNav ul {
+	display: flex;
+	justify-content: center;
+	list-style-type: none;
+}
+
+.footerNav ul li a {
+	color: white;
+	margin: 20px;
+	text-decoration: none;
+	font-size: 1.3em;
+	opacity: 0.7;
+	transition: 0.5s;
+}
+
+.footerNav ul li a:hover {
+	opacity: 1;
+}
+
+.footerBottom {
+	background-color: #006494;
+	padding: 20px;
+	text-align: center;
+}
+
+.footerBottom p{
+	color: white;
+}
+
+
+
+/*RESPONSIVIDADE DO FOOTER*/
+
+@media (max-width: 700px) {
+	.footerNav ul{
+		flex-direction: column;
+	}
+
+	.footerNav ul li {
+		width: 100%;
+		text-align: center;
+		justify-content: center;
+		margin: 10px;
+	}
+
+	.footerNav ul li a:hover {
+		opacity: 1;
+	}
+
+	.socialIcons a:hover {
+		background-color: #000000;
+		transition: 0.5s;
+	}
+	
+	.socialIcons a {
+		width: 10%;
+	}
+	
+}
+
+.header_gal{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo_sct{
+    /* fonte grossa */
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #000;
+}
+.gallery-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1vw;
+    padding: 0 7vw;
+}
+.gallery-items, .gallery-items2{
+    width: 200px;
+    height: 200px;
+    border: none;
+    box-shadow: none;
+    flex-grow: 1;
+    transition: transform .5s linear;
+}
+
+.gallery-items img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.gallery-items:hover{
+    transform: scale(1.6);
+}
+
+.gallery-items2 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.gallery-items2:hover{
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
