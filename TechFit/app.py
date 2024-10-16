@@ -12,7 +12,7 @@ def obter_conexao_banco():
 
 @app.route('/')
 def index():
-    return render_template('inicial.html')
+    return render_template('index.html')
 
 
 #como é um modal, a rota não vai funcionar, então tem que vê uma solução para isso. mas a função vai ser nesse modelo.
