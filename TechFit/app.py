@@ -66,7 +66,7 @@ def cadastro():
         conn.commit()
  
         if usuario:
-            return render_template('inicial.html') #REDIRECIONA PARA A INICIAL PARA O USUÁRIO FAZER LOGIN.
+            return render_template('index.html') #REDIRECIONA PARA A INICIAL PARA O USUÁRIO FAZER LOGIN.
         
         else:
             if senha == confirmasenha:
@@ -81,7 +81,7 @@ def cadastro():
                     return redirect(url_for('tela_personal')) 
                 
                 else:
-                    return render_template('inicial.html')
+                    return render_template('index.html')
             
         return render_template('cadastro.html')
         
