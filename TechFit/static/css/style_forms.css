@@ -4,7 +4,7 @@
 /* fonte grossa */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
 
-* {
+/* * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -19,9 +19,6 @@ body {
     background:#237b9f;
 }
 
-.hidden {
-    display: none;
-}
 
 .container {
     width: 80%;
@@ -35,19 +32,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e7f1f2;
+    background-color: #e7f1;
     padding: 1rem;
 }
 
 .form-image img {
     width: 31rem;
+} */
+
+.hidden {
+    display: none;
 }
 
 .modal-header, .modal-body, .modal-content {
     background-color: #E8F1F2;
     border: none;
 }
-
 
 .modal-content {
     height: 90vh;
@@ -104,9 +104,9 @@ body {
 .input-group, .input-group-medidas {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 1rem;
-    /* background-color: #6c63ff; */
+
 }
 
 .input-box {
@@ -136,6 +136,7 @@ body {
 .input-box label{
     margin-left: 20px;
     font-family: "Didact Gothic", sans-serif;
+    text-align: start;
 }
 
 .input-box input:hover {
@@ -160,6 +161,7 @@ body {
     justify-content:space-between;
     display: none; /* Oculto por padrão */
     margin-bottom: 15px;
+    
 
 }
 
@@ -202,11 +204,11 @@ body {
 }
 
 .input-box-student label {
-    margin-left: 20px;
     font-size: 13px;
     font-weight: 600;
     color: #000000c0;
     font-family: "Didact Gothic", sans-serif;
+    text-align: start;
     
 }
 
@@ -232,7 +234,6 @@ body {
 }
 
 .input-box-personal label {
-    margin-left: 20px;
     font-size: 13px;
     font-weight: 600;
     color: #000000c0;
@@ -321,17 +322,11 @@ select option {
     border-radius: 10px;
     cursor: pointer;
     font-family: "Didact Gothic", sans-serif;
+    color:#E8F1F2;
 }
 
 .continue-button button:hover {
     background-color: #1c6380
-}
-
-.continue-button button a {
-    text-decoration: none;
-    font-size: 0.93rem;
-    font-weight: 500;
-    color: #fff;
 }
 
 /*Simulação dos inputs error e success(INICIO)*/
@@ -366,6 +361,8 @@ select option {
     .form {
         width: 100%;
     }
+
+    
 }
 
 @media screen and (max-width: 1064px) {
