@@ -1,0 +1,313 @@
+
+/* Link do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+/* Ajuste pequenos da tela no geral */
+.rounded-lg img{
+    padding-left: 15px;
+    border-radius: 0;
+}
+
+.logo-img {
+    width: 300px; 
+    height: auto; 
+}
+
+.mb-6 img {
+    padding-top: 10px;
+}
+
+.mt-8 .mt-4 {
+    padding-top: 120px;
+    padding-left: 10px;
+  
+} 
+
+
+
+/* CARROSSEL */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    aspect-ratio: 16/9;
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-image {
+    min-width: 100%;
+    height: auto;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 50px; 
+    height: 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-button:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+    left: 1rem;
+}
+
+.next {
+    right: 1rem;
+}
+
+/* Indicadores de slide */
+.carousel-indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicator.active {
+    background: #fff;
+    transform: scale(1.2);
+}
+
+
+/*MODAL DE LOGIN*/
+
+/* Reset CSS */
+*:not(dialog) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+ /* Centralizar modal */
+dialog[open] {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    max-width: 90%;
+}
+
+/* Botão de abrir modal */
+.open-modal {
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Fundo do modal */
+dialog::backdrop {
+    background-color: rgb(0, 0, 0, 0.5);
+}
+
+/* Modal */
+dialog {
+    border: none;
+    width: 350px;
+    border-radius: 24px;
+    padding: 18px;
+}
+
+/* Cabeçalho do modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* Título do modal */
+.modal-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #111928;
+}
+
+/* Botão de fechar modal */
+.close-modal {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #9CA3AF;
+    font-size: 18px;
+}
+
+/* Corpo do modal */
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Input do formulário */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Label do input */
+.input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111928;
+}
+
+/* Input */
+.input-group input {
+    border: 1px solid #D1D5DB;
+    background-color: #F9FAFB;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+/* Input com foco */
+.input-group input:focus {
+    outline: 1px solid #6366f1;
+}
+
+/* Opções de senha */
+.password-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Checkbox de lembrar senha */
+.remember-password {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #111826;
+}
+
+/* Link de esqueci a senha */
+.forgot-password {
+    font-size: 12px;
+    color: #1C64F2;
+    text-decoration: none;
+}
+
+/* Botão de login */
+#login_button {
+    background-color: #111826;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Rodapé do modal */
+.register span {
+    font-size: 14px;
+    color: #6B7280;
+}
+
+/* Link de registrar */
+.register a {
+    font-size: 14px;
+    color: #1C64F2;
+    text-decoration: none;
+}
+
+/* Estilos para validação */
+.input-group.invalid input {
+    border-color: #ef4444;
+    outline-color: #ef4444;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+
+
+/* RESPONSIVIDADES */
+@media (max-width: 768px) {
+    .carousel {
+        aspect-ratio: 9/16; /* Proporção vertical para mobile */
+    }
+    
+    .carousel-button {
+        width: 30px; /* Tamanho reduzido para dispositivos móveis */
+        height: 30px; /* Tamanho reduzido para dispositivos móveis */
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .aluno-fields,
+    .personal-fields {
+        margin-top: 1rem;
+    }
+    
+    input[type="time"] {
+        padding: 0.75rem;
+    }
+}
+
+
+@media (max-width: 640px) {
+    dialog {
+        width: 90%;
+        padding: 1rem;
+    }
+    
+    .modal-body {
+        gap: 12px;
+    }
+    
+    .input-group input {
+        padding: 8px 12px;
+    }
+}
+
+
