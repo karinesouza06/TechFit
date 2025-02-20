@@ -68,7 +68,21 @@ def login():
     # return render_template('pages/auth/login.html')
     return render_template('index.html')
              
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
 
+@app.route('/tela_exercicios')
+def tela_exercicios():
+    return render_template('tela_exercicios.html')
+
+@app.route('/exercise_page')
+def exercise_page():
+    return render_template('exercise_page.html')
+
+@app.route('/minhas_medidas')
+def minhas_medidas():
+    return render_template('minhas_medidas.html')
 
 # 8 - logout
 @app.route('/logout')
