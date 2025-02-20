@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFit - Escolha um Personal</title>
+    <!-- obs de mateus para todes: mudar as nomeclaturas pois fiz em um arquivo independente -->
+    <link rel="stylesheet" href="static/css/exercicios.css">
+</head>
+<body>
+    <header>
+        <h1>TechFit</h1>
+    </header>
+    <main>
+        <h2>Selecionar exercícios</h2>
+        <p>*Escolha os exercícios*</p>
+        <!-- Div do card (basta copiar para adicionar novos cards) -->
+         
+        <div class="card-container">
+            <div class="card">
+                <div class="avatar" id="avatar1">
+                    <img src="static/images/techfit_icon.png" alt="Avatar"><!-- Div com a imagem do exercício -->
+                </div>
+                <label class="change-photo" for="fileInput1">Mudar Foto</label><!-- Botão "mudar foto" -->
+                <input type="file" id="fileInput1" accept="image/*" onchange="mudarFoto(event, 'avatar1')"><!-- Chamando a função para mudar a foto -->
+                <h3>Costas: puxada alta na polia</h3><!-- Nome do exercício -->
+                <button onclick="openModal('Costas: puxada alta na polia')">Selecionar</button><!-- Chamando a função para abrir o modal -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Criação do modal para inserção da quantidade de séries e repetições -->
+    <div id="exerciseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span><!-- Chamando a função para fechar o modal -->
+            <h2>Configurar Exercício</h2>
+            <p id="modal-message"></p>
+            <form id="exercise-form">
+                <div>
+                    <label for="sets">Quantidade de Séries:</label>
+                    <input type="number" id="sets" min="1" placeholder="Insira a quantidade de séries" required>
+                </div>
+                <div>
+                    <label for="reps">Quantidade de Repetições:</label>
+                    <input type="number" id="reps" min="1" placeholder="Insira a quantidade de repetições" required>
+                </div>
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Link javascript, bjs emilly -->
+    <script src="exercicios_js.js"></script>
+</body>
+</html>
