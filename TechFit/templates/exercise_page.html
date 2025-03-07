@@ -20,51 +20,6 @@
         border-radius: 5px;
     }
 
-    .search-bar .dropdown {
-        position: relative;
-        width: auto;
-    }
-
-    .search-bar .dropdown button {
-        padding: 11px;
-        border: none;
-        border-radius: 5px;
-        background-color: #0d2329;
-        color: #fff;
-        cursor: pointer;
-        text-align: center;
-    }
-
-    .search-bar .dropdown-content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: #ffffff;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-        z-index: 1;
-        width: 100%;
-        border-radius: 5px;
-    }
-
-    .search-bar .dropdown-content button {
-        padding: 10px;
-        width: 100%;
-        border: none;
-        background-color: #fff;
-        color: #0d2329;
-        cursor: pointer;
-        text-align: left;
-    }
-
-    .search-bar .dropdown-content button:hover {
-        background-color: #f1f1f1;
-    }
-
-    .search-bar .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
     .tabs {
         display: flex;
         justify-content: space-between;
@@ -106,67 +61,13 @@
         left: 0;
     }
 
-    .campaign-container {
+    .exercise-container {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
         justify-content: space-between;
     }
 
-    .campaign-card {
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 20px;
-        background-color: #f9f9f9;
-        box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
-        flex: 1 1 calc(33.333% - 20px);
-        box-sizing: border-box;
-    }
-
-    .campaign-card h3 {
-        margin-bottom: 10px;
-        color:  #1C64F2;
-    }
-
-    .campaign-card p {
-        margin: 5px 0;
-        color: #555;
-    }
-
-    .campaign-card .progress-bar {
-        margin-top: 10px;
-        height: 20px;
-        background-color: #ddd;
-        border-radius: 10px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .campaign-card .progress {
-        height: 100%;
-        background-color:  #1C64F2;
-        text-align: center;
-        color: #fff;
-        line-height: 20px;
-        width: 0%;
-    }
-
-    .campaign-card .donate-button {
-        margin-top: 10px;
-        padding: 10px;
-        background-color: #1C64F2;
-        color: #fff;
-        border: none;
-        width: 33%;
-        min-width: 90px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .campaign-card .donate-button:hover {
-        background-color:  #1C64F2;
-    }
 
     @media (max-width: 768px) {
         .tabs .tab-buttons button {
@@ -182,174 +83,20 @@
             margin-bottom: 3%;
         }
 
-        .search-bar .dropdown {
-            width: 100%;
-            margin-bottom: 5%;
-        }
 
         .tabs {
             margin-bottom: 10%;
         }
-        .campaign-container {
+        .exercise-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
             align-items: center;
         }
 
-        .campaign-card {
-            flex: 1 1 100%;
-            max-width: 100%;
-        }
-    }
-</style>
-
-<style>
-    .button-group {
-        display: flex;
-        align-items: center;
-        gap: 10px;
     }
 
-    .filter-button {
-        padding: 11px;
-        border: none;
-        border-radius: 5px;
-        background-color: #0d2329;
-        color: white;
-        cursor: pointer;
-    }
-
-    .filter-button i {
-        margin-right: 5px;
-    }
-
-    .dropdown {
-        position: relative;
-    }
-
-    .dropdown button {
-        padding: 11px;
-        border: none;
-        border-radius: 5px;
-        background-color: #0d2329;
-        color: white;
-        cursor: pointer;
-        text-align: center;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: #ffffff;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        width: 100%;
-        border-radius: 5px;
-    }
-
-    .dropdown-content button {
-        padding: 10px;
-        width: 100%;
-        border: none;
-        background-color: #fff;
-        color: #0d2329;
-        cursor: pointer;
-        text-align: left;
-    }
-
-    .dropdown-content button:hover {
-        background-color: #f1f1f1;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .filter-section {
-        margin-top: 20px;
-        padding: 20px;
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        background-color: #f9f9f9;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .filter-row {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        min-width: 200px;
-    }
-
-    .filter-row label {
-        font-size: 14px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 5px;
-    }
-
-    .filter-row input {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 14px;
-        width: 100%;
-    }
-
-    .apply-filter-button {
-        padding: 10px 20px;
-        background-color: #0d2329;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
-        align-self: center;
-    }
-
-    .apply-filter-button:hover {
-        background-color: #092022;
-    }
-
-
-
-    @media (max-width: 768px) {
-        .button-group {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 10px;
-        }
-
-        .filter-button,
-        .dropdown button {
-            width: 100%;
-        }
-        .filter-section {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .filter-row {
-            width: 100%;
-        }
-
-        .apply-filter-button {
-            width: 100%;
-            text-align: center;
-        }
-    }
-
-
-    #top-donors-container {
+    #advanced-exercises-container {
         margin: 20px auto;
         padding: 20px;
         max-width: 90%;
@@ -362,63 +109,13 @@
         gap: 20px; 
     }
 
-    .table-container {
-        margin: 20px;
-        padding: 15px;
-        background-color: #f9f9f9;
-        border-radius: 10px;
-        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
-        border: 1px solid #ccc;
-    }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 12px;
-        text-align: center;
-        border: 1px solid #ddd;
-    }
-
-    th {
-        background-color: #1C64F2;
-        color: white;
-        font-size: 16px;
-    }
-
-    td {
-        color: #555;
-    }
-
-    tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    table thead th {
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    table tbody tr:last-child td {
-        border-bottom: none;
-    }
-
-    .small-column {
-        width: 10%; 
-    }
-
-    #top-campaigns-container,
-    #top-donors-container {
+    #intermediate-exercises-container,
+    #advanced-exercises-container {
         display: none;
     }
 
-    .donors-list table {
-        width: 100%;
-        table-layout: fixed;
-    }
-
+  
     /* A partir daqui começa a estilização dos cards */
     .card {
         background: white;
@@ -481,25 +178,25 @@
 <form class="search-bar" method="GET" action="{{ url_for('index') }}">
     <input type="text" 
            name="q" 
-           placeholder="Pesquisar campanhas..." 
+           placeholder="Pesquisar exercícios..." 
            value="{{ search_term|default('') }}">
 </form>
 
 <div class="tabs">
     <div class="tab-buttons">
-        <button class="active" id="all-campaigns"> EXERCÍCIOS BÁSICOS </button>
-        <button id="top-campaigns">EXERCÍCIOS INTERMEDIÁRIOS</button>
-        <button id="top-donors">EXERCÍCIOS AVANÇADOS</button>
+        <button class="active" id="exercises-basic"> EXERCÍCIOS BÁSICOS </button>
+        <button id="intermediate-exercises">EXERCÍCIOS INTERMEDIÁRIOS</button>
+        <button id="advanced-exercises">EXERCÍCIOS AVANÇADOS</button>
     </div>
 </div>
 
-<div id="all-campaigns-container" class="campaign-container">
+<div id="exercises-basic-container" class="exercise-container">
     <!-- Conteúdo do cartão de exercício -->
      <!-- Esse cartão vai ter que ser modificado para rodar um um loop, onde eles serão adicionados constantemente-->
     <div class="card-container">
         <div class="card">
             <div class="avatar" id="avatar1">
-                <img src="static/images/logo/techfit_icon.png" alt="Avatar">
+                <img src="static/images/techfit_icon.png" alt="Avatar">
             </div>
             <label class="change-photo" for="fileInput1">Mudar Foto</label>
             <input type="file" id="fileInput1" accept="image/*" onchange="mudarFoto(event, 'avatar1')">
@@ -509,138 +206,53 @@
     </div>
 
 </div>
-<div id="top-campaigns-container" class="campaign-container" style="display: none;">
-    <!--{% for campaign in most_successful %}
-     <div class="campaign-card">
-            <h3>{{ campaign.title }}</h3>
-            <p><strong>Descrição:</strong> </p>
-            <p><strong>Tipo:</strong></p>
-            <p><strong>Status:</strong> </p>
-            <p><strong>Criado em:</strong></p>
-            <p><strong>Criador:</strong></p>
-            <p><strong>Prazo:</strong> </p>
-            <p><strong>Meta:</strong> </p>
-            <p><strong>Progresso:</strong></p>
-            <div class="progress-bar">
-            <div class="progress" > --> 
-                
-      </div>
-        <a href="">
-            <!--<button class="donate-button">Doar</button>-->
-        </a>
-    </div>
-   <!--{% endfor %}--> 
+
+<div id="intermediate-exercises-container" class="exercise-container" style="display: none;"> 
+
 </div>
 
-<div id="top-donors-container" class="campaign-container">
-    <div class="dropdown" id="period-dropdown">
+<div id="advanced-exercises-container" class="exercise-container">
 
-    </div>
-
-    <div id="items-top-donors" class="donors-list">
-     
-    </div>
-  
-    <div id="money-top-donors" class="donors-list" style="display: none;">
-     
-    </div>
 </div>
 
 <script>
-    document.getElementById('top-campaigns').addEventListener('click', function () {
-        document.getElementById('top-campaigns-container').style.display = 'flex';
-        document.getElementById('all-campaigns-container').style.display = 'none';
-        document.getElementById('top-donors-container').style.display = 'none';
+    document.getElementById('intermediate-exercises').addEventListener('click', function () {
+        document.getElementById('intermediate-exercises-container').style.display = 'flex';
+        document.getElementById('exercises-basic-container').style.display = 'none';
+        document.getElementById('advanced-exercises-container').style.display = 'none';
         this.classList.add('active');
-        document.getElementById('all-campaigns').classList.remove('active');
-        document.getElementById('top-donors').classList.remove('active');
+        document.getElementById('exercises-basic').classList.remove('active');
+        document.getElementById('advanced-exercises').classList.remove('active');
     });
 
-    document.getElementById('all-campaigns').addEventListener('click', function () {
-        document.getElementById('all-campaigns-container').style.display = 'flex';
-        document.getElementById('top-campaigns-container').style.display = 'none';
-        document.getElementById('top-donors-container').style.display = 'none';
+    document.getElementById('exercises-basic').addEventListener('click', function () {
+        document.getElementById('exercises-basic-container').style.display = 'flex';
+        document.getElementById('intermediate-exercises-container').style.display = 'none';
+        document.getElementById('advanced-exercises-container').style.display = 'none';
         this.classList.add('active');
-        document.getElementById('top-campaigns').classList.remove('active');
-        document.getElementById('top-donors').classList.remove('active');
+        document.getElementById('intermediate-exercises').classList.remove('active');
+        document.getElementById('advanced-exercises').classList.remove('active');
     });
 
-    document.getElementById('top-donors').addEventListener('click', function () {
-        document.getElementById('all-campaigns-container').style.display = 'none';
-        document.getElementById('top-campaigns-container').style.display = 'none';
-        document.getElementById('top-donors-container').style.display = 'flex';
+    document.getElementById('advanced-exercises').addEventListener('click', function () {
+        document.getElementById('exercises-basic-container').style.display = 'none';
+        document.getElementById('intermediate-exercises-container').style.display = 'none';
+        document.getElementById('advanced-exercises-container').style.display = 'flex';
         this.classList.add('active');
-        document.getElementById('all-campaigns').classList.remove('active');
-        document.getElementById('top-campaigns').classList.remove('active');
-    });
-
-    function switchTab(type) {
-    const itemsTab = document.getElementById('items-top-donors');
-    const moneyTab = document.getElementById('money-top-donors');
-    
-    if (type === 'items') {
-        itemsTab.style.display = 'flex';
-        moneyTab.style.display = 'none';
-        document.getElementById('items-tab').classList.add('active');
-        document.getElementById('money-tab').classList.remove('active');
-    } else {
-        itemsTab.style.display = 'none';
-        moneyTab.style.display = 'flex';
-        document.getElementById('money-tab').classList.add('active');
-        document.getElementById('items-tab').classList.remove('active');
-    }
-    }
-
-    document.getElementById('filter-button').addEventListener('click', function () {
-        const filterSection = document.getElementById('filter-section');
-        if (filterSection.style.display === 'none') {
-            filterSection.style.display = 'block';
-        } else {
-            filterSection.style.display = 'none';
-        }
+        document.getElementById('exercises-basic').classList.remove('active');
+        document.getElementById('intermediate-exercises').classList.remove('active');
     });
 
     function mudarFoto(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.querySelector('#avatar1 img').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-}
-
-function openModal(titulo) {
-    alert(`Modal aberto para: ${titulo}`);
-}
-
-// Criação da função para brir e fechar modal
-const modal = document.getElementById('exerciseModal');
-
-        function openModal(personalName) {
-            document.getElementById('modal-message').innerText = `Você selecionou: ${personalName}`;
-            modal.style.display = 'block'; // Exibe o modal
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.querySelector('#avatar1 img').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
         }
-
-        function closeModal() {
-            modal.style.display = 'none'; // Oculta o modal
-        }
-
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                closeModal(); // Fecha o modal se clicar fora dele
-            }
-        }
-
-        document.getElementById('exercise-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede o envio do formulário
-            const sets = document.getElementById('sets').value;
-            const reps = document.getElementById('reps').value;
-            console.log(`Séries: ${sets}, Repetições: ${reps}`);
-            this.reset();
-            closeModal(); // Fecha o modal após salvar
-        });
+    };
 
 </script>
 
