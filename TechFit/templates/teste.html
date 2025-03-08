@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      id="cadastroForm"
+      class="space-y-4 md:space-y-6"
+      action="{{url_for('register')}}"
+      method="post"
+    >
+      <div class="grid gap-4 sm:grid-cols-2">
+        <!-- Campos principais -->
+        <div>
+          <label
+            for="nome"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Nome completo</label
+          >
+          <input
+            name="nome"
+            type="text"
+            id="nome"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+          <span class="text-red-500 text-sm hidden" id="nomeError"></span>
+        </div>
+
+        <div>
+          <label
+            for="email"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Email</label
+          >
+          <input
+            name="email"
+            type="email"
+            id="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+          <span class="text-red-500 text-sm hidden" id="emailError"></span>
+        </div>
+
+        <div>
+          <label
+            for="telefone"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Telefone</label
+          >
+          <input
+            name="telefone"
+            type="tel"
+            id="telefone"
+            pattern="[0-9]{11}"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+          <span class="text-red-500 text-sm hidden" id="telefoneError"></span>
+        </div>
+
+        <div>
+          <label
+            for="nascimento"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Data Nascimento</label
+          >
+          <input
+            name="data"
+            type="date"
+            id="nascimento"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+          <span class="text-red-500 text-sm hidden" id="nascimentoError"></span>
+        </div>
+
+        <div>
+          <label
+            for="senha"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Senha</label
+          >
+          <input
+            name="senha"
+            type="password"
+            id="senha"
+            minlength="6"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+          <span class="text-red-500 text-sm hidden" id="senhaError"></span>
+        </div>
+
+        <div>
+          <label
+            for="confirmarSenha"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Confirmar Senha</label
+          >
+          <input
+            name="confirmasenha"
+            type="password"
+            id="confirmarSenha"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          />
+          <span
+            class="text-red-500 text-sm hidden"
+            id="confirmarSenhaError"
+          ></span>
+        </div>
+
+        <div>
+          <label
+            for="genero"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Gênero</label
+          >
+          <select
+            name="genero"
+            id="genero"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          >
+            <option value="" disabled selected>Selecione</option>
+            <option value="feminino">Feminino</option>
+            <option value="masculino">Masculino</option>
+            <option value="outros">Outros</option>
+            <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+          </select>
+          <span class="text-red-500 text-sm hidden" id="generoError"></span>
+        </div>
+
+        <div>
+          <label
+            for="tipoUsuario"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Tipo de Usuário</label
+          >
+          <select
+            name="tipoUsuario"
+            id="tipoUsuario"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+          >
+            <option value="" disabled selected>Selecione</option>
+            <option value="personal">Personal</option>
+            <option value="aluno">Aluno</option>
+            <option value="administrador">Administrador</option>
+            <option value="visitante">Visitante</option>
+          </select>
+          <span
+            class="text-red-500 text-sm hidden"
+            id="tipoUsuarioError"
+          ></span>
+        </div>
+      </div>
+
+      <!-- Campos condicionais -->
+      <div class="mt-4">
+        <div class="aluno-fields hidden">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label
+                for="dias_treino"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Dias de Treino/Semana</label
+              >
+              <select
+                name="dias_treino"
+                id="dias_treino"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              >
+                <option value="" disabled selected>Selecione</option>
+                <option value="1">1 dia</option>
+                <option value="2">2 dias</option>
+                <option value="3">3 dias</option>
+                <option value="4">4 dias</option>
+                <option value="5">5 dias</option>
+                <option value="6">6 dias</option>
+                <option value="7">7 dias</option>
+              </select>
+              <span
+                class="text-red-500 text-sm hidden"
+                id="dias_treinoError"
+              ></span>
+            </div>
+
+            <div>
+              <label
+                for="horario_treino"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Horário Preferido</label
+              >
+              <input
+                name="horario_treino"
+                type="time"
+                id="horario_treino"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
+              <span
+                class="text-red-500 text-sm hidden"
+                id="horario_treinoError"
+              ></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="personal-fields hidden">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label
+                for="dias_trabalho"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Dias de Trabalho/Semana</label
+              >
+              <select
+                name="dias_trabalho"
+                id="dias_trabalho"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              >
+                <option value="" disabled selected>Selecione</option>
+                <option value="1">1 dia</option>
+                <option value="2">2 dias</option>
+                <option value="3">3 dias</option>
+                <option value="4">4 dias</option>
+                <option value="5">5 dias</option>
+                <option value="6">6 dias</option>
+                <option value="7">7 dias</option>
+              </select>
+              <span
+                class="text-red-500 text-sm hidden"
+                id="dias_trabalhoError"
+              ></span>
+            </div>
+
+            <div>
+              <label
+                for="horario_trabalho"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Horário de Trabalho</label
+              >
+              <select
+                name="horario_trabalho"
+                id="horario_trabalho"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              >
+                <option value="">Selecione</option>
+                <option value="matutino">Matutino</option>
+                <option value="vespertino">Vespertino</option>
+                <option value="noturno">Noturno</option>
+              </select>
+              <span
+                class="text-red-500 text-sm hidden"
+                id="horario_trabalhoError"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Criar conta
+      </button>
+    </form>
+  </body>
+</html>
