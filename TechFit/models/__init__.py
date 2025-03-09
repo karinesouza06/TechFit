@@ -116,6 +116,24 @@ class User(UserMixin):
             return 'TELA DE ADMINISTRADOR'
         else:
             return 'TELA DO VISITANTE'
-            
+
+    @classmethod
+    def atualizar_dados(cls, nome, email, telefone, data_nascimento, dias_treino, horario_treino, id):
+        conn = obter_conexao()
+        conn.execute(
+            'UPDATE users SET use_nome = ?, use_email = ?, use_telefone = ?, use_data_nascimento = ?, use_dias_treino = ?, use_horario_treino = ? WHERE use_id = ?',
+            (nome, email, telefone, data_nascimento, dias_treino, horario_treino, id)
+        )
+        conn.commit()
+
+    @classmethod
+    def one(cls, id):
+        conn = obter_conexao()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM users WHERE use_id = ?', (id,))
+        consultar_user = cursor.fetchone()
+        conn.close()
+        return consultar_user
+
     
         
