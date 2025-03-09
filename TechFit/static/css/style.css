@@ -2,7 +2,13 @@
 /* Link do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
+:root{
+    --techfit-100: #ffff;
+    --techfit-200: #247ba0;
+    --techfit-300: #247ba0;
+    --techfit-400: #006494;
+    --techfit-500: #e8f1f2;
+}
 
 /* Ajuste pequenos da tela no geral */
 .rounded-lg img{
@@ -173,6 +179,10 @@ dialog[open] {
     cursor: pointer;
 }
 
+form {
+    background-color: var(--techfit-500);
+}
+
 dialog::backdrop {
     background-color: rgb(0, 0, 0, 0.5);
 }
@@ -182,6 +192,7 @@ dialog {
     width: 350px;
     border-radius: 24px;
     padding: 18px;
+    background-color: var(--techfit-500);
 }
 
 .modal-header {
@@ -192,9 +203,11 @@ dialog {
 }
 
 .modal-title {
-    font-size: 20px;
-    font-weight: 500;
-    color: #111928;
+    font-size: 25px;
+    font-weight:bold;
+    color: var(--techfit-200);
+    margin-left: 110px;
+    
 }
 
 .close-modal {
@@ -209,6 +222,7 @@ dialog {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    background-color: var(--techfit-500);
 }
 
 .input-group {
@@ -220,7 +234,7 @@ dialog {
 .input-group label {
     font-size: 14px;
     font-weight: 500;
-    color: #111928;
+    color: var(--techfit-200);
 }
 
 .input-group input {
@@ -231,7 +245,7 @@ dialog {
 }
 
 .input-group input:focus {
-    outline: 1px solid #6366f1;
+    outline: 1px solid #e8f1f2 ;
 }
 
 .password-options  a{
@@ -240,12 +254,12 @@ dialog {
 
 .forgot-password {
     font-size: 12px;
-    color: #1C64F2;
+    color: var(--techfit-400);
     text-decoration: none;
 }
 
 #login_button {
-    background-color: #111826;
+    background-color:var(--techfit-200);
     color: #FFFFFF;
     border: none;
     border-radius: 8px;
@@ -267,7 +281,7 @@ dialog {
 
 .register a {
     font-size: 14px;
-    color: #1C64F2;
+    color:var(--techfit-400);
     text-decoration: none;
 }
 
