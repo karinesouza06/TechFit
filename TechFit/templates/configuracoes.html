@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+
+{% block title%}Configurações{% endblock %}
+{% block titlePage %}Configurações{% endblock %}
+{% block style %}
+
+<style>
+    main {
+        width: 80%; 
+        margin: 0 auto; 
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between; 
+        align-items: flex-start; 
+    }
+
+    .profile-container1 {
+        width: 30%; 
+        padding: 2%;
+        background-color: var(--techfit--100);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        margin-right: 30px;
+        display: flex; 
+        flex-direction: column; 
+        align-items: center;
+        color: #13293D;
+    }
+
+    .form {
+        width: 60%;
+        padding: 5px;
+        color: #13293D;  
+    }
+
+    .profile-container1 h2 {
+        text-align: center;
+        margin-bottom: 5px;
+        color: var(--techfit-200);
+    }
+
+    .picture {
+        width: 70%; 
+        height: 0; 
+        padding-top: 70%; 
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        border: 2px dashed currentcolor;
+        cursor: pointer;
+        transition: color 300ms ease-in-out, background 300ms ease-in-out;
+        outline: none;
+        overflow: hidden;
+        border-radius: 50%; 
+        position: relative; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: 0 auto; 
+    }
+
+    #picture__input {
+        display: none;
+    }
+
+    .picture:hover {
+        color: #777;
+        background: #ccc;
+    }
+
+    .picture:active {
+        border-color: turquoise;
+        color: turquoise;
+        background: #eee;
+    }
+
+    .picture:focus {
+        color: #777;
+        background: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .picture__img {
+        position: absolute; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%; 
+        object-fit: cover; 
+    }
+
+    .profile-info1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .profile-info1 .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        color: var(--techfit-200);
+        width: 100%; 
+        justify-content: center;
+    }
+
+    .profile-info1 .info-item p {
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .profile-info1 .info-item i {
+        font-size: 18px;
+    }
+
+    .input-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .input-box {
+        flex: 1 1 calc(50% - 20px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-box label {
+        font-size: 14px;
+        color: #13293D;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .input-box input,
+    .input-box select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .input-box input:focus,
+    .input-box select:focus { 
+        border-color: #006494;
+        outline: none;
+    }
+
+    .password-container {
+        display: flex; 
+        gap: 10px; 
+        align-items: flex-start; 
+        width: 100%; 
+    }
+
+    .continue-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .continue-button button {
+        padding: 10px 20px;
+        background-color: #006494;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 170px;
+    }
+
+    .continue-button button:hover {
+        background-color: #1551a3;
+    }
+
+    .continue-button button a {
+        color: white;
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column; 
+        }
+        
+        .profile-container1,
+        .form {
+            width: 100%;
+            margin-right: 0; 
+        }
+
+        .input-box {
+            flex: 1 1 100%;
+        }
+
+        .form {
+            margin: 20px;
+            padding: 15px;
+        }
+
+        .form-header .title h1 {
+            font-size: 20px;
+        }
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h1>Editar dados</h1>
+<br>
+
+<div class="container">
+    <div class="profile-container1">
+        <label class="picture" for="picture__input" tabIndex="0">
+            <span class="picture__image">Escolha uma imagem</span>
+            <img src="" alt="profile_image" class="picture__img" style="display: none;">
+        </label>
+        <input type="file" name="picture_input" id="picture__input" style="display: none;">
+        <br>
+        
+        <div class="profile-info1">
+            <div class="info-item">
+                <i class="fas fa-user"></i>
+                <p>Nome: {{ user_info.nome }}</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <p>Email: {{ user_info.email }}</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <p>Data de Nascimento: {{ user_info.data_nascimento }} </p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <p>Telefone: {{ user_info.telefone }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form">
+        <form action="#">
+            <div class="input-group">
+                <div class="input-box">
+                    <label for="nome_edit">Nome</label>
+                    <input id="nome_edit" type="text" name="nome_edit" placeholder="Insira seu nome" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="email_edit">Email</label>
+                    <input id="email_edit" type="text" name="email_edit" placeholder="Insira seu email" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="telefone_edit">Telefone</label>
+                    <input id="telefone_edit" type="text" name="telefone_edit" placeholder="Insira seu Telefone" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="data_nascimento_edit">Data Nascimento</label>
+                    <input name='data_nascimento_edit' type="date" id="data_nascimento_edit" Placeholder="Data de nascimento" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="dias_treino_edit">Dias de Treino/Semana</label>
+                    <select name='dias_treino_edit' id="dias_treino_edit" required>
+                        <option value="none" disabled selected>Selecione</option>
+                        <option value="1">1 dia</option>
+                        <option value="2">2 dias</option>
+                        <option value="3">3 dias</option>
+                        <option value="4">4 dias</option>
+                        <option value="5">5 dias</option>
+                        <option value="6">6 dias</option>
+                        <option value="7">7 dias</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <label for="horario_treino_edit">Horário Preferido</label>
+                    <input name='horario_treino_edit' type="time" id="horario_treino_edit" required>
+                </div>
+
+                <div class="input-box password-container"> 
+                    <label for="senha_edit">Senha</label>
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input name="senha_edit" type="password" id="senha_edit" minlength="6" required style="flex: 1;">
+                        <button type="button" onclick="togglePasswordVisibility('senha_edit')" style="margin-left: 5px; border:none; background:transparent;"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="input-box password-container">
+                    <label for="confirmarSenha_edit">Confirmar Senha</label>
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input name='confirmasenha_edit' type="password" id="confirmarSenha_edit" required style="flex: 1;">
+                        <button type="button" onclick="togglePasswordVisibility('confirmarSenha_edit')" style="margin-left: 5px; border:none; background:transparent;"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="continue-button">
+                <button><a href="#">Salvar</a></button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+
+    // Código relacionado a inserção de imagem do perfil do usuário 
+    const inputFile = document.querySelector("#picture__input");
+    const pictureImage = document.querySelector(".picture__image");
+    const pictureImg = document.querySelector(".picture__img");
+    const pictureImageTxt = "Escolha uma imagem";
+
+    pictureImage.innerHTML = pictureImageTxt;  // Define texto padrão
+
+    inputFile.addEventListener("change", function (e) {
+        const inputTarget = e.target;
+        const file = inputTarget.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function (e) {
+                const readerTarget = e.target;
+                pictureImg.src = readerTarget.result; // Atualiza a imagem
+                pictureImg.style.display = "block"; // Torna a imagem visível
+                pictureImage.innerHTML = ""; // Limpa o texto padrão
+            });
+
+            reader.readAsDataURL(file);
+        } else {
+            pictureImage.innerHTML = pictureImageTxt; // Reseta para o texto padrão
+            pictureImg.style.display = "none"; // Esconde a imagem
+        }
+    });
+
+    // Função para alternar visibilidade da senha
+    function togglePasswordVisibility(inputId) {
+        const inputField = document.getElementById(inputId);
+        const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+        inputField.setAttribute('type', type);
+    }
+</script>
+
+{% endblock %}
