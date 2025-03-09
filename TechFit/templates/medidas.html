@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block title%}Minhas medidas{% endblock %}
+{% block titlePage %}Minhas medidas{% endblock %}
+
+{% block style %}
+
+<style>
+    
+    .form {
+        width: 40%;
+        padding: 5px;
+    }
+
+    .input-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .input-box {
+        flex: 1 1 calc(50% - 20px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-box label {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .input-box input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .input-box input:focus {
+        border-color: #1C64F2;
+        outline: none;
+    }
+
+    .continue-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .continue-button button {
+        padding: 10px 20px;
+        background-color: #1C64F2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 170px;
+    }
+
+    .continue-button button:hover {
+        background-color: #1551a3;
+    }
+
+    .continue-button button a {
+        color: white;
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .input-box {
+            flex: 1 1 100%;
+        }
+
+        .form {
+            margin: 20px;
+            padding: 15px;
+        }
+
+        .form-header .title h1 {
+            font-size: 20px;
+        }
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h1>Inserir Medidas</h1>
+<br>
+<div class="form">
+    <form action="#">
+
+        <div class="input-group">
+            <div class="input-box">
+                <label for="armlength">Braço Direito</label>
+                <input id="armlength" type="text" name="armlength" placeholder="Digite o comprimento" required>
+            </div>
+
+            <div class="input-box">
+                <label for="armlength">Braço Esquerdo</label>
+                <input id="armlength" type="text" name="armlength" placeholder="Digite o comprimento" required>
+            </div>
+
+            <div class="input-box">
+                <label for="chestlength">Peito</label>
+                <input id="chestlength" type="text" name="chestlength" placeholder="Digite o comprimento" required>
+            </div>
+
+            <div class="input-box">
+                <label for="hiplength">Quadril</label>
+                <input id="hiplength" type="text" name="hiplength" placeholder="Digite o comprimento" required>
+            </div>
+
+            <div class="input-box">
+                <label for="calflength">Panturrilha Direita</label>
+                <input id="calflength" type="text" name="calflength" placeholder="Digite o comprimento" required>
+            </div>
+            
+            <div class="input-box">
+                <label for="calflength">Panturrilha Esquerda</label>
+                <input id="calflength" type="text" name="calflength" placeholder="Digite o comprimento" required>
+            </div>
+
+            <div class="input-box">
+                <label for="calflength">Coxa Direita</label>
+                <input id="calflength" type="text" name="calflength" placeholder="Digite o comprimento" required>
+            </div>
+
+            <div class="input-box">
+                <label for="calflength">Coxa Esquerda</label>
+                <input id="calflength" type="text" name="calflength" placeholder="Digite o comprimento" required>
+            </div>
+
+            <!-- <div class="input-box">
+                <label for="waist">Cintura</label>
+                <input id="waist" type="text" name="waist" placeholder="Digite o comprimento" required>
+            </div> -->
+
+        </div>
+        <br>
+
+        <div class="continue-button">
+            <button><a href="#">Salvar</a> </button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+   
+
+</script>
+
+{% endblock %}
