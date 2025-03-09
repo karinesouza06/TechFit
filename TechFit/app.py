@@ -9,7 +9,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ULTRAMEGADIFICIL'
 login_manager.init_app(app)
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
@@ -88,14 +87,26 @@ def exercise_page():
 def medidas():
     return render_template('medidas.html')
 
-@app.route('/configuracoes')
+@app.route('/configuracoes', methods=['GET', 'POST'])
 def configuracoes():
-    user_id = current_user.get_id() 
-    user = User.get(user_id)  
-    if user:
-        return render_template('configuracoes.html',  user_info=user)
-    else:
-        return render_template('configuracoes.html', user_info=None)
+    userid = current_user.get_id()
+    user = User.get(userid) 
+    if request.method == 'POST':
+        nome = request.form['nome_edit']
+        senha = request.form.get('senha_edit') 
+        confirmasenha = request.form['confirmasenha_edit']
+        email = request.form['email_edit']
+        telefone = request.form['telefone_edit']
+        data_nascimento = request.form['data_nascimento_edit']
+        dias_treino = request.form.get('dias_treino_edit')
+        horario_treino = request.form['horario_treino_edit']
+
+        if senha == confirmasenha and check_password_hash(user.senha, senha):
+            User.atualizar_dados(nome, email, telefone, data_nascimento, dias_treino, horario_treino, userid)
+        else:
+            flash("As senhas não coincidem.")
+    um_user = User.one(userid)
+    return render_template('configuracoes.html', user=um_user, user_info=user)
  
 
 # 8 - logout
