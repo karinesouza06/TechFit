@@ -84,9 +84,19 @@ def tela_exercicios():
 def exercise_page():
     return render_template('exercise_page.html')
 
-@app.route('/minhas_medidas')
-def minhas_medidas():
-    return render_template('minhas_medidas.html')
+@app.route('/medidas')
+def medidas():
+    return render_template('medidas.html')
+
+@app.route('/configuracoes')
+def configuracoes():
+    user_id = current_user.get_id() 
+    user = User.get(user_id)  
+    if user:
+        return render_template('configuracoes.html',  user_info=user)
+    else:
+        return render_template('configuracoes.html', user_info=None)
+ 
 
 # 8 - logout
 @app.route('/logout')
