@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='/images/logo/techfit_icone.png') }}" style="width: 100%;">
+    <title>{% block title %} {% endblock %}</title>
+    {% block style %} {% endblock %}
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #0d2329;
+            background: linear-gradient(to right, #e8f1f2, #006494);
+            padding-left: 82px;
+            color: #0d2329;
+        }
+
+        header {
+            background-color: #ffffff;
+            width: 100%;
+            padding: 24px;
+            padding-left: 100px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 998;
+            /* Fica abaixo da sidebar */
+            max-height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            padding-left: 25px;
+        }
+
+        main {
+            margin-top: 114px;
+            /* Espaço abaixo do header */
+            margin-left: 18px;
+            margin-right: 18px;
+            margin-bottom: 18px;
+            border-radius: 25px;
+            width: calc(100% - 36px);
+            padding: 30px;
+            background-color: white;
+            box-sizing: border-box;
+            position: relative;
+            /* Fica abaixo da sidebar */
+            z-index: 997;
+            opacity: 95%;
+            color: black;
+        }
+
+        #sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #ffffff;
+            height: 100vh;
+            width: 82px;
+            /* Largura inicial */
+            position: fixed;
+            /* Fixa a sidebar na tela */
+            top: 0;
+            left: 0;
+            z-index: 999;
+            /* Fica acima do conteúdo */
+            transition: all .5s;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+            /* Sombra na lateral direita */
+        }
+
+        #sidebar_content {
+            padding: 12px;
+        }
+
+        #logo_avatar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            margin-top: 8px;
+        }
+
+        #logo_avatar_avatar {
+            width: 55px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        #logo_avatar_infos {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #logo_avatar_infos span:last-child {
+            color: #6b6b6b;
+            font-size: 12px;
+        }
+
+        #side_items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .side-item {
+            border-radius: 8px;
+            padding: 14px;
+            cursor: pointer;
+        }
+
+        .side-item.active {
+            background-color: #0d2329;
+        }
+
+        .side-item:hover:not(.active),
+        #logout_btn:hover {
+            background-color: #e3e9f7;
+        }
+
+        .side-item a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0d2329;
+        }
+
+        .side-item.active a {
+            background-color: transparent;
+            /* Mantém o fundo transparente */
+            color: #e3e9f7;
+            /* Define o texto e o ícone como branco */
+            border: none;
+            /* Remove bordas extras */
+        }
+
+        .side-item.animated-active a {
+            background-color: transparent;
+            /* Certifica-se de que o fundo não seja alterado durante a animação */
+            color: #e3e9f7;
+            /* Garante a cor branca para o texto e o ícone */
+        }
+
+        .side-item a i {
+            background: none;
+            /* Garante que o ícone não tenha fundo inesperado */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            color: inherit;
+            /* Herda a cor definida */
+        }
+
+        #logout {
+            border-top: 1px solid #e3e9f7;
+            padding: 12px;
+        }
+
+        #logout_btn {
+            border: none;
+            gap: 20px;
+            padding: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: transparent;
+        }
+
+        #open_btn {
+            position: absolute;
+            top: 38px;
+            right: -10px;
+            background-color: #0d2329;
+            color: #e3e9f7;
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #open_btn_icon {
+            transition: transform .3s ease;
+        }
+
+        .open-sidebar #open_btn_icon {
+            transform: rotate(180deg);
+        }
+
+        .item-description {
+            width: 0px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 14px;
+            transition: width .6s;
+            height: 0px;
+        }
+
+        #sidebar.open-sidebar {
+            width: 250px;
+            /* Largura quando expandida */
+        }
+
+        #sidebar.open-sidebar .item-description {
+            width: 150px;
+            height: auto;
+        }
+
+        #sidebar.open-sidebar .side-item a {
+            justify-content: flex-start;
+            gap: 14px;
+        }
+
+        /* Sidebar e botão de abertura para dispositivos móveis */
+        @media (max-width: 768px) {
+            #sidebar {
+                transform: translateX(-100%);
+                /* Move a sidebar para fora da tela */
+                width: 250px;
+                /* Define a largura expandida */
+                transition: transform 0.3s ease;
+                /* Adiciona uma transição suave */
+            }
+
+            #sidebar.open-sidebar {
+                transform: translateX(0);
+                /* Exibe a sidebar ao abrir */
+            }
+
+            header {
+                padding-left: 10px;
+            }
+
+            main {
+                width: 100%;
+            }
+
+            body {
+                padding: 0;
+            }
+
+            h1 {
+                font-size: 25px;
+            } 
+        }
+    </style>
+
+</head>
+<body>
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="logo_avatar">
+                <img src="{{ url_for('static', filename='images/') }}" id="logo_avatar_avatar" alt="Avatar">
+            </div>
+
+            <ul id="side_items">
+
+                <li class="side-item {% if request.endpoint == 'profile' %}active{% endif %}">
+                    <a href="{{ url_for('profile') }}">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="item-description">
+                            Perfil
+                        </span>
+                    </a>
+                </li>
+
+                <li class="side-item {% if request.endpoint == 'index' %}active{% endif %}">
+                    <a href="{{ url_for('exercise_page') }}">
+                        <i class="fa-solid fa-video"></i>
+                        <span class="item-description">
+                            Exercícios 
+                        </span>
+                    </a>
+                </li>
+
+                <li class="side-item {% if request.endpoint == 'index' %}active{% endif %}">
+                    <a href="{{ url_for('profile') }}">
+                        <i class="fa-solid fa-dumbbell"></i>
+                        <span class="item-description">
+                           Meus treinos
+                        </span>
+                    </a>
+                </li>
+
+                <li class="side-item {% if request.endpoint == 'index' %}active{% endif %}">
+                    <a href="{{ url_for('medidas') }}">
+                        <i class="fa-sharp fa-solid fa-tape"></i>
+                        <span class="item-description">
+                           Minhas medidas
+                        </span>
+                    </a>
+                </li>
+                
+                <li class="side-item {% if request.endpoint == 'index' %}active{% endif %}">
+                    <a href="{{ url_for('configuracoes') }}">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="item-description">
+                           Configurações
+                        </span>
+                    </a>
+                </li>
+
+
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div id="logout">
+            <form action="{{url_for('logout')}}" method="POST">
+                <button id="logout_btn" type="submit">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="item-description">Sair</span>
+                </button>
+            </form>
+        </div>                   
+    </nav>
+
+    <header>
+        <h1>{% block titlePage %} {% endblock %}</h1>
+    </header>
+    
+
+    <main class="fade-in">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script>
+        document.getElementById('open_btn').addEventListener('click', function () {
+            const sidebar = document.getElementById('sidebar');
+            const logo_avatarAvatar = document.getElementById('logo_avatar_avatar');
+
+            // Alterna a classe de abertura da sidebar
+            sidebar.classList.toggle('open-sidebar');
+
+            // Alterar a imagem e o tamanho do avatar ao expandir/recolher a sidebar
+            if (sidebar.classList.contains('open-sidebar')) {
+                logo_avatarAvatar.src = "{{ url_for('static', filename='images/logo/LogoAnimadaDark.gif') }}";
+                logo_avatarAvatar.style.height = "45px";
+                logo_avatarAvatar.style.width = "180px";
+                logo_avatarAvatar.style.marginTop = "5px";
+                logo_avatarAvatar.style.marginBottom = "5px";
+            } else {
+                logo_avatarAvatar.src = "{{ url_for('static', filename='images/logo/techfit_icon.png') }}";
+                logo_avatarAvatar.style.width = "55px";
+            }
+        });
+    </script>
+
+</body>
+</html>

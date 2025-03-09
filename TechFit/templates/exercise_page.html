@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+
+{% block title %}Exercícios{% endblock %}
+{% block titlePage %}Exercícios{% endblock %}
+
+{% block style %}
+<style>
+
+    :root {
+        --techfit-100: #ffff;
+        --techfit-200: #247ba0;
+        --techfit-300: #247ba0;
+        --techfit-400: #006494;
+        --techfit-500: #e8f1f2;
+    }
+
+    .search-bar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .search-bar input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: var(--techfit-200);
+    }
+
+    .search-bar input::placeholder {
+        color: var(--techfit-200);
+    }
+
+    .tabs {
+        display: flex;
+        justify-content: space-between;
+        margin: 2% 0;
+        width: 100%;
+    }
+
+    .tabs .tab-buttons {
+        display: flex;
+        gap: 0;
+        width: 100%;
+    }
+
+    .tabs .tab-buttons button {
+        flex: 1;
+        text-align: center;
+        border: none;
+        background: transparent;
+        font-size: 14px;
+        font-weight: bold;
+        color: #b0b0b0;
+        cursor: pointer;
+        position: relative;
+        padding-bottom: 5px;
+    }
+
+    .tabs .tab-buttons button.active {
+        color: var(--techfit-200);
+    }
+
+    .tabs .tab-buttons button.active:after {
+        content: '';
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: var(--techfit-200);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    h1 {
+        text-align: left;
+        color: var(--techfit-200);
+        margin-bottom: 10px;
+    }
+
+    .exercise-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+    }
+
+
+    @media (max-width: 768px) {
+        .tabs .tab-buttons button {
+            font-size: 12px;
+        }
+
+        .search-bar {
+            flex-direction: column;
+        }
+
+        .search-bar input {
+            width: 100%;
+            margin-bottom: 3%;
+        }
+
+
+        .tabs {
+            margin-bottom: 10%;
+        }
+        .exercise-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+    }
+
+    #advanced-exercises-container {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 90%;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        gap: 20px; 
+    }
+
+
+    #intermediate-exercises-container,
+    #advanced-exercises-container {
+        display: none;
+    }
+
+  
+    /* A partir daqui começa a estilização dos cards */
+    .card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 300px;
+        text-align: center;
+        position: relative;
+    }
+    .avatar {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
+        position: relative;
+    }
+    .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .change-photo {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 12px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+    .card h4 {
+        font-size: 1rem;
+        margin: 15px 0;
+    }
+    .card button {
+        padding: 8px 16px;
+        font-size: 14px;
+        margin: 15px 0;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color:var(--techfit-400);
+        color: white;
+    }
+    input[type="file"] {
+        display: none; /* Oculta o input */
+    }
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<form class="search-bar" method="GET" action="{{ url_for('index') }}">
+    <input type="text" 
+           name="q" 
+           placeholder="Pesquisar exercícios..." 
+           value="{{ search_term|default('') }}">
+</form>
+
+<div class="tabs">
+    <div class="tab-buttons">
+        <button class="active" id="exercises-basic"> EXERCÍCIOS BÁSICOS </button>
+        <button id="intermediate-exercises">EXERCÍCIOS INTERMEDIÁRIOS</button>
+        <button id="advanced-exercises">EXERCÍCIOS AVANÇADOS</button>
+    </div>
+</div>
+
+<div id="exercises-basic-container" class="exercise-container">
+    <!-- Conteúdo do cartão de exercício -->
+     <!-- Esse cartão vai ter que ser modificado para rodar um um loop, onde eles serão adicionados constantemente-->
+    <div class="card-container">
+        <div class="card">
+            <div class="avatar" id="avatar1">
+                <img src="static/images/techfit_icon.png" alt="Avatar">
+            </div>
+            <label class="change-photo" for="fileInput1">Mudar Foto</label>
+            <input type="file" id="fileInput1" accept="image/*" onchange="mudarFoto(event, 'avatar1')">
+            <h4>Costas: puxada alta na polia</h4>
+            <button onclick="openModal('Costas: puxada alta na polia')">Selecionar</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="intermediate-exercises-container" class="exercise-container" style="display: none;"> 
+
+</div>
+
+<div id="advanced-exercises-container" class="exercise-container">
+
+</div>
+
+<script>
+    document.getElementById('intermediate-exercises').addEventListener('click', function () {
+        document.getElementById('intermediate-exercises-container').style.display = 'flex';
+        document.getElementById('exercises-basic-container').style.display = 'none';
+        document.getElementById('advanced-exercises-container').style.display = 'none';
+        this.classList.add('active');
+        document.getElementById('exercises-basic').classList.remove('active');
+        document.getElementById('advanced-exercises').classList.remove('active');
+    });
+
+    document.getElementById('exercises-basic').addEventListener('click', function () {
+        document.getElementById('exercises-basic-container').style.display = 'flex';
+        document.getElementById('intermediate-exercises-container').style.display = 'none';
+        document.getElementById('advanced-exercises-container').style.display = 'none';
+        this.classList.add('active');
+        document.getElementById('intermediate-exercises').classList.remove('active');
+        document.getElementById('advanced-exercises').classList.remove('active');
+    });
+
+    document.getElementById('advanced-exercises').addEventListener('click', function () {
+        document.getElementById('exercises-basic-container').style.display = 'none';
+        document.getElementById('intermediate-exercises-container').style.display = 'none';
+        document.getElementById('advanced-exercises-container').style.display = 'flex';
+        this.classList.add('active');
+        document.getElementById('exercises-basic').classList.remove('active');
+        document.getElementById('intermediate-exercises').classList.remove('active');
+    });
+
+    function mudarFoto(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.querySelector('#avatar1 img').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+</script>
+
+{% endblock %}

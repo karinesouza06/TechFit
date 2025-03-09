@@ -1,0 +1,403 @@
+{% extends "base.html" %}
+
+{% block title %} Inserir Medidas {% endblock %}
+
+{% block titlePage %} Medidas {% endblock %}
+
+{% block style %}
+<style>
+    /* fonte fina  */
+    @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+    /* fonte grossa */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+    :root{
+        --techfit-100: #ffff;
+        --techfit-200: #247ba0;
+        --techfit-300: #247ba0;
+        --techfit-400: #006494;
+        --techfit-500: #e8f1f2;
+    }
+
+    * {
+        font-family: "Didact Gothic", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .profile-page {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    .profile-container1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 40%;
+        margin-right: 30px;
+        padding: 2%;
+        background-color:var(--techfit--100);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        gap: 10px;
+    }
+
+    .profile-container1 h2 {
+        text-align: center;
+        margin-bottom: 5px;
+        color: var(--techfit-200);
+    }
+
+    .picture {
+        width: 70%; /* Mantém o tamanho do contêiner */
+        height: 0; /* Altura inicial zero para usar padding */
+        padding-top: 70%; /* Mantém a proporção quadrada */
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        
+        cursor: pointer;
+        transition: color 300ms ease-in-out, background 300ms ease-in-out;
+        outline: none;
+        overflow: hidden;
+        border-radius: 50%; 
+        position: relative; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #picture__input {
+        display: none;
+    }
+
+    .picture:hover {
+        color: #777;
+        background: #ccc;
+    }
+
+    .picture:active {
+        border-color: turquoise;
+        color: turquoise;
+        background: #eee;
+    }
+
+    .picture:focus {
+        color: #777;
+        background: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .picture__img {
+        position: absolute; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%; /* Para manter a imagem circular */
+        object-fit: cover; 
+    }
+
+    .profile-info1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .profile-info1 .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        color: var(--techfit-200);
+    }
+
+    .profile-info1 .info-item p {
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .profile-info1 .info-item i {
+        font-size: 18px;
+    }
+
+    .profile-container2 h1 {
+        color: var(--techfit-200);
+       
+    }
+
+    .profile-container2 {
+        display: flex;
+        flex-direction: column;
+        background-color: #f9f9f9;
+        width: 100%; 
+        max-width: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        padding: 0;
+        gap: 10px;
+        box-sizing: border-box;
+        overflow: hidden; 
+    }
+
+    .profile-info2 {
+        height: 90%;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        gap: 10px; 
+    }
+
+    
+
+    
+    h1 {
+        text-align: left;
+        color: var(--techfit-200);
+        margin-bottom: 10px;
+    }
+    
+    .form {
+        display: flex;
+        width: 100%;
+        padding: 15px;
+        justify-self: center;
+        background-color: var(--techfit-500);
+        flex-direction: column;
+        border-radius: 10px;
+    }
+
+    .input-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .input-box {
+        flex: 1 1 calc(50% - 20px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-box label {
+        font-size: 14px;
+        color:var(--techfit-400);
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .input-box input, select {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        color: var(--techfit-200);
+    }
+
+    .input-box input:focus {
+        border-color: #1C64F2;
+        outline: none;
+    }
+
+    .input-box input::placeholder {
+        color: var(--techfit-200);
+        
+    }
+
+    .continue-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .continue-button button {
+        padding: 10px 20px;
+        background-color: var(--techfit-300);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 170px;
+        margin-bottom: 5px;
+    }
+
+    .continue-button button:hover {
+        background-color: var(--techfit-400);
+    }
+
+    .continue-button button a {
+        color: white;
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .input-box {
+            flex: 1 1 100%;
+        }
+
+        .form {
+            margin: 20px;
+            padding: 15px;
+        }
+
+        .form-header .title h1 {
+            font-size: 20px;
+        }
+    }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+    <div class="profile-container1">
+        <label class="picture" for="picture__input" tabIndex="0">
+            <span class="picture__image">Escolha uma imagem</span>
+            <img src="" alt="profile_image" class="picture__img" style="display: none;">
+        </label>
+        <input type="file" name="picture_input" id="picture__input" style="display: none;">
+        <h2>Perfil do {{ user_info.tipo_usuario}}</h2>
+        <div class="profile-info1">
+            <div class="info-item">
+                <i class="fas fa-user"></i>
+                <p>Nome: {{ user_info.nome }}</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <p>Email: {{ user_info.email }}</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <p>Data de Nascimento: {{ user_info.data_nascimento }} </p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <p>Telefone: {{ user_info.telefone }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container2">
+        <div class="form">
+            <h1>Inserir Medidas</h1>
+            <form action="#">
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="med-braco_direito">Braço Direito</label>
+                        <input id="med-braco_direito" type="text" name="med-braco_direito" placeholder="Digite o comprimento" required>
+                    </div>
+        
+                    <div class="input-box">
+                        <label for="med-braco_esquerdo">Braço Esquerdo</label>
+                        <input id="med-braco_esquerdo" type="text" name="med-braco_esquerdo" placeholder="Digite o comprimento" required>
+                    </div>
+        
+                    <div class="input-box">
+                        <label for="med-peito">Peito</label>
+                        <input id="med-peito" type="text" name="med-peito" placeholder="Digite o comprimento" required>
+                    </div>
+        
+                    <div class="input-box">
+                        <label for="med-quadril">Quadril</label>
+                        <input id="med-quadril" type="text" name="med-quadril" placeholder="Digite o comprimento" required>
+                    </div>
+        
+                    <div class="input-box">
+                        <label for="med-pantu_direita">Panturrilha Direita</label>
+                        <input id="med-pantu_direita" type="text" name="med-pantu_direita" placeholder="Digite o comprimento" required>
+                    </div>
+                    
+                    <div class="input-box">
+                        <label for="med-pantu_esquerda">Panturrilha Esquerda</label>
+                        <input id="med-pantu_esquerda" type="text" name="med-pantu_esquerda" placeholder="Digite o comprimento" required>
+                    </div>
+        
+                    <div class="input-box">
+                        <label for="med-coxa_direita">Coxa Direita</label>
+                        <input id="med-coxa_direita" type="text" name="med-coxa_direita" placeholder="Digite o comprimento" required>
+                    </div>
+        
+                    <div class="input-box">
+                        <label for="med-coxa_esquerda">Coxa Esquerda</label>
+                        <input id="med-coxa_esquerda" type="text" name="med-coxa_esquerda" placeholder="Digite o comprimento" required>
+                    </div>
+        
+                </div>
+                <br>
+                <div class="continue-button">
+                    <button><a href="#">Salvar</a> </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Código relacionado a inserção de imagem do perfil do usuário 
+    const inputFile = document.querySelector("#picture__input");
+    const pictureImage = document.querySelector(".picture__image");
+    const pictureImg = document.querySelector(".picture__img");
+    const pictureImageTxt = "Escolha uma imagem";
+
+    pictureImage.innerHTML = pictureImageTxt;  // Define texto padrão
+
+    // Carregar imagem do localStorage ao iniciar a página
+    window.onload = () => {
+        const savedImage = localStorage.getItem('profileImage');
+        if (savedImage) {
+            pictureImg.src = savedImage; // Atualiza a imagem
+            pictureImg.style.display = "block"; // Torna a imagem visível
+            pictureImage.innerHTML = ""; // Limpa o texto padrão
+        }
+    };
+
+    inputFile.addEventListener("change", function (e) {
+        const inputTarget = e.target;
+        const file = inputTarget.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function (e) {
+                const readerTarget = e.target;
+                pictureImg.src = readerTarget.result; // Atualiza a imagem
+                pictureImg.style.display = "block"; // Torna a imagem visível
+                pictureImage.innerHTML = ""; // Limpa o texto padrão
+
+                // Salvar a imagem no localStorage
+                localStorage.setItem('profileImage', readerTarget.result);
+            });
+
+            reader.readAsDataURL(file);
+        } else {
+            pictureImage.innerHTML = pictureImageTxt; // Reseta para o texto padrão
+            pictureImg.style.display = "none"; // Esconde a imagem
+            localStorage.removeItem('profileImage'); // Remove a imagem do localStorage
+        }
+    });
+
+</script>
+{% endblock %}
+
