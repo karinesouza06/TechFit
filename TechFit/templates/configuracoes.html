@@ -252,26 +252,26 @@
     </div>
 
     <div class="form">
-        <form action="#">
+        <form method="POST" action="/configuracoes">
             <div class="input-group">
                 <div class="input-box">
                     <label for="nome_edit">Nome</label>
-                    <input id="nome_edit" type="text" name="nome_edit" placeholder="Insira seu nome" required>
+                    <input id="nome_edit" type="text" name="nome_edit" placeholder="Insira seu nome" value="{{user.use_nome}}" required>
                 </div>
 
                 <div class="input-box">
                     <label for="email_edit">Email</label>
-                    <input id="email_edit" type="text" name="email_edit" placeholder="Insira seu email" required>
+                    <input id="email_edit" type="text" name="email_edit" placeholder="Insira seu email" value="{{user.use_email}}" required>
                 </div>
 
                 <div class="input-box">
                     <label for="telefone_edit">Telefone</label>
-                    <input id="telefone_edit" type="text" name="telefone_edit" placeholder="Insira seu Telefone" required>
+                    <input id="telefone_edit" type="text" name="telefone_edit" placeholder="Insira seu Telefone" value="{{user.use_telefone}}" required>
                 </div>
 
                 <div class="input-box">
                     <label for="data_nascimento_edit">Data Nascimento</label>
-                    <input name='data_nascimento_edit' type="date" id="data_nascimento_edit" Placeholder="Data de nascimento" required>
+                    <input name='data_nascimento_edit' type="date" id="data_nascimento_edit" value="{{user.use_data_nascimento}}" Placeholder="Data de nascimento" required>
                 </div>
 
                 <div class="input-box">
@@ -290,7 +290,7 @@
 
                 <div class="input-box">
                     <label for="horario_treino_edit">Horário Preferido</label>
-                    <input name='horario_treino_edit' type="time" id="horario_treino_edit" required>
+                    <input name='horario_treino_edit' type="time" id="horario_treino_edit" value="{{user.use_horario_treino}}" required>
                 </div>
 
                 <div class="input-box password-container"> 
