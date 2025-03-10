@@ -132,7 +132,7 @@
         }
 
         .side-item.active {
-            background-color: #0d2329;
+            background-color:#006494;
         }
 
         .side-item:hover:not(.active),
@@ -145,7 +145,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #0d2329;
+            color: #006494;
         }
 
         .side-item.active a {
@@ -198,7 +198,7 @@
             position: absolute;
             top: 38px;
             right: -10px;
-            background-color: #0d2329;
+            background-color:#006494;
             color: #e3e9f7;
             border-radius: 100%;
             width: 20px;
@@ -293,7 +293,7 @@
                     </a>
                 </li>
 
-                <li class="side-item {% if request.endpoint == 'index' %}active{% endif %}">
+                <li class="side-item {% if request.endpoint == 'exercise_page' %}active{% endif %}">
                     <a href="{{ url_for('exercise_page') }}">
                         <i class="fa-solid fa-video"></i>
                         <span class="item-description">
@@ -302,8 +302,8 @@
                     </a>
                 </li>
 
-                <li class="side-item {% if request.endpoint == 'index' %}active{% endif %}">
-                    <a href="{{ url_for('profile') }}">
+                <li class="side-item {% if request.endpoint == 'treinos' %}active{% endif %}">
+                    <a href="{{ url_for('treinos') }}">
                         <i class="fa-solid fa-dumbbell"></i>
                         <span class="item-description">
                            Meus treinos
@@ -311,7 +311,7 @@
                     </a>
                 </li>
 
-                <li class="side-item {% if request.endpoint == 'index' %}active{% endif %}">
+                <li class="side-item {% if request.endpoint == 'medidas' %}active{% endif %}">
                     <a href="{{ url_for('medidas') }}">
                         <i class="fa-sharp fa-solid fa-tape"></i>
                         <span class="item-description">
@@ -320,7 +320,7 @@
                     </a>
                 </li>
                 
-                <li class="side-item {% if request.endpoint == 'index' %}active{% endif %}">
+                <li class="side-item {% if request.endpoint == 'configuracoes' %}active{% endif %}">
                     <a href="{{ url_for('configuracoes') }}">
                         <i class="fa-solid fa-gear"></i>
                         <span class="item-description">
