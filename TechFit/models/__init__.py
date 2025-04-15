@@ -147,22 +147,21 @@ class User(UserMixin):
 #CLASSE DE EXERCÍCIOS 
 class Exercicio:
     id: str
-    def __init__(self, id, nome, link, tipo, nivel):
+    def __init__(self, id, nome, link, nivel):
         self.id = id
         self.nome = nome
         self.link = link
-        self.tipo = tipo
         self.nivel = nivel
 
     def get_id(self):
         return self.id
 
     @classmethod
-    def inserir_exercicio(cls, nome, link, tipo, nivel):
+    def inserir_exercicio(cls, nome, link, nivel):
         conn = obter_conexao()
         conn.execute(
-            'INSERT INTO exercicios (exe_nome, exe_link, exe_tipo, exe_nivel) VALUES (?, ?, ?, ?)',
-            (nome, link, tipo, nivel)
+            'INSERT INTO exercicios (exe_nome, exe_link, exe_nivel) VALUES (?, ?, ?)',
+            (nome, link, nivel)
         )
         conn.commit()
         conn.close()
