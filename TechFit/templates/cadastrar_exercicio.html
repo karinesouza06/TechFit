@@ -30,7 +30,7 @@
     body {
         display: flex;
         width: 100%;
-        min-height: 100vh; /* Mantém a altura mínima */
+        min-height: 100vh; 
     }
 
     main {
@@ -38,8 +38,8 @@
         align-items: center;
         justify-content: center;
         width: 80%;
-        flex: 1; /* Faz o main ocupar o restante do espaço */
-        padding: 20px; /* Espaçamento */
+        flex: 1; 
+        padding: 20px; 
     }
 
     .div-cad_exercise {
@@ -79,12 +79,12 @@
 
     .input-row {
         display: flex;
-        justify-content: space-between; /* Ajusta o espaço entre os campos */
-        gap: 20px; /* Espaço entre as colunas */
+        justify-content: space-between; 
+        gap: 20px;
     }
 
     .input-box {
-        width: 100%; /* A largura é 100% */
+        width: 100%; 
         display: flex;
         flex-direction: column;
     }
@@ -142,7 +142,7 @@
         }
 
         .input-row {
-            flex-direction: column; /* Para telas pequenas, empilha os campos */
+            flex-direction: column; 
         }
     }
 
@@ -161,26 +161,7 @@
                         <label for="nome">Nome do Exercício:</label>
                         <input type="text" id="nome" name="nome" required>
                     </div>
-                    <div class="input-box"> 
-                        <label for="link">Link do Vídeo (YouTube):</label>
-                        <input type="text" id="link" name="link" required>
-                    </div>
-                </div>
 
-                <div class="input-row">
-                    <div class="input-box">
-                        <label for="tipo">Tipo:</label>
-                        <select name='tipo' id="tipo_treino_edit" required>
-                            <option value="none" disabled selected>Selecione</option>
-                            <option value="Forca">Força</option>
-                            <option value="Hipertrofia">Hipertrofia</option>
-                            <option value="Potencia">Potência</option>
-                            <option value="Resistencia">Resistência</option>
-                            <option value="HIIT">HIIT</option>
-                            <option value="ABC">ABC</option>
-                            <option value="Piramide">Pirâmide</option>
-                        </select>
-                    </div>
                     <div class="input-box">
                         <label for="nivel">Nível:</label>
                         <select name='nivel' id="nivel_treino_edit" required>
@@ -189,6 +170,13 @@
                             <option value="Intermediario">Intermediário</option>
                             <option value="Dificil">Difícil</option>
                         </select>
+                    </div>
+
+                </div>
+                <div class="input-row">
+                    <div class="input-box"> 
+                        <label for="link">Link do Vídeo (YouTube):</label>
+                        <input type="text" id="link" name="link" required>
                     </div>
                 </div>
             </div>
