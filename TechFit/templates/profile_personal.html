@@ -1,0 +1,1036 @@
+{% extends "base.html" %}
+
+{% block title %} Perfil {% endblock %}
+
+{% block titlePage %} Perfil {% endblock %}
+
+{% block style %}
+<style>
+    /* fonte fina  */
+    @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+    /* fonte grossa */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+    
+    :root {
+        --techfit-100: #ffff;
+        --techfit-200: #006aa7;
+        --techfit-300: #247ba0;
+        --techfit-400: #006494;  /* Fundo escuro */
+        --techfit-500: #e8f1f2;  /* Botões claros */
+    }
+    * {
+            font-family: "Didact Gothic", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+    body {
+        background-color: var(--techfit-400);
+        color: white;
+    }
+
+
+    .profile-page {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    h1 {
+        text-align: left;
+        color: #ffff;
+        margin-bottom: 10px;
+    }
+
+    .profile-container1 {
+        display: flex;
+        flex-direction: column;
+        background-color: #006aa7;
+        color:#ffff;
+        padding: 2%;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 40%;
+        margin-right: 30px;
+        padding: 2%;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        gap: 10px;
+    }
+
+    .profile-container1 h2 {
+        text-align: center;
+        margin-bottom: 5px;
+        color:#ffff;
+    }
+
+    .profile-info1 .info-item p {
+    color: #ffff;
+}
+
+    .picture {
+        width: 70%; /* Mantém o tamanho do contêiner */
+        height: 0; /* Altura inicial zero para usar padding */
+        padding-top: 70%; /* Mantém a proporção quadrada */
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        cursor: pointer;
+        transition: color 300ms ease-in-out, background 300ms ease-in-out;
+        outline: none;
+        overflow: hidden;
+        border-radius: 50%; 
+        position: relative; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #picture__input {
+        display: none;
+    }
+
+    .picture:hover {
+        color: #777;
+        background: #ccc;
+    }
+
+    .picture:active {
+        border-color: turquoise;
+        color: turquoise;
+        background: #eee;
+    }
+
+    .picture:focus {
+        color: #777;
+        background: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .picture__img {
+        position: absolute; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%; /* Para manter a imagem circular */
+        object-fit: cover; 
+    }
+
+    .profile-info1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .profile-info1 .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        color: var(--techfit-200);
+    }
+
+    .profile-info1 .info-item p {
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .profile-info1 .info-item i {
+        font-size: 18px;
+    }
+
+    .profile-container2 h1 {
+        color:#ffff;
+       
+    }
+
+    .profile-container2 {
+        display: flex;
+        flex-direction: column;
+        background-color: #006aa7;  /* Fundo escuro */
+        color:#ffff;
+        width: 100%; 
+        max-width: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        padding: 20px;
+        gap: 10px;
+        box-sizing: border-box;
+        overflow: hidden; 
+    }
+
+    .profile-info2 {
+        height: 90%;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        gap: 10px; 
+    }
+
+    .info2-items {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;   
+        justify-content: center; 
+        text-align: center;   
+        width: 100%;
+        min-height: 120px;     
+        background-color: #F9F9F9;
+        padding: 10px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        gap: 5px;
+        flex: 1 1 calc(50% - 10px); 
+        min-width: 150px; 
+        max-width: calc(50% - 10px); 
+        position: relative; 
+    }
+
+    .info2-buttons {
+        margin-top: 10px;
+        border: 2px solid;
+        border-radius: 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+        padding: 5px;
+        width: 100px;
+        text-align: center;
+        font-size: 15px;
+        background-color: var(--techfit-500);  /* Botões claros */
+        color: var(--techfit-400);  /* Texto azul escuro */
+    }
+
+    #calculator {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+        color: #f8fafc;
+        border-radius: 8px;
+        background-color: #006aa7;  /* Botões claros */
+        color: #fff;  /* Texto azul escuro */      
+    }
+
+    #form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    #title {
+        /* fonte grossa */
+        font-family: 'Inter', sans-serif;
+        font-size: 2.25rem;
+        position: relative;
+        color: var(--techfit-300);
+    }
+
+    #title::after {
+        position: absolute;
+        content: '';
+        width: 8rem;
+        height: 3px;
+        border-radius: 3px;
+        background-color: var(--techfit-300);
+        bottom: 0;
+        left: 0;
+    }
+
+    .input-box label {
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: #cbd5e1;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    .input-field {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--techfit-100);
+        padding: 0.3rem;
+        border-radius: 3px;
+        margin-top: 3px;
+    }
+    
+    .input-field i  {
+        color: var(--techfit-300);
+        font-size: 1.3rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .input-field span{
+        color: var(--techfit-300);
+        font-size: 1.3rem;
+        padding: 0.6rem 1rem;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    .input-field input {
+        background-color: var(--techfit-100);
+        border: none;
+        width: 100%;
+        font-size: 1.3rem;
+        color: var(--techfit-300);
+        padding: 0 0.5rem;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    .input-field input::-webkit-outer-spin-button,
+    .input-field input::-webkit-inner-spin-button {
+    appearance: none;
+    }
+
+    .input-field input:focus {
+        outline: none;
+    }
+
+    #calculate, #calcularAgua, #registrarTreino {
+        border: none;
+        font-size: 1.25rem;
+        font-weight: bold;
+        background-color: var(--techfit-500);  /* Botões claros */
+        color: #fff;  
+        padding: 0.5rem 0;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 70%;
+        margin-left: 50px;    
+    }
+
+    #result, #result2 {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+       
+        margin-top: 10px;
+        color: var(--techfit-300);
+        padding: 2px;
+        
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    #bmi, #bmi2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 2.25rem;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    #bmi span:last-child {
+        font-size: 0.875rem;
+        color:var(--techfit-300);
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    #bmi2 span:last-child{
+        font-size: 0.875rem;
+        color:var(--techfit-300);
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    .normal {
+        color: var(--techfit-300);
+    }
+
+    .attention {
+        color: #dc2626;
+    }
+
+    #description{
+    width: 15.5rem;
+    /* fonte fina  */
+    font-family: "Didact Gothic", sans-serif;
+    }
+
+    #more_info {
+        text-align: center;
+        border-top: 1px solid #ffffff34;
+        padding-top: 1.5rem;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    #more_info a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--techfit-300);
+        font-size: 0.875rem;
+        text-decoration: none;
+        transition: color 0.5s;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    #more_info a:hover {
+        color: #cbd5e1;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    @media screen and (max-width: 1024px) {
+        #img {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        #img {
+            display: none;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            /* fonte fina  */
+            font-family: "Didact Gothic", sans-serif;
+        }
+
+        #calculator {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            justify-content: center;
+            /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+        }
+    }
+
+    .input-box label{
+        color: var(--techfit-300);
+    }
+
+
+    /* Estilos básicos do modal */
+    .modal {
+        display: none; /* Esconde o modal por padrão */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    #container {
+        padding: 0;
+    }
+    
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .resultTreino, #listaDias {
+        color: var(--techfit-200);
+    }
+
+
+    /* Ajuste no layout do calculator para acomodar o botão de fechar */
+    #calculator {
+        position: relative;
+    }
+
+    /* fim */
+
+    .normal {
+        color: var(--techfit-300);
+    }
+
+    .attention {
+        color: #dc2626;
+    }
+
+    #description {
+        width: 15.5rem;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    #more_info {
+        text-align: center;
+        border-top: 1px solid #ffffff34;
+        padding-top: 1.5rem;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    #more_info a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--techfit-300);
+        font-size: 0.875rem;
+        text-decoration: none;
+        transition: color 0.5s;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    #more_info a:hover {
+        color: #cbd5e1;
+        /* fonte fina  */
+        font-family: "Didact Gothic", sans-serif;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    @media screen and (max-width: 1024px) {
+        #img {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        #img {
+            display: none;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            /* fonte fina  */
+            font-family: "Didact Gothic", sans-serif;
+        }
+
+        #calculator {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            justify-content: center;
+            /* fonte fina  */
+            font-family: "Didact Gothic", sans-serif;
+        }
+    }
+
+    .input-box label {
+        color: var(--techfit-300);
+    }
+
+
+    .modal {
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    border: none;
+   
+    } 
+
+    .modal-content {
+        margin: 15% auto; 
+        padding: 20px;
+        width: 40%; 
+        position: relative; 
+    }
+
+ 
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="profile-page">
+    <div class="profile-container1">
+        <label class="picture" for="picture__input" tabIndex="0">
+            <span class="picture__image">Escolha uma imagem</span>
+            <img src="" alt="profile_image" class="picture__img" style="display: none;">
+        </label>
+        <input type="file" name="picture_input" id="picture__input" style="display: none;">
+        <h2>Perfil do {{ user_info.tipo_usuario}}</h2>
+        <div class="profile-info1">
+            <div class="info-item">
+                <i class="fas fa-user"></i>
+                <p>Nome: {{ user_info.nome }}</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <p>Email: {{ user_info.email }}</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <p>Data de Nascimento: {{ user_info.data_nascimento }} </p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <p>Telefone: {{ user_info.telefone }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container2">
+        <h1>Informações</h1>
+        <div class="profile-info2">
+            <!-- Item 1 -->
+            <div class="info2-items">
+                <div class="info2-item-text fas " style="color:#006494;">
+                    <p>Calcular IMC</p>
+                </div>
+                <div class="info2-buttons" onclick="openModal('modal1')">Abrir</div>
+            </div>
+            <!-- Item 2 -->
+            <div class="info2-items">
+                <div class="info2-item-text fas " style="color:#006494;">
+                    <p>Quantidade de água</p>
+                </div>
+                <div class="info2-buttons" onclick="openModal('modal')">Abrir</div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="info2-items">
+                <div class="info2-item-text fas " style="color:#006494;">
+                    <p> Dias de Treino </p>
+                </div>
+                <div class="info2-buttons" onclick="openModal('modal3')">Abrir</div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="info2-items">
+                <div class="info2-item-text fas " style="color:#006494;">
+                    <p> Gráfico de evolução</p>
+                </div>
+                <div class="info2-buttons" onclick="openModal('modal4')">Abrir</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modais  -->
+<!-- Modal - calculadora IMC -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <main id="container"> 
+            <section id="calculator">
+                <span class="close" onclick="closeModal('modal1')">&times;</span>
+                <h1 id="title" style="color: #ffff;">Calculadora - IMC</h1>
+                <br style="color:#ffff ;">
+                <form id="form">
+                    <div class="input-box">
+                        <label for="peso"  style="color: #ffff;">Peso em kg</label>
+                        <div class="input-field">
+                            <i class="fa-solid fa-weight-hanging" style="color:#006494;"></i>
+                            <input type="number" id="peso" name="peso" required>
+                            <span>Kg</span>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label for="altura" style="color: #ffff;">Altura em metros</label>
+                        <div class="input-field">
+                            <i class="fa-solid fa-ruler" style="color:#006494;"></i>
+                            <input type="number" step="0.01" id="altura" name="altura" required>
+                            <span>m</span>
+                        </div>
+                    </div>
+                    <button type="submit" id="calculate" style="color: #006494;">Calcular</button>
+                </form>    
+                <div id="infos" class="hidden">
+                    <div id="result">
+                        <div id="bmi">
+                            <span id="value" style="color: #ffff;"></span>
+                            <span style="color: #ffff;">Seu IMC</span>
+                        </div>
+                        <div id="description">
+                            <span style="color: #ffff;"></span>
+                        </div>  
+                    </div>
+                </div>   
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Modal - água -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <main id="container"> 
+            <section id="calculator">
+                <h1 id="title"  style="color: #ffff;">Ingestão de Água</h1>
+                <br>
+                <span class="close" onclick="closeModal('modal')">&times;</span>
+               
+                <div class="input-box">
+                    <label for="qtd_agua"  style="color: #ffff;">Quantidade em litros</label>
+                    <div class="input-field">
+                        <i class="fa-solid fa-glass-water" style="color:#006494;"></i>
+                        <input type="number" id="qtd_agua" name="qtd_agua" required>
+                        <span>L</span>
+                    </div>
+                </div>
+
+                <br>
+
+                <button id="calcularAgua" onclick="somar_agua(event); return false;"  style="color: #006494;">Calcular</button>
+                
+                <div id="infos2" class="hidden">
+                    <div id="result2">
+                        <div id="bmi2"> 
+                            <span id="valorAgua" style="color: #ffff;">0.00</span>
+                            <span style="font-size: 1.25rem; color: #ffff;">Quantidade total de água bebida (em litros)</span>
+                        </div> 
+                    </div>
+                </div>   
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Modal 3 para registrar dias de treino -->
+<div id="modal3" class="modal">
+    <div class="modal-content">
+        <main id="container">
+            <section id="calculator">
+                <span class="close" onclick="closeModal('modal3')">&times;</span>
+                <h2 id="title" style="color: #ffff;">Registrar Treino</h2>
+                <br>
+                <h3 class="resultTreino" style="color: #ffff;">Dias Registrados:  {{ user_info.total_treinos }}</h3>
+
+                <div id="alert" class="alert hidden" role="alert">
+                    Treino registrado com sucesso!
+                </div>
+
+                <form method="POST" action="{{ url_for('training.registrar_treino') }}">
+                    <label for="data_treino" style="color: #ffff;">Data do Treino:</label>
+                    <input type="date" id="data_treino" name="data_treino" required>
+                    <button type="submit">Registrar Treino</button>
+                    <!-- <button type="button" onclick="listarTreinos()">Listar Treinos</button> -->
+                </form>
+                
+                <!-- Modal para listar treinos -->
+                <div id="listar-treinos-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="fecharModal()">&times;</span>
+                        <h2>Dias de Treino Registrados</h2>
+                        <ul id="treinos-lista"></ul> <!-- Lista de treinos será exibida aqui -->
+                    </div>
+                </div>
+
+            </section>
+            
+        </main>
+    </div>
+</div>
+
+<!-- Modal 4 -->
+<div id="modal4" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal4')">&times;</span>
+        <!--Div that will hold the pie chart-->
+        <div id="chart_div"></div>
+        <p></p>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart() {
+
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+    data.addRows([
+        ['Mushrooms', 3],
+        ['Onions', 1],
+        ['Olives', 1],
+        ['Zucchini', 1],
+        ['Pepperoni', 2]
+    ]);
+
+    // Set chart options
+    var options = {'title':'How Much Pizza I Ate Last Night',
+                    'width':400,
+                    'height':300};
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+    }
+
+    //MODAL DE RESGISTRAR TREINOS
+    function listarTreinos() {
+        fetch('/listar_treinos')
+            .then(response => response.json())
+            .then(data => {
+                const lista = document.getElementById('treinos-lista');
+                lista.innerHTML = ''; // Limpa a lista existente
+                if (data.treinos.length === 0) {
+                    lista.innerHTML = '<li>Nenhum treino registrado.</li>';
+                } else {
+                    data.treinos.forEach(treino => {
+                        const li = document.createElement('li');
+                        li.textContent = treino.data_treino;
+                        lista.appendChild(li);
+                    });
+                }
+                document.getElementById('listar-treinos-modal').style.display = 'block';
+            });
+    }
+
+    function fecharModal() {
+        document.getElementById('listar-treinos-modal').style.display = 'none';
+    }
+
+
+    // Código relacionado a inserção de imagem do perfil do usuário 
+    const inputFile = document.querySelector("#picture__input");
+    const pictureImage = document.querySelector(".picture__image");
+    const pictureImg = document.querySelector(".picture__img");
+    const pictureImageTxt = "Escolha uma imagem";
+
+    pictureImage.innerHTML = pictureImageTxt;  // Define texto padrão
+
+    // Carregar imagem do localStorage ao iniciar a página
+    window.onload = () => {
+        const savedImage = localStorage.getItem('profileImage');
+        if (savedImage) {
+            pictureImg.src = savedImage; // Atualiza a imagem
+            pictureImg.style.display = "block"; // Torna a imagem visível
+            pictureImage.innerHTML = ""; // Limpa o texto padrão
+        }
+    };
+
+    inputFile.addEventListener("change", function (e) {
+        const inputTarget = e.target;
+        const file = inputTarget.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function (e) {
+                const readerTarget = e.target;
+                pictureImg.src = readerTarget.result; // Atualiza a imagem
+                pictureImg.style.display = "block"; // Torna a imagem visível
+                pictureImage.innerHTML = ""; // Limpa o texto padrão
+
+                // Salvar a imagem no localStorage
+                localStorage.setItem('profileImage', readerTarget.result);
+            });
+
+            reader.readAsDataURL(file);
+        } else {
+            pictureImage.innerHTML = pictureImageTxt; // Reseta para o texto padrão
+            pictureImg.style.display = "none"; // Esconde a imagem
+            localStorage.removeItem('profileImage'); // Remove a imagem do localStorage
+        }
+    });
+
+    // Funções para abrir e fechar modais
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "flex"; // Altere para "flex" para centralizar
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+
+    // Fechar modal ao clicar fora dele
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            closeModal(event.target.id);
+        }
+    }
+
+    // Função para calcular IMC
+    const form = document.getElementById('form');
+    form.addEventListener('submit', function(event) {
+        /* Previne o comportamento padrão do evento submit do JS, ou seja,
+        impede o recarregamento da página */
+        event.preventDefault();
+
+        /* Pegando as informações informadas no forms no arquivo index.html */
+        const peso = document.getElementById('peso').value;
+        const altura = document.getElementById('altura').value;
+        
+
+        /* Calculo do IMC */
+        const bmi = (peso / (altura * altura)).toFixed(2);
+
+        if (!isNaN(bmi)) {
+            const value = document.getElementById('value');
+            let description = '';
+
+            value.classList.add('attention');
+            
+            document.getElementById('infos').classList.remove('hidden');
+            
+            /* Analisando o valor do IMC e retornando uma mensagem expecífica de acordo com tal valor (Essa parte de exibir mensagem pode ser retirada) */
+            if (bmi < 18.5){
+                description = 'Cuidado! Você está abaixo do peso!';
+            } 
+
+            else if (bmi >= 18.5 && bmi <= 25) {
+                description = "Você está no peso ideal!";
+                value.classList.remove('attention');
+                value.classList.add('normal');
+            }
+
+            else if (bmi > 25 && bmi <= 30) {
+                description = "Cuidado! Você está com sobrepeso!";
+            }
+
+            else if (bmi > 30 && bmi <= 35) {
+                description = "Cuidado! Você está com obesidade moderada!";
+            }
+
+            else if (bmi > 35 && bmi <= 40) {
+                description = "Cuidado! Você está com obesidade severa!";
+            }
+
+            else {
+                description = "Cuidado! Você está com obesidade morbida!";
+            }
+
+            value.textContent = bmi.replace('.', ',');
+            document.getElementById('description').textContent = description;
+        }
+    });
+
+
+    form.addEventListener('keypress', function(event) {
+        if (event.key === 'press') {
+            document.getElementById('#calculate').click();
+        }
+    });
+
+    // let totalLitros = 0; // Variável para armazenar o total de litros
+
+    // function somar_agua(event) {
+    //     event.preventDefault(); // Impede o comportamento padrão do botão
+
+    //     const input = document.getElementById('qtd_agua'); // Captura o valor do input
+    //     const valor = parseFloat(input.value); // Converte o valor do input para float
+
+    //     if (!isNaN(valor) && valor > 0) { // Verifica se o valor é um número válido e maior que 0
+    //         totalLitros += valor; // Adiciona o valor ao total de litros
+    //         input.value = ''; // Limpa o input após adicionar o valor
+    //         document.getElementById('infos2').classList.remove('hidden'); // Mostra o resultado
+    //         document.getElementById('valorAgua').textContent = totalLitros.toFixed(2); // Exibe o total de litros
+    //     } else {
+    //         alert("Por favor, insira um valor válido de litros.");
+    //     }
+    // }
+
+    
+    // Substitua a variável global e a função existente
+    function somar_agua(event) {
+        event.preventDefault();
+        const input = document.getElementById('qtd_agua');
+        const valor = parseFloat(input.value);
+
+        if (!isNaN(valor) && valor > 0) {
+            fetch('/agua', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ quantidade: valor })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    input.value = '';
+                    atualizarTotalAgua();
+                }
+            });
+        } else {
+            alert("Por favor, insira um valor válido de litros.");
+        }
+    }
+
+    // Função para atualizar o display
+    function atualizarTotalAgua() {
+        fetch('/agua')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('valorAgua').textContent = data.total.toFixed(2);
+            document.getElementById('infos2').classList.remove('hidden');
+        });
+    }
+
+    // Carregar total ao abrir a página
+    document.addEventListener('DOMContentLoaded', function() {
+        atualizarTotalAgua();
+    });
+
+
+
+
+
+    
+    const diasTreino = []; // Array para armazenar os dias de treino
+
+    function registrarTreino() {
+        const dataTreino = document.getElementById('treino_data').value;
+
+        if (dataTreino) {
+            diasTreino.push(dataTreino); // Adiciona a data ao array
+            document.getElementById('treino_data').value = ''; // Limpa o input
+
+            // Atualiza a lista de dias registrados
+            const listaDias = document.getElementById('listaDias');
+            listaDias.innerHTML = ''; // Limpa a lista
+            diasTreino.forEach(dia => {
+                const li = document.createElement('li');
+                li.textContent = dia;
+                listaDias.appendChild(li);
+            });
+
+            document.getElementById('diasTreino').classList.remove('hidden'); // Mostra a lista de dias
+        } else {
+            alert("Por favor, escolha uma data.");
+        }
+    }
+
+</script>
+{% endblock %}
