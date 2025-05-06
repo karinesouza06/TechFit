@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required
 from werkzeug.security import check_password_hash, generate_password_hash
 from models.User import User
 from models import User
@@ -51,7 +51,7 @@ def login():
             if user.tipo_usuario == 'Aluno' or user.tipo_usuario == 'aluno' :
                 return redirect(url_for('profile.profile'))
             else:
-                return 'Personalllllllllllllll'
+                return redirect(url_for('profile_personal.profile_personal'))
             
         else:
             flash('Credenciais inválidas')
