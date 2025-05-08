@@ -19,6 +19,11 @@ def profile():
         flash("Usuário não encontrado.")
         return redirect(url_for('index'))
 
+@profile_bp.route('/profile_personal')
+@login_required
+def profile_personal():   
+    return render_template('profile_personal.html')
+
 @profile_bp.route('/configuracoes', methods=['GET', 'POST'])
 @login_required
 def configuracoes():
