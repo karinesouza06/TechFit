@@ -48,10 +48,10 @@ def login():
         if user and check_password_hash(user.senha, password):
             login_user(user)
             
-            if user.tipo_usuario == 'Aluno' or user.tipo_usuario == 'aluno' :
+            if user.tipo_usuario.lower() == 'aluno':
                 return redirect(url_for('profile.profile'))
             else:
-                return 'Personalllllllllllllll'
+                return redirect(url_for('profile.profile_personal'))
             
         else:
             flash('Credenciais inválidas')
