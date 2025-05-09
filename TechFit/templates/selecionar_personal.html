@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+
+{% block title %} Perfil {% endblock %}
+
+{% block titlePage %} Selecionar Personal {% endblock %}
+
+{% block style %}
+<style>
+    /* fonte fina  */
+    @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+    /* fonte grossa */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+    
+    :root {
+        --techfit-100: #ffff;
+        --techfit-200: #006aa7;
+        --techfit-300: #247ba0;
+        --techfit-400: #006494;  /* Fundo escuro */
+        --techfit-500: #e8f1f2;  /* Botões claros */
+    }
+
+    * {
+        font-family: "Didact Gothic", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+        
+    body {
+        background-color: var(--techfit-400);
+        color: white;
+    }
+
+
+    .profile-page {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        
+    }
+
+    h1 {
+        text-align: left;
+        color: #ffff;
+        margin-bottom: 10px;
+    }
+
+    .profile-container1 {
+        display: flex;
+        /* flex-direction: column; */
+        background-color: #006aa7;
+        color:#ffff;
+        padding: 2%;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 40%;
+        margin-right: 30px;
+        padding: 2%;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        gap: 10px;
+        position: fixed;
+    }
+
+    .profile-container1 h2 {
+        text-align: center;
+        margin-bottom: 5px;
+        color:#ffff;
+    }
+
+    .profile-info1 .info-item p {
+    color: #ffff;
+}
+
+    .picture {
+        width: 70%; /* Mantém o tamanho do contêiner */
+        height: 0; /* Altura inicial zero para usar padding */
+        padding-top: 70%; /* Mantém a proporção quadrada */
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        cursor: pointer;
+        transition: color 300ms ease-in-out, background 300ms ease-in-out;
+        outline: none;
+        overflow: hidden;
+        border-radius: 50%; 
+        position: relative; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #picture__input {
+        display: none;
+    }
+
+    .picture:hover {
+        color: #777;
+        background: #ccc;
+    }
+
+    .picture:active {
+        border-color: turquoise;
+        color: turquoise;
+        background: #eee;
+    }
+
+    .picture:focus {
+        color: #777;
+        background: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .picture__img {
+        position: absolute; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%; /* Para manter a imagem circular */
+        object-fit: cover; 
+    }
+
+    .profile-info1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+      
+    }
+
+    .profile-info1 .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        color: var(--techfit-200);
+    }
+
+    .profile-info1 .info-item p {
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .profile-info1 .info-item i {
+        color: #ffff;
+        font-size: 18px;
+    }
+
+    .profile-container2 h1 {
+        color:#ffff;
+       
+    }
+
+    .profile-container2 {
+        display: flex;
+        flex-direction: column;
+        background-color: #006aa7;  /* Fundo escuro */
+        color:#ffff;
+        width: 100%; 
+        max-width: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        padding: 20px;
+        gap: 10px;
+        
+        box-sizing: border-box;
+        overflow: hidden; 
+
+        overflow: hidden;
+        max-height: 80vh; /* Altura máxima */
+        overflow-y: auto; /* Habilita rolagem vertical */
+    }
+
+    .profile-info2 {
+        height: 90%;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        gap: 10px; 
+    }
+
+    .info2-items {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;   
+        justify-content: center; 
+        text-align: center;   
+        width: 100%;
+        min-height: 120px;     
+        background-color: #F9F9F9;
+        padding: 10px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        gap: 5px;
+        flex: 1 1 calc(50% - 10px); 
+        min-width: 150px; 
+        max-width: calc(50% - 10px); 
+        position: relative; 
+    }
+
+    .info2-buttons {
+        margin-top: 10px;
+        border: 2px solid;
+        border-radius: 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+        padding: 5px;
+        width: 100px;
+        text-align: center;
+        font-size: 15px;
+        background-color: var(--techfit-500);  /* Botões claros */
+        color: var(--techfit-400);  /* Texto azul escuro */
+    }
+
+
+    #title {
+        /* fonte grossa */
+        font-family: 'Inter', sans-serif;
+        font-size: 2.25rem;
+        position: relative;
+        color: var(--techfit-300);
+    }
+
+    #title::after {
+        position: absolute;
+        content: '';
+        width: 8rem;
+        height: 3px;
+        border-radius: 3px;
+        background-color: var(--techfit-300);
+        bottom: 0;
+        left: 0;
+    }
+
+
+   
+    .profile-info2 {
+        display: grid;
+        width: 50%;
+        height: auto;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .info2-items {
+        /* background: rgba(255, 255, 255, 0.1); */
+        background-color: #ffff;
+        border-radius: 15px;
+        padding: 20px;
+        width: 100%;
+        height: auto;
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--techfit-300);
+        transition: transform 0.3s ease;
+    }
+
+    .info2-items:hover {
+        transform: translateY(-5px);
+    }
+
+    .dados-personal p {
+        margin: 8px 0;
+        font-size: 0.9em;
+        /* color: var(--techfit-100); */
+        color: #006aa7 !important; 
+    }
+
+    .nenhum-personal {
+        text-align: center;
+        padding: 50px;
+        font-size: 1.2em;
+        color: var(--techfit-100);
+    }
+
+    .info2-buttons {
+        margin-top: 15px;
+        background: #c8cfd0;
+        color: var(--techfit-200);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .info2-buttons:hover {
+        background: var(--techfit-300);
+        color: white;
+    }
+
+ 
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+    <div class="profile-container2">
+        <h1>Personais Disponíveis</h1>
+        
+        {% if personais %}
+            <div class="profile-info2">
+                {% for personal in personais %}
+                    <div class="info2-items">
+                        
+                        <h3 style="color: #006494;">Nome: {{ personal.use_nome }}</h3>
+                        <p style="color: #006494;">Email: {{ personal.use_email }}</p>
+                        <p style="color: #006494;">Telefone: {{ personal.use_telefone }}</p>
+                        
+                        {% if personal.dau_per_formacao %}
+                            <div class="dados-personal">
+                                <p> Formação: {{ personal.dau_per_formacao }}</p>
+                                <p> Cursos: {{ personal.dau_per_cursos }}</p>
+                                <p> Experiência: {{ personal.dau_per_tempo_trabalho }}</p>
+                                <p> Tipo de Aluno: {{ personal.dau_per_tipo_aluno }}</p>
+                                <p> Ambiente de Trabalho: {{ personal.dau_per_ambiente_trabalho }}</p>
+                            </div>
+                        {% endif %}
+                        
+                        <!-- <button class="info2-buttons" onclick="solicitarPersonal({{ personal.use_id }})">
+                            Solicitar
+                        </button> -->
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="nenhum-personal">
+                <p>Nenhum personal trainer cadastrado no momento.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function solicitarPersonal(personalId) {
+    // Implementar lógica de solicitação
+    fetch(`/solicitar_personal/${personalId}`)
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                alert('Solicitação enviada com sucesso!');
+            }
+        });
+}
+</script>
+{% endblock %}
