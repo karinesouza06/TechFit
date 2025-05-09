@@ -756,12 +756,61 @@
 <div id="modal4" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modal4')">&times;</span>
-        <h2>Modal 4</h2>
+         <!--Div that will hold the pie chart-->
+        <div id="chart_div"></div>
+        
         <p></p>
     </div>
 </div>
 
+<!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <script>
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the bar chart, passes in the data and
+    // draws it.
+    function drawChart() {
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Parte do Corpo');
+        data.addColumn('number', 'Medida (cm)');
+        data.addRows([
+            ['Cintura', 80],
+            ['Perna', 90],
+            ['Braço', 30],
+            ['Ombro', 40],
+            ['Quadril', 95],
+            ['Peitoral', 100]
+        ]);
+
+        // Set chart options
+        var options = {
+            'title': 'Medidas do Corpo',
+            'width': 600,
+            'height': 400,
+            'hAxis': {
+                title: 'Medida (cm)'
+            },
+            'vAxis': {
+                title: 'Parte do Corpo'
+            },
+            'colors': ['#006494'], 
+            'tooltip': { isHtml: true } 
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+
+
     //MODAL DE RESGISTRAR TREINOS
     function listarTreinos() {
         fetch('/listar_treinos')
