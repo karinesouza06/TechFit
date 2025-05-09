@@ -21,8 +21,11 @@ def profile():
 
 @profile_bp.route('/profile_personal')
 @login_required
-def profile_personal():   
-    return render_template('profile_personal.html')
+def profile_personal():
+    user_id = current_user.get_id()
+    user = User.get(user_id)
+    
+    return render_template('profile_personal.html', user_info=user)
 
 @profile_bp.route('/configuracoes', methods=['GET', 'POST'])
 @login_required
