@@ -6,20 +6,15 @@
 
 {% block style %}
 <style>
-    /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'); */
-
-    /* fonte fina  */
     @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
-
-    /* fonte grossa */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
 
     :root {
         --techfit-100: #ffff;
         --techfit-200: #006aa7;
         --techfit-300: #247ba0;
-        --techfit-400: #006494;  /* Fundo escuro */
-        --techfit-500: #e8f1f2;  /* Botões claros */
+        --techfit-400: #006494;
+        --techfit-500: #e8f1f2;
     }
 
     * {
@@ -34,16 +29,12 @@
         background-color: #006aa7;
         color:#fff;
         margin: 0 auto;
-        width: 100%;
-        margin-right: 30px;
+        width: 80%;
         padding: 2%;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); 
-        gap: 10px;
-
-        overflow-y: auto; /* Adiciona barra de rolagem vertical */
-        max-height: 80vh; /* Altura máxima igual à página de medidas */
-
+        overflow-y: auto;
+        max-height: 90vh;
     }
 
     .container {
@@ -62,19 +53,19 @@
         border-radius: 10px;
     }
 
-    form .row {
+    .row {
         display: flex;
-        gap: 15px;
+        gap: 200px;
         flex-wrap: wrap;
     }
 
-    .row .column {
-        flex: 1 1 250px;
+    .column {
+        flex: 1;
     }
 
     .column .title {
         font-size: 20px;
-        color: #333;
+        color: #fff;
         text-transform: uppercase;
         margin-bottom: 5px;
     }
@@ -86,7 +77,6 @@
     .input-box span {
         display: block;
         margin-bottom: 10px;
-        
     }
 
     .input-box input {
@@ -95,7 +85,6 @@
         border: 1px solid #ccc;
         border-radius: 6px;
         font-size: 15px;
-     
     }
 
     .column .flex {
@@ -108,133 +97,129 @@
     }
 
     .input-box img {
-        height: 34px; 
+        height: 26px; 
         margin-top: 5px; 
         filter: drop-shadow(0 0 1px #000);
     }
-
+    
     form .btn {
-        width: 100%;
-        /* padding: 12px; */
+        width: 20%; 
+        margin: 20px auto 0; 
         padding: 12px; 
         background: #fff;
         border: none;
         outline: none;
         border-radius: 6px;
-        /* font-size: 17px; */
         font-size: 17px;
         color: #006aa7;
-        margin-top: 5px;
         cursor: pointer;
         transition: .5s;
+        display: block; /* garante que o botão use o auto margin */
     }
+    
 
     form .btn:hover {
         background: #006aa7;
+        color: #fff;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-
-    <div class="profile-page">
-        <div class="profile-container1">
-            <!-- <div class="content"> -->
-            <form action="">
-                <div class="row">
-                    <div class="column">
-                        <h3 class="title" style="color: #fff;">Endereço de Cobrança</h3>
-                        <div class="input-box">
-                            <span>Nome completo:</span>
-                            <input type="text" placeholder="">
-                        </div>
-                        <div class="input-box">
-                            <span>Email:</span>
-                            <input type="email" placeholder="example@example.com">
-                        </div>
-                        <div class="input-box">
-                            <span>Endereço:</span>
-                            <input type="text" placeholder="Bairo, rua e número">
-                        </div>
-                        <div class="input-box">
-                            <span>Cidade:</span>
-                            <input type="text" placeholder="">
-                        </div>
-
-                        <div class="flex">
-                            <div class="input-box">
-                                <span>Estado:</span>
-                                <input type="text" placeholder="">
-                            </div>
-                            <div class="input-box">
-                                <span>Código postal:</span>
-                                <input type="number" placeholder="123 456">
-                            </div>
-                        </div>
+<div class="profile-page">
+    <div class="profile-container1">
+        <form action="">
+            <div class="row">
+                <!-- Coluna Endereço -->
+                <div class="column">
+                    <h3 class="title">Endereço de Cobrança</h3>
+                    <div class="input-box">
+                        <span>Nome completo:</span>
+                        <input type="text" placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span>Email:</span>
+                        <input type="email" placeholder="example@example.com">
+                    </div>
+                    <div class="input-box">
+                        <span>Endereço:</span>
+                        <input type="text" placeholder="Bairro, rua e número">
+                    </div>
+                    <div class="input-box">
+                        <span>Cidade:</span>
+                        <input type="text" placeholder="">
                     </div>
 
-                    <div class="column">
-                        <h3 class="title" style="color: #fff;">Pagamento</h3>
+                    <div class="flex">
                         <div class="input-box">
-                            <span>Opções de pagamentos:</span>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="">
-                            <img src="https://www.visa.com.br/dam/VCOM/regional/lac/brazil/newsroom/conheca-a-visa800x450.jpg" alt="">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNDV7XumbzU8pINrel_uCur45tmlVIhcDBNQ&s" alt="">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg" alt="">
-                            
-                        </div>
-                        <div class="input-box">
-                            <span>Nome do cartão:</span>
+                            <span>Estado:</span>
                             <input type="text" placeholder="">
                         </div>
                         <div class="input-box">
-                            <span>Número do cartão:</span>
-                            <input type="number" placeholder="1111 2222 3333 4444">
+                            <span>Código postal:</span>
+                            <input type="number" placeholder="123 456">
                         </div>
-                        <div class="input-box">
-                            <span>Mês de validade:</span>
-                            <input type="text" placeholder="">
-                        </div>
-                    
-                        <div class="flex">
-                            <div class="input-box">
-                                <span>Ano de validade:</span>
-                                <input type="number" placeholder="">
-                            </div>
-                            <div class="input-box">
-                                <span>CVV:</span>
-                                <input type="number" placeholder="">
-                            </div>
                     </div>
                 </div>
 
-                <button type="submit" class="btn">Enviar</button>
-            </form>
-        </div>
+                <!-- Coluna Pagamento -->
+                <div class="column">
+                    <h3 class="title">Pagamento</h3>
+                    <div class="input-box">
+                        <span>Opções de pagamento:</span>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="">
+                        <img src="https://www.visa.com.br/dam/VCOM/regional/lac/brazil/newsroom/conheca-a-visa800x450.jpg" alt="">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNDV7XumbzU8pINrel_uCur45tmlVIhcDBNQ&s" alt="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg" alt="">
+                    </div>
+                    <div class="input-box">
+                        <span>Nome do cartão:</span>
+                        <input type="text" placeholder="">
+                    </div>
+                    <div class="input-box">
+                        <span>Número do cartão:</span>
+                        <input type="number" placeholder="1111 2222 3333 4444">
+                    </div>
+                    <div class="input-box">
+                        <span>Mês de validade:</span>
+                        <input type="text" placeholder="">
+                    </div>
+
+                    <div class="flex">
+                        <div class="input-box">
+                            <span>Ano de validade:</span>
+                            <input type="number" placeholder="">
+                        </div>
+                        <div class="input-box">
+                            <span>CVV:</span>
+                            <input type="number" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Enviar</button>
+        </form>
     </div>
-
+</div>
 <script>
-    $(document).ready(function() {
-
-        $('.method').on('click', function() {
-        $('.method').removeClass('blue-border');
-        $(this).addClass('blue-border');
+    $(document).ready(function () {
+        $('.method').on('click', function () {
+            $('.method').removeClass('blue-border');
+            $(this).addClass('blue-border');
         });
 
-        })
         var $cardInput = $('.input-fields input');
 
-        $('.next-btn').on('click', function(e) {
-
-        $cardInput.removeClass('warning');
-
-        $cardInput.each(function() {    
-            var $this = $(this);
-            if (!$this.val()) {
-            $this.addClass('warning');
-            }
-        })
+        $('.next-btn').on('click', function (e) {
+            $cardInput.removeClass('warning');
+            $cardInput.each(function () {
+                var $this = $(this);
+                if (!$this.val()) {
+                    $this.addClass('warning');
+                }
+            });
+        });
     });
 </script>
 {% endblock %}
-
