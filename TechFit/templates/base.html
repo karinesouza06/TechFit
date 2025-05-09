@@ -338,15 +338,14 @@
                     </a>
                 </li>
 
-                <li class="side-item ">
+                <li class="side-item {% if request.endpoint == 'pagamento' %}active{% endif %}">
                     <a href="{{ url_for('payment.pagamento') }}">
-                        <i class="fa-solid fa-registered"></i>
+                        <i class="fa-solid fa-money-check-dollar"></i>
                         <span class="item-description">
                           Pagamento
                         </span>
                     </a>
                 </li>
-
 
 
             <button id="open_btn">
