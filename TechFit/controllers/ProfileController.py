@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, flash, url_for, request
+from flask import Blueprint, render_template, redirect, flash, url_for, request, Response
 from flask_login import login_required, current_user
 from models.User import User
 from models import User, Treino
