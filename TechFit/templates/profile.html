@@ -20,6 +20,8 @@
         --techfit-500: #e8f1f2;  /* Botões claros */
     }
 
+    /* <img src="{{ url_for('static', filename='placeholder.png') }}" alt="profile_image" class="picture__img" style="display: none;"> */
+
     * {
         font-family: "Didact Gothic", sans-serif;
         margin: 0;
@@ -70,7 +72,7 @@
 
     .profile-info1 .info-item p {
     color: #ffff;
-}
+    }
 
     .picture {
         width: 70%; /* Mantém o tamanho do contêiner */
@@ -210,10 +212,12 @@
         color: var(--techfit-400);  /* Texto azul escuro */
     }
 
+
     #calculator {
         flex-direction: column;
-        gap: 2rem;
-        padding: 2rem;
+        padding: 20px;
+        height: 100%;
+        width: 100%;
         color: #f8fafc;
         border-radius: 8px;
         background-color: #006aa7;  /* Botões claros */
@@ -280,10 +284,10 @@
     .input-field input {
         background-color: var(--techfit-100);
         border: none;
-        width: 100%;
+        width: 80%;
         font-size: 1.3rem;
         color: var(--techfit-300);
-        padding: 0 0.5rem;
+        height: 40px;
         /* fonte fina  */
         font-family: "Didact Gothic", sans-serif;
     }
@@ -316,7 +320,7 @@
         align-items: center;
        
         margin-top: 10px;
-        color: var(--techfit-300);
+        color: var(--techfit-500);
         padding: 2px;
         
         font-family: "Didact Gothic", sans-serif;
@@ -448,7 +452,7 @@
         position: absolute;
         top: 10px;
         right: 15px;
-        color: #aaa;
+        color: #ffffff;
         font-size: 28px;
         font-weight: bold;
         cursor: pointer;
@@ -463,6 +467,7 @@
 
     .resultTreino, #listaDias {
         color: var(--techfit-200);
+        margin-bottom: 15px;
     }
 
 
@@ -481,11 +486,11 @@
         color: #dc2626;
     }
 
-    #description {
+    /* #description {
         width: 15.5rem;
-        /* fonte fina  */
+      
         font-family: "Didact Gothic", sans-serif;
-    }
+    } */
 
     #more_info {
         text-align: center;
@@ -552,10 +557,10 @@
 
 
     .modal {
-    display: none;
-    position: fixed; 
-    z-index: 1; 
-    border: none;
+        display: none;
+        position: fixed; 
+        z-index: 1; 
+        border: none;
    
     } 
 
@@ -563,8 +568,38 @@
         margin: 15% auto; 
         padding: 20px;
         width: 40%; 
-        position: relative; 
+        position: relative;
+        
     }
+
+    #container {
+        display: flex;
+        width: 75%;
+        height: 90%;
+    }
+
+    #registrar_treino, #data_treino {
+        border: none;
+        font-size: 15px;
+        font-weight: bold;
+        background-color: var(--techfit-500);  /* Botões claros */
+        color:var(--techfit-400);  
+        border-radius: 3px;
+        height: 35%;
+        padding: 3px;
+        cursor: pointer;
+        width: 50%;
+       
+    }
+
+    #data_treino {
+        margin-left: 10px;
+    }
+
+    #registrar_treino {
+        margin-top: 15px;
+    }
+
 
  
 </style>
@@ -575,11 +610,13 @@
 
 <div class="profile-page">
     <div class="profile-container1">
-        <label class="picture" for="picture__input" tabIndex="0">
-            <span class="picture__image">Escolha uma imagem</span>
-            <img src="" alt="profile_image" class="picture__img" style="display: none;">
-        </label>
-        <input type="file" name="picture_input" id="picture__input" style="display: none;">
+        <form method="POST" action="{{ url_for('profile.upload_imagem') }}" enctype="multipart/form-data" class="picture">
+            <label for="picture__input" tabIndex="0">
+                <span class="picture__image">Escolha uma imagem</span>
+                <img src="{{ url_for('profile.imagem_usuario', user_id=user_info.id) }}" alt="profile_image" class="picture__img">
+            </label>
+            <input type="file" name="picture_input" id="picture__input" style="display: none;" onchange="this.form.submit()">
+        </form>
         <h2>Dados do {{ user_info.tipo_usuario}}</h2>
         <div class="profile-info1">
             <div class="info-item">
@@ -672,7 +709,7 @@
                             <span style="color: #ffff;">Seu IMC</span>
                         </div>
                         <div id="description">
-                            <span style="color: #ffff;"></span>
+                            <span id="alerta_imc"></span>
                         </div>  
                     </div>
                 </div>   
@@ -733,7 +770,7 @@
                 <form method="POST" action="{{ url_for('training.registrar_treino') }}">
                     <label for="data_treino" style="color: #ffff;">Data do Treino:</label>
                     <input type="date" id="data_treino" name="data_treino" required>
-                    <button type="submit">Registrar Treino</button>
+                    <button type="submit" id="registrar_treino">Registrar Treino</button>
                     <!-- <button type="button" onclick="listarTreinos()">Listar Treinos</button> -->
                 </form>
                 
@@ -833,48 +870,6 @@
     }
 
 
-    // Código relacionado a inserção de imagem do perfil do usuário 
-    const inputFile = document.querySelector("#picture__input");
-    const pictureImage = document.querySelector(".picture__image");
-    const pictureImg = document.querySelector(".picture__img");
-    const pictureImageTxt = "Escolha uma imagem";
-
-    pictureImage.innerHTML = pictureImageTxt;  // Define texto padrão
-
-    // Carregar imagem do localStorage ao iniciar a página
-    window.onload = () => {
-        const savedImage = localStorage.getItem('profileImage');
-        if (savedImage) {
-            pictureImg.src = savedImage; // Atualiza a imagem
-            pictureImg.style.display = "block"; // Torna a imagem visível
-            pictureImage.innerHTML = ""; // Limpa o texto padrão
-        }
-    };
-
-    inputFile.addEventListener("change", function (e) {
-        const inputTarget = e.target;
-        const file = inputTarget.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.addEventListener("load", function (e) {
-                const readerTarget = e.target;
-                pictureImg.src = readerTarget.result; // Atualiza a imagem
-                pictureImg.style.display = "block"; // Torna a imagem visível
-                pictureImage.innerHTML = ""; // Limpa o texto padrão
-
-                // Salvar a imagem no localStorage
-                localStorage.setItem('profileImage', readerTarget.result);
-            });
-
-            reader.readAsDataURL(file);
-        } else {
-            pictureImage.innerHTML = pictureImageTxt; // Reseta para o texto padrão
-            pictureImg.style.display = "none"; // Esconde a imagem
-            localStorage.removeItem('profileImage'); // Remove a imagem do localStorage
-        }
-    });
 
     // Funções para abrir e fechar modais
     function openModal(modalId) {
