@@ -22,7 +22,52 @@ def profile():
     else:
         flash("Usuário não encontrado.")
         return redirect(url_for('index'))
-    
+
+@profile_bp.route('/upload_imagem', methods=['POST'])
+@login_required
+def upload_imagem():
+    if 'picture_input' not in request.files:
+        flash('Nenhuma imagem enviada.')
+        return redirecionar_para_perfil()
+
+    file = request.files['picture_input']
+    if file.filename == '':
+        flash('Arquivo inválido.')
+        return redirecionar_para_perfil()
+
+    imagem_binaria = file.read()
+
+    conn = obter_conexao()
+    cursor = conn.cursor()
+    cursor.execute("UPDATE users SET use_imagem = ? WHERE use_id = ?", (imagem_binaria, current_user.get_id()))
+    conn.commit()
+    conn.close()
+
+    flash('Imagem atualizada com sucesso!')
+    return redirecionar_para_perfil()
+
+
+def redirecionar_para_perfil():
+    user = User.get(current_user.get_id())
+    if user and user.tipo_usuario == 'personal':
+        return redirect(url_for('profile.profile_personal'))
+    else:
+        return redirect(url_for('profile.profile'))
+
+
+@profile_bp.route('/imagem_usuario/<int:user_id>')
+def imagem_usuario(user_id):
+    conn = obter_conexao()
+    cursor = conn.cursor()
+    cursor.execute("SELECT use_imagem FROM users WHERE use_id = ?", (user_id,))
+    resultado = cursor.fetchone()
+    conn.close()
+
+    if resultado and resultado[0]:
+        return Response(resultado[0], mimetype='image/jpeg')
+    else:
+        return redirect(url_for('static', filename='placeholder.png'))
+
 @profile_bp.route('/configuracoes', methods=['GET', 'POST'])
 @login_required
 def configuracoes():
@@ -43,7 +88,6 @@ def configuracoes():
         
     um_user = User.one(userid)
     return render_template('configuracoes.html', user=um_user, user_info=user)
-
 
 @profile_bp.route('/solicitar_personal/<int:personal_id>', methods=['POST'])
 @login_required
