@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
     use_idade INT,
     use_peso FLOAT,
     use_altura FLOAT,
+    use_imagem BLOB,
     use_foco_treino VARCHAR(90), /*foco do treino que o aluno quer desenvolver*/
     use_tipo_treino VARCHAR(90), /*tipo do treino que o personal gosta de ensinar*/
     use_contador INTEGER DEFAULT 0
