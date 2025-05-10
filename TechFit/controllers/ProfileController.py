@@ -1,0 +1,229 @@
+from flask import Blueprint, render_template, redirect, flash, url_for, request
+from flask_login import login_required, current_user
+from models.User import User
+from models import User, Treino
+from models import obter_conexao 
+from flask import jsonify
+
+
+profile_bp = Blueprint('profile', __name__)
+
+# DADOS DOS ALUNOS
+@profile_bp.route('/profile')
+@login_required
+def profile():
+    user_id = current_user.get_id()
+    user = User.get(user_id)
+    total_treinos = Treino.contar_treinos(user_id)
+    
+    if user:
+        user.total_treinos = total_treinos
+        return render_template('profile.html', user_info=user)
+    else:
+        flash("Usuário não encontrado.")
+        return redirect(url_for('index'))
+    
+@profile_bp.route('/configuracoes', methods=['GET', 'POST'])
+@login_required
+def configuracoes():
+    userid = current_user.get_id()
+    user = User.get(userid)
+    
+    if request.method == 'POST':
+        nome = request.form['nome_edit']
+        email = request.form['email_edit']
+        telefone = request.form['telefone_edit']
+        data_nascimento = request.form['data_nascimento_edit']
+        idade = request.form['idade_edit']
+        peso = request.form['peso_edit']
+        altura = request.form['altura_edit']
+        foco_treino = request.form['foco_treino_edit']
+                
+        User.atualizar_dados(nome, email, telefone, data_nascimento, idade, peso, altura, foco_treino, userid)
+        
+    um_user = User.one(userid)
+    return render_template('configuracoes.html', user=um_user, user_info=user)
+
+
+@profile_bp.route('/solicitar_personal/<int:personal_id>', methods=['POST'])
+@login_required
+def solicitar_personal(personal_id):
+    if current_user.tipo_usuario.lower() != 'aluno':
+        return jsonify({'error': 'Apenas alunos podem enviar solicitações'}), 403
+    
+    conn = obter_conexao()
+    try:
+        existe = conn.execute('''
+            SELECT id FROM solicitacoes_personal 
+            WHERE aluno_id = ? AND personal_id = ? AND status = 'pendente'
+        ''', (current_user.id, personal_id)).fetchone()
+        
+        if not existe:
+            conn.execute('''
+                INSERT INTO solicitacoes_personal (aluno_id, personal_id)
+                VALUES (?, ?)
+            ''', (current_user.id, personal_id))
+            conn.commit()
+            return jsonify({'success': True})
+        else:
+            return jsonify({'error': 'Solicitação já enviada'}), 400
+            
+    except Exception as e:
+        print(f"Erro: {str(e)}")
+        return jsonify({'error': 'Falha no servidor'}), 500
+    finally:
+        conn.close()
+
+
+@profile_bp.route('/seleciona_personal', methods=['GET', 'POST'])
+@login_required
+def seleciona_personal():
+    conn = obter_conexao()
+    personais = conn.execute('''
+        SELECT 
+            u.use_id, u.use_nome, u.use_email, u.use_telefone,
+            d.dau_per_formacao, d.dau_per_cursos, 
+            d.dau_per_tempo_trabalho, d.dau_per_tipo_aluno,
+            d.dau_per_ambiente_trabalho
+        FROM users u
+        LEFT JOIN dados_users_personais d 
+        ON u.use_id = d.dau_per_use_id
+        WHERE u.use_tipo_usuario = 'personal'
+    ''').fetchall()
+    conn.close()
+    return render_template('selecionar_personal.html', personais=personais)
+
+
+
+
+#DADOS DOS PERSONAIS
+@profile_bp.route('/profile_personal')
+@login_required
+def profile_personal():
+    user_id = current_user.get_id()
+    user = User.get(user_id)
+    
+    return render_template('profile_personal.html', user_info=user)
+
+
+@profile_bp.route('/configuracoes_personal', methods=['GET', 'POST'])
+@login_required
+def configuracoes_personal():
+    userid = current_user.get_id()
+    user = User.get(userid)
+    
+    if request.method == 'POST':
+        nome = request.form['nome_edit']
+        email = request.form['email_edit']
+        telefone = request.form['telefone_edit']
+        data_nascimento = request.form['data_nascimento_edit']
+        idade = request.form['idade_edit']
+        peso = request.form['peso_edit']
+        altura = request.form['altura_edit']
+        foco_treino = request.form['foco_treino_edit']
+                
+        User.atualizar_dados(nome, email, telefone, data_nascimento, idade, peso, altura, foco_treino, userid)
+        
+    um_user = User.one(userid)
+    return render_template('configuracoes_personal.html', user=um_user, user_info=user)
+
+
+@profile_bp.route('/seus_alunos', methods=['GET', 'POST'])
+@login_required
+def seus_alunos():
+    conn = obter_conexao()
+    alunos = conn.execute('''
+        SELECT u.use_id, u.use_nome, u.use_email 
+        FROM aluno_personal ap
+        JOIN users u ON ap.aluno_id = u.use_id
+        WHERE ap.personal_id = ?
+    ''', (current_user.id,)).fetchall()
+    conn.close()
+    return render_template('alunos_vinculados.html', alunos=alunos)
+
+
+@profile_bp.route('/montar_treino', methods=['GET', 'POST'])
+@login_required
+def montar_treino():
+    return render_template('montar_treino.html')
+
+@profile_bp.route('/solicitacoes_pendentes')
+@login_required
+def solicitacoes_pendentes():
+    if current_user.tipo_usuario.lower() != 'personal':
+        flash('Acesso restrito a personais')
+        return redirect(url_for('profile.profile_personal'))
+    
+    conn = obter_conexao()
+    solicitacoes = conn.execute('''
+        SELECT s.id, u.use_id, u.use_nome, u.use_email, s.data_solicitacao 
+        FROM solicitacoes_personal s
+        JOIN users u ON s.aluno_id = u.use_id
+        WHERE s.personal_id = ? AND s.status = 'pendente'
+    ''', (current_user.id,)).fetchall()
+    conn.close()
+    
+    return render_template('solicitacoes_pendentes.html', solicitacoes=solicitacoes)
+
+
+@profile_bp.route('/aceitar_solicitacao/<int:solicitacao_id>')
+@login_required
+def aceitar_solicitacao(solicitacao_id):
+    if current_user.tipo_usuario.lower() != 'personal':
+        flash('Ação não permitida', 'error')
+        return redirect(url_for('index'))
+    
+    conn = obter_conexao()
+    try:
+        solicitacao = conn.execute('''
+            SELECT * FROM solicitacoes_personal
+            WHERE id = ? AND status = 'pendente' AND personal_id = ?
+        ''', (solicitacao_id, current_user.id)).fetchone()
+
+        if not solicitacao:
+            flash('Solicitação inválida', 'error')
+            return redirect(url_for('profile.solicitacoes_pendentes'))
+
+        # Verifica se já existe vínculo
+        existe_vinculo = conn.execute('''
+            SELECT * FROM aluno_personal
+            WHERE aluno_id = ? AND personal_id = ?
+        ''', (solicitacao['aluno_id'], current_user.id)).fetchone()
+
+        if existe_vinculo:
+            flash('Este aluno já está vinculado', 'warning')
+            return redirect(url_for('profile.solicitacoes_pendentes'))
+
+        conn.execute('''
+            UPDATE solicitacoes_personal SET status = 'aceito'
+            WHERE id = ?
+        ''', (solicitacao_id,))
+        
+        conn.execute('''
+            INSERT INTO aluno_personal (aluno_id, personal_id)
+            VALUES (?, ?)
+        ''', (solicitacao['aluno_id'], current_user.id))
+        
+        conn.commit()
+        flash('Solicitação aceita com sucesso!', 'success')
+        
+    except Exception as e:
+        conn.rollback()
+        flash(f'Erro ao processar solicitação: {str(e)}', 'error')
+    finally:
+        conn.close()
+    
+    return redirect(url_for('profile.solicitacoes_pendentes'))
+
+@profile_bp.route('/rejeitar_solicitacao/<int:solicitacao_id>')
+@login_required
+def rejeitar_solicitacao(solicitacao_id):
+    conn = obter_conexao()
+    conn.execute('''
+        UPDATE solicitacoes_personal SET status = 'rejeitado'
+        WHERE id = ? AND personal_id = ?
+    ''', (solicitacao_id, current_user.id))
+    conn.commit()
+    conn.close()
+    flash('Solicitação rejeitada.')
+    return redirect(url_for('profile.solicitacoes_pendentes'))
