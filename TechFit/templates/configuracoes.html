@@ -270,11 +270,13 @@
 
 <div class="profile-page">
     <div class="profile-container1">
-        <label class="picture" for="picture__input" tabIndex="0">
-            <span class="picture__image">Escolha uma imagem</span>
-            <img src="" alt="profile_image" class="picture__img" style="display: none;">
-        </label>
-        <input type="file" name="picture_input" id="picture__input" style="display: none;">
+        <form method="POST" action="{{ url_for('profile.upload_imagem') }}" enctype="multipart/form-data" class="picture">
+            <label for="picture__input" tabIndex="0">
+                <span class="picture__image">Escolha uma imagem</span>
+                <img src="{{ url_for('profile.imagem_usuario', user_id=user_info.id) }}" alt="profile_image" class="picture__img">
+            </label>
+            <input type="file" name="picture_input" id="picture__input" style="display: none;" onchange="this.form.submit()">
+        </form>
         <h2>Perfil do {{ user_info.tipo_usuario}}</h2>
         <div class="profile-info1">
             <div class="info-item">
@@ -364,48 +366,6 @@
 </div>
 
 <script>
-    // Código relacionado a inserção de imagem do perfil do usuário 
-    const inputFile = document.querySelector("#picture__input");
-    const pictureImage = document.querySelector(".picture__image");
-    const pictureImg = document.querySelector(".picture__img");
-    const pictureImageTxt = "Escolha uma imagem";
-
-    pictureImage.innerHTML = pictureImageTxt;  // Define texto padrão
-
-    // Carregar imagem do localStorage ao iniciar a página
-    window.onload = () => {
-        const savedImage = localStorage.getItem('profileImage');
-        if (savedImage) {
-            pictureImg.src = savedImage; // Atualiza a imagem
-            pictureImg.style.display = "block"; // Torna a imagem visível
-            pictureImage.innerHTML = ""; // Limpa o texto padrão
-        }
-    };
-
-    inputFile.addEventListener("change", function (e) {
-        const inputTarget = e.target;
-        const file = inputTarget.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.addEventListener("load", function (e) {
-                const readerTarget = e.target;
-                pictureImg.src = readerTarget.result; // Atualiza a imagem
-                pictureImg.style.display = "block"; // Torna a imagem visível
-                pictureImage.innerHTML = ""; // Limpa o texto padrão
-
-                // Salvar a imagem no localStorage
-                localStorage.setItem('profileImage', readerTarget.result);
-            });
-
-            reader.readAsDataURL(file);
-        } else {
-            pictureImage.innerHTML = pictureImageTxt; // Reseta para o texto padrão
-            pictureImg.style.display = "none"; // Esconde a imagem
-            localStorage.removeItem('profileImage'); // Remove a imagem do localStorage
-        }
-    });
 
     // Função para alternar visibilidade da senha
     function togglePasswordVisibility(inputId) {
