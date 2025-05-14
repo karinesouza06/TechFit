@@ -812,39 +812,48 @@
    // instancia o gráfico de barras, passa os dados e
    // os desenha.
     function drawChart() {
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Parte do Corpo');
-        data.addColumn('number', 'Medida (cm)');
-        data.addRows([
-            ['Cintura', 80],
-            ['Perna', 90],
-            ['Braço', 30],
-            ['Ombro', 40],
-            ['Quadril', 95],
-            ['Peitoral', 100]
-        ]);
+    // Primeiro buscamos os dados do servidor
+    fetch('/get_medidas_corpo')
+        .then(response => response.json())
+        .then(data => {
+            // Criamos a tabela de dados
+            var dataTable = new google.visualization.DataTable();
+            dataTable.addColumn('string', 'Parte do Corpo');
+            dataTable.addColumn('number', 'Medida (cm)');
+            
+            // Adicionamos as linhas com os dados do banco
+            dataTable.addRows([
+                ['Quadril', data.quadril || 0],
+                ['Peitoral', data.peitoral || 0],
+                ['Ombro', data.ombro || 0],
+                ['Cintura', data.cintura || 0],
+                ['Glúteos', data.gluteos || 0],
+                ['Dorsal', data.dorsal || 0]
+            ]);
 
-        // Set chart options
-        var options = {
-            'title': 'Medidas do Corpo',
-            'width': 600,
-            'height': 400,
-            'hAxis': {
-                title: 'Medida (cm)'
-            },
-            'vAxis': {
-                title: 'Parte do Corpo'
-            },
-            'colors': ['#006494'], 
-            'tooltip': { isHtml: true } 
-        };
+            // Configurações do gráfico
+            var options = {
+                'title': 'Medidas do Corpo',
+                'width': 600,
+                'height': 400,
+                'hAxis': {
+                    title: 'Medida (cm)'
+                },
+                'vAxis': {
+                    title: 'Parte do Corpo'
+                },
+                'colors': ['#006494'], 
+                'tooltip': { isHtml: true }
+            };
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
-
+            // Desenhamos o gráfico
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            chart.draw(dataTable, options);
+        })
+        .catch(error => {
+            console.error('Erro ao buscar medidas:', error);
+        });
+}
     //MODAL DE RESGISTRAR TREINOS
     function listarTreinos() {
         fetch('/listar_treinos')
