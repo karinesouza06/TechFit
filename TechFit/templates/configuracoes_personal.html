@@ -300,66 +300,70 @@
     <div class="profile-container2">
         <div class="form">
             <h1>Editar Dados</h1>
-            <form method="POST" action="/configuracoes">
+            <form method="POST" action="{{ url_for('profile.configuracoes_personal') }}">
                 <div class="input-group">
-                    <div class="input-box">
-                        <label for="nome_edit">Nome</label>
-                        <input id="nome_edit" type="text" name="nome_edit" placeholder="Insira seu nome" value="{{user.use_nome}}" required>
-                    </div>
-    
-                    <div class="input-box">
-                        <label for="email_edit">Email</label>
-                        <input id="email_edit" type="text" name="email_edit" placeholder="Insira seu email" value="{{user.use_email}}" required>
-                    </div>
-    
-                    <div class="input-box">
-                        <label for="telefone_edit">Telefone</label>
-                        <input id="telefone_edit" type="text" name="telefone_edit" placeholder="Insira seu Telefone" value="{{user.use_telefone}}" required>
-                    </div>
-    
-                    <div class="input-box">
-                        <label for="data_nascimento_edit">Data Nascimento</label>
-                        <input name='data_nascimento_edit' type="date" id="data_nascimento_edit" value="{{user.use_data_nascimento}}" Placeholder="Data de nascimento" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="idade_edit">Idade</label>
-                        <input name='idade_edit' type="number" id="idade_edit" value="{{user.use_idade}}" Placeholder="Idade" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="peso_edit">Peso</label>
-                        <input name='peso_edit' type="text" id="peso_edit" value="{{user.use_peso}}" Placeholder="Peso" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="altura_edit">Altura</label>
-                        <input name='altura_edit' type="text" id="altura_edit" value="{{user.use_altura}}" Placeholder="Altura" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="foco_treino_edit">Foco de treino</label>
-                        <!-- <select name="foco_treino_edit" id="foco_treino_edit">
-                            <option value="">Selecione uma opção</option>
-                            <option value="Treino cardiovascular">Treino cardiovascular</option>
-                            <option value="Treino de definição">Treino de definição</option>
-                            <option value="Treino de força">Treino de força</option>
-                            <option value="Treino funcional">Treino funcional</option>
-                            <option value="Treino HIT">Treino HIT</option>
-                            <option value="Treino de hipertrofia">Treino de hipertrofia</option>
-                            <option value="Treino de resistência">Treino de resistência</option>
-                        </select> -->
-
-                        <input name='foco_treino_edit' type="text" id="foco_treino_edit" value="{{user.use_foco_treino}}" Placeholder="Foco de Treino" required>
-                    </div>
-    
-                 
+                <div class="input-box">
+                    <label for="nome_edit">Nome</label>
+                    <input id="nome_edit" type="text" name="nome_edit" placeholder="Insira seu nome" value="{{ user_info.nome }}" required>
                 </div>
-    
+
+                <div class="input-box">
+                    <label for="email_edit">Email</label>
+                    <input id="email_edit" type="text" name="email_edit" placeholder="Insira seu email" value="{{ user_info.email }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="telefone_edit">Telefone</label>
+                    <input id="telefone_edit" type="text" name="telefone_edit" placeholder="Insira seu Telefone" value="{{ user_info.telefone }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="data_nascimento_edit">Data Nascimento</label>
+                    <input name='data_nascimento_edit' type="date" id="data_nascimento_edit" value="{{ user_info.data_nascimento }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="idade_edit">Idade</label>
+                    <input name='idade_edit' type="number" id="idade_edit" value="{{ user_info.idade }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="peso_edit">Peso</label>
+                    <input name='peso_edit' type="text" id="peso_edit" value="{{ user_info.peso }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="altura_edit">Altura</label>
+                    <input name='altura_edit' type="text" id="altura_edit" value="{{ user_info.altura }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="formacao_edit">Formação</label>
+                    <input name='formacao_edit' type="text" id="formacao_edit" value="{{ user_info.formacao or '' }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="cursos_edit">Cursos</label>
+                    <input name='cursos_edit' type="text" id="cursos_edit" value="{{ user_info.cursos or '' }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="trabalho_edit">Tempo de Trabalho</label>
+                    <input name='trabalho_edit' type="text" id="trabalho_edit" value="{{ user_info.tempo_trabalho or '' }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="tipo_aluno_edit">Tipo de Aluno</label>
+                    <input name='tipo_aluno_edit' type="text" id="tipo_aluno_edit" value="{{ user_info.tipo_aluno or '' }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="ambiente_edit">Ambiente de Trabalho</label>
+                    <input name='ambiente_edit' type="text" id="ambiente_edit" value="{{ user_info.ambiente_trabalho or '' }}" required>
+                </div>
                 <div class="continue-button">
-                    <button><a href="#">Salvar</a></button>
+                    <button type="submit">Salvar</button>
                 </div>
-    
             </form>
         </div>
     </div>
