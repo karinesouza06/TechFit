@@ -56,7 +56,6 @@ class User(UserMixin):
         else:
             return None
 
-
     @classmethod
     def get_by_email(cls, email):
         conn = obter_conexao()
@@ -117,19 +116,53 @@ class User(UserMixin):
             (nome, email, telefone, data_nascimento, idade, peso, altura, foco_treino, id)
         )
         conn.commit()
-        
+
     @classmethod
-    def get_personal_data(cls, user_id):
+    def one(cls, id):
+        conn = obter_conexao()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM users WHERE use_id = ?', (id,))
+        consultar_user = cursor.fetchone()
+        conn.close()
+        return consultar_user
+    
+    @classmethod
+    def atualizar_contador(cls, user_id):
+        conn = obter_conexao()
+        conn.execute('UPDATE users SET use_contador = use_contador + 1 WHERE use_id = ?', (user_id,))
+        conn.commit()
+        conn.close()
+
+    @classmethod
+    def registrar_consumo_agua(cls, user_id, quantidade):
         conn = obter_conexao()
         try:
-            personal_data = conn.execute(
-                "SELECT * FROM dados_users_personais WHERE dau_per_use_id = ?",
-                (user_id,)
-            ).fetchone()
-            return personal_data
+            conn.execute('''
+                INSERT INTO consumo_agua (user_id, quantidade) 
+                VALUES (?, ?)
+                ON CONFLICT(user_id, data) DO UPDATE SET 
+                quantidade = quantidade + excluded.quantidade
+            ''', (user_id, quantidade))
+            conn.commit()
+        except Exception as e:
+            print(f"Erro ao registrar consumo de água: {e}")
         finally:
             conn.close()
 
+    @classmethod
+    def obter_consumo_diario(cls, user_id):
+        conn = obter_conexao()
+        try:
+            consumo = conn.execute('''
+                SELECT quantidade FROM consumo_agua 
+                WHERE user_id = ? AND data = CURRENT_DATE
+            ''', (user_id,)).fetchone()
+            return consumo[0] if consumo else 0.0
+        except Exception as e:
+            print(f"Erro ao obter consumo de água: {e}")
+            return 0.0
+        finally:
+            conn.close()
 
     @classmethod
     def atualizar_dados_personal(cls, nome, email, telefone, data_nascimento, idade, peso, altura, 
@@ -177,48 +210,13 @@ class User(UserMixin):
             conn.close()
 
     @classmethod
-    def one(cls, id):
-        conn = obter_conexao()
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM users WHERE use_id = ?', (id,))
-        consultar_user = cursor.fetchone()
-        conn.close()
-        return consultar_user
-        
-    @classmethod
-    def atualizar_contador(cls, user_id):
-        conn = obter_conexao()
-        conn.execute('UPDATE users SET use_contador = use_contador + 1 WHERE use_id = ?', (user_id,))
-        conn.commit()
-        conn.close()
-
-    @classmethod
-    def registrar_consumo_agua(cls, user_id, quantidade):
+    def get_personal_data(cls, user_id):
         conn = obter_conexao()
         try:
-            conn.execute('''
-                INSERT INTO consumo_agua (user_id, quantidade) 
-                VALUES (?, ?)
-                ON CONFLICT(user_id, data) DO UPDATE SET 
-                quantidade = quantidade + excluded.quantidade
-            ''', (user_id, quantidade))
-            conn.commit()
-        except Exception as e:
-            print(f"Erro ao registrar consumo de água: {e}")
-        finally:
-            conn.close()
-
-    @classmethod
-    def obter_consumo_diario(cls, user_id):
-        conn = obter_conexao()
-        try:
-            consumo = conn.execute('''
-                SELECT quantidade FROM consumo_agua 
-                WHERE user_id = ? AND data = CURRENT_DATE
-            ''', (user_id,)).fetchone()
-            return consumo[0] if consumo else 0.0
-        except Exception as e:
-            print(f"Erro ao obter consumo de água: {e}")
-            return 0.0
+            personal_data = conn.execute(
+                "SELECT * FROM dados_users_personais WHERE dau_per_use_id = ?",
+                (user_id,)
+            ).fetchone()
+            return personal_data
         finally:
             conn.close()
