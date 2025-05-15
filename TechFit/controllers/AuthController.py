@@ -82,7 +82,7 @@ def admin():
     if current_user.tipo_usuario.lower() != 'admin':
         flash('Acesso restrito ao administrador.')
         return redirect(url_for('index'))
-    return render_template('base_admin.html')
+    return render_template('profile_admin.html')
 
 
 @auth_bp.route('/logout', methods=['POST'])
