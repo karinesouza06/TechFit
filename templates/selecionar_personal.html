@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block title %} Perfil {% endblock %}
+
+{% block titlePage %} Selecionar Personal {% endblock %}
+
+{% block style %}
+<style>
+    :root {
+        --techfit-100: #ffffff;
+        --techfit-200: #006aa7;
+        --techfit-300: #247ba0;
+        --techfit-400: #004d74;
+        --techfit-500: #e8f1f2;
+        --gradient-blue: linear-gradient(135deg, #006aa7 0%, #004d74 100%);
+    }
+
+    body {
+        background: #e8f1f2;
+        color: #004d74;
+        font-family: 'Open Sans', sans-serif;
+        min-height: 100vh;
+    }
+
+    .personal-selection-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-header h1 {
+        font-size: 2.5rem;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 1rem;
+    }
+
+    .section-header h1::after {
+        content: '';
+        position: absolute;
+        width: 60%;
+        height: 3px;
+        background: var(--techfit-500);
+        bottom: 0;
+        left: 20%;
+        border-radius: 2px;
+    }
+
+    .personal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .personal-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .personal-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .personal-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--techfit-200);
+    }
+
+    .personal-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .profile-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--techfit-500);
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profile-icon img {
+        width: 70%;
+        height: 70%;
+        object-fit: contain;
+    }
+
+    .personal-info h3 {
+        color: var(--techfit-400);
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .personal-details {
+        color: var(--techfit-300);
+        font-size: 0.9rem;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        margin: 0.8rem 0;
+        padding: 0.5rem;
+        background: rgba(232, 241, 242, 0.3);
+        border-radius: 8px;
+    }
+
+    .detail-item img {
+        width: 20px;
+        height: 20px;
+        margin-right: 0.8rem;
+        filter: invert(40%) sepia(40%) saturate(450%) hue-rotate(160deg);
+    }
+
+    .btn-solicitar {
+        width: 100%;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        background: var(--techfit-200);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .btn-solicitar:hover {
+        background: var(--techfit-300);
+        transform: scale(1.02);
+    }
+
+    .btn-solicitar:disabled {
+        background: #4CAF50;
+        cursor: not-allowed;
+        opacity: 0.9;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        margin: 2rem auto;
+        max-width: 600px;
+    }
+
+    .empty-state img {
+        width: 120px;
+        margin-bottom: 1.5rem;
+    }
+
+    .empty-state p {
+        color: var(--techfit-400);
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .personal-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .section-header h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="personal-selection-container">
+    <div class="section-header">
+        <h1 style="color: #006aa7;">Encontre Seu Personal Trainer</h1>
+    </div>
+
+    {% if personais %}
+    <div class="personal-grid">
+        {% for personal in personais %}
+        <div class="personal-card">
+            <div class="personal-header">
+                <div class="profile-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Ícone Perfil">
+                </div>
+                <div class="personal-info">
+                    <h3>{{ personal.use_nome }}</h3>
+                    <p class="personal-details">{{ personal.dau_per_formacao }}</p>
+                </div>
+            </div>
+
+            <div class="personal-details">
+                <div class="detail-item">
+                    <!-- <img src="https://cdn-icons-png.flaticon.com/512/942/942799.png" alt="Experiência"> -->
+                    <span>{{ personal.dau_per_tempo_trabalho }} de experiência</span>
+                </div>
+
+                <div class="detail-item">
+                    <!-- <img src="https://cdn-icons-png.flaticon.com/512/3273/3273451.png" alt="Especialidade"> -->
+                    <span>{{ personal.dau_per_tipo_aluno }}</span>
+                </div>
+
+                <div class="detail-item">
+                    <!-- <img src="https://cdn-icons-png.flaticon.com/512/3050/3050655.png" alt="Local"> -->
+                    <span>{{ personal.dau_per_ambiente_trabalho }}</span>
+                </div>
+            </div>
+
+            <button class="btn-solicitar" 
+                    onclick="solicitarPersonal({{ personal.use_id }}, this)">
+               
+                Solicitar
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486762.png" alt="Nenhum personal">
+        <p>Nenhum personal trainer disponível no momento</p>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    function solicitarPersonal(personalId, button) {
+        button.disabled = true;
+        const originalText = button.innerHTML;
+        
+        // Adicionar spinner
+        button.innerHTML = `
+            <div class="spinner"></div>
+            Processando...
+        `;
+
+        fetch(`/solicitar_personal/${personalId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                button.innerHTML = `
+                    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" 
+                         style="width: 18px; filter: invert(1);">
+                    Solicitação Enviada
+                `;
+                button.style.background = "#4CAF50";
+            } else {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            button.innerHTML = originalText;
+            button.disabled = false;
+        });
+    }
+
+    // Estilo do Spinner
+    const style = document.createElement('style');
+    style.textContent = `
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+{% endblock %}
