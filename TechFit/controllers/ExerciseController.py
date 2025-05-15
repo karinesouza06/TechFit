@@ -25,10 +25,10 @@ def exercise_page():
 
 @exercise_bp.route('/videos_admin')
 def videos_admin():
-    exercicios = Exercise.obter_exercicios()
-    return render_template('videos_admin.html', exercicios=exercicios)
+    videos_admin = Exercise.obter_exercicios()
+    return render_template('videos_admin.html', videos_admin=videos_admin)
 
 @exercise_bp.route('/videos_personal')
 def videos_personal():
-    exercicios = Exercise.obter_exercicios()
-    return render_template('videos_personal.html', exercicios=exercicios)
+    videos_personal = Exercise.obter_exercicios()
+    return render_template('videos_personal.html', videos_personal=videos_personal)
