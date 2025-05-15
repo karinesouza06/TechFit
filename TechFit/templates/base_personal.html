@@ -287,27 +287,27 @@
 
             <ul id="side_items">
 
-                <li class="side-item {% if request.endpoint == 'profile_personal' %}active{% endif %}">
+                <!-- <li class="side-item {% if request.endpoint == 'profile_personal' %}active{% endif %}">
                     <a href="{{ url_for('profile.profile_personal') }}">
                         <i class="fa-solid fa-user"></i>
                         <span class="item-description">
                             Perfil
                         </span>
                     </a>
-                </li>
+                </li> -->
                 
                 <li class="side-item {% if request.endpoint == 'configuracoes_personal' %}active{% endif %}">
                     <a href="{{ url_for('profile.configuracoes_personal') }}">
-                        <i class="fa-solid fa-gear"></i>
+                        <i class="fa-solid fa-user-gear"></i>
                         <span class="item-description">
-                           Configurações
+                           Perfil
                         </span>
                     </a>
                 </li>
 
                 <li class="side-item">
                     <a href="{{ url_for('profile.seus_alunos') }}">
-                        <i class="fa-solid fa-users"></i>
+                        <i class="fa-solid fa-users"></i> 
                         <span class="item-description">
                            Seus alunos
                         </span>
