@@ -151,7 +151,39 @@ def imagem_aluno_perso(user_id):
     else:
         return redirect(url_for('static', filename='placeholder.png'))
 
-
+@profile_bp.route('/get_medidas_corpo')
+@login_required
+def get_medidas_corpo():
+    user_id = current_user.get_id()
+    conn = obter_conexao()
+    
+    medidas = conn.execute('''
+        SELECT dau_alu_quadril, dau_alu_peitoral, dau_alu_ombro, 
+               dau_alu_cintura, dau_alu_gluteos, dau_alu_dorsal
+        FROM dados_users_alunos
+        WHERE dau_alu_use_id = ?
+    ''', (user_id,)).fetchone()
+    
+    conn.close()
+    
+    if medidas:
+        return jsonify({
+            'quadril': medidas['dau_alu_quadril'],
+            'peitoral': medidas['dau_alu_peitoral'],
+            'ombro': medidas['dau_alu_ombro'],
+            'cintura': medidas['dau_alu_cintura'],
+            'gluteos': medidas['dau_alu_gluteos'],
+            'dorsal': medidas['dau_alu_dorsal']
+        })
+    else:
+        return jsonify({
+            'quadril': 0,
+            'peitoral': 0,
+            'ombro': 0,
+            'cintura': 0,
+            'gluteos': 0,
+            'dorsal': 0
+        })
 
 
 #DADOS DOS PERSONAIS
