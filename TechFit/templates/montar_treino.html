@@ -1,0 +1,219 @@
+{% extends "base_personal.html" %}
+
+{% block title %} Perfil do Personal {% endblock %}
+
+{% block titlePage %} Montar Treinos {% endblock %}
+
+{% block style %}
+<style>
+    :root {
+        --techfit-100: #ffffff;
+        --techfit-200: #006aa7;
+        --techfit-300: #247ba0;
+        --techfit-400: #004d74;  /* Tom mais escuro */
+        --techfit-500: #e8f1f2;
+        --gradient-blue: linear-gradient(135deg, #006aa7 0%, #004d74 100%);
+    }
+
+    body {
+        background-color: var(--techfit-400);
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .montar-treino-section {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: var(--gradient-blue);
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .student-header {
+        border-bottom: 2px solid var(--techfit-500);
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .student-header h2 {
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .student-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .info-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1.5rem;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .info-card p {
+        margin: 0.5rem 0;
+        font-size: 0.95rem;
+        color: var(--techfit-500);
+    }
+
+    .info-card strong {
+        color: var(--techfit-500);
+        font-weight: 600;
+    }
+
+    .exercises-section {
+        margin-top: 3rem;
+    }
+
+    .exercise-form {
+        display: grid;
+        gap: 2rem;
+    }
+
+    .exercise-category {
+        background: rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .exercise-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .exercise-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        cursor: move;
+        transition: all 0.3s ease;
+    }
+
+    .exercise-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+
+    .exercise-item input[type="checkbox"] {
+        margin-right: 1rem;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .btn-save {
+        background: var(--techfit-500);
+        color: var(--techfit-400);
+        padding: 0.8rem 2rem;
+        border: none;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-save:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Ícones */
+    .icon {
+        width: 24px;
+        height: 24px;
+        filter: invert(1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="montar-treino-section">
+    <div class="student-header">
+        <h2 style="color: #ffffff;">
+            Dados do Aluno(a)
+        </h2>
+    </div>
+
+    <div class="student-info-grid">
+        <div class="info-card">
+            <p><strong>Nome:</strong> {{ aluno.nome }}</p>
+            <p><strong>Email:</strong> {{ aluno.email }}</p>
+            <p><strong>Telefone:</strong> {{ aluno.telefone }}</p>
+        </div>
+
+        <div class="info-card">
+            <p><strong>Data Nasc.:</strong> {{ aluno.data_nascimento }}</p>
+            <p><strong>Idade:</strong> {{ aluno.idade }}</p>
+            <p><strong>Gênero:</strong> {{ aluno.genero }}</p>
+        </div>
+
+        <div class="info-card">
+            <p><strong>Peso:</strong> {{ aluno.peso }}</p>
+            <p><strong>Altura:</strong> {{ aluno.altura }}</p>
+            <p><strong>Foco:</strong> {{ aluno.foco_treino }}</p>
+        </div>
+
+        <div class="info-card">
+            <p><strong>Dias de Treino:</strong> {{ aluno.dias_treino }}</p>
+            <p><strong>Horário:</strong> {{ aluno.horario_treino }}</p>
+        </div>
+    </div>
+
+    <div class="exercises-section">
+        <h2 style="color: #ffffff;">Selecionar Exercícios</h2>
+        
+        <form class="exercise-form">
+            <div class="exercise-category">
+                <h3 style="color: #ffffff;">Exercícios Superiores</h3>
+                <div class="exercise-grid">
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex1">
+                        <label for="ex1">Supino Reto</label>
+                    </div>
+                    <!-- Adicione mais exercícios -->
+                </div>
+            </div>
+
+            <div class="exercise-category">
+                <h3 style="color: #ffffff;">Exercícios Inferiores</h3>
+                <div class="exercise-grid">
+                    <div class="exercise-item">
+                        <input type="checkbox" id="ex4">
+                        <label for="ex4">Agachamento Livre</label>
+                    </div>
+                    <!-- Adicione mais exercícios -->
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-save">Salvar Rascunho</button>
+                <button type="submit" class="btn-save">Finalizar Treino</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
