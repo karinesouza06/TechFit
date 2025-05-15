@@ -162,29 +162,6 @@ def profile_personal():
     
     return render_template('profile_personal.html', user_info=user)
 
-
-@profile_bp.route('/configuracoes_personal', methods=['GET', 'POST'])
-@login_required
-def configuracoes_personal():
-    userid = current_user.get_id()
-    user = User.get(userid)
-    
-    if request.method == 'POST':
-        nome = request.form['nome_edit']
-        email = request.form['email_edit']
-        telefone = request.form['telefone_edit']
-        data_nascimento = request.form['data_nascimento_edit']
-        idade = request.form['idade_edit']
-        peso = request.form['peso_edit']
-        altura = request.form['altura_edit']
-        foco_treino = request.form['foco_treino_edit']
-                
-        User.atualizar_dados(nome, email, telefone, data_nascimento, idade, peso, altura, foco_treino, userid)
-        
-    um_user = User.one(userid)
-    return render_template('configuracoes_personal.html', user=um_user, user_info=user)
-
-
 @profile_bp.route('/seus_alunos', methods=['GET', 'POST'])
 @login_required
 def seus_alunos():
@@ -347,3 +324,58 @@ def sugestao():
 @login_required
 def thanks():
     return render_template('thanks.html')
+
+@profile_bp.route('/configuracoes_personal', methods=['GET', 'POST'])
+@login_required
+def configuracoes_personal():
+    userid = current_user.get_id()
+    user_data = User.get(userid)  # Use User.get() que retorna um objeto User
+    
+    if request.method == 'POST':
+        nome = request.form['nome_edit']
+        email = request.form['email_edit']
+        telefone = request.form['telefone_edit']
+        data_nascimento = request.form['data_nascimento_edit']
+        idade = request.form['idade_edit']
+        peso = request.form['peso_edit']
+        altura = request.form['altura_edit']
+        formacao = request.form['formacao_edit']
+        cursos = request.form['cursos_edit']
+        tempo_trabalho = request.form['trabalho_edit']
+        tipo_aluno = request.form['tipo_aluno_edit']
+        ambiente_trabalho = request.form['ambiente_edit']
+                
+        success = User.atualizar_dados_personal(
+            nome, email, telefone, data_nascimento, idade, peso, altura,
+            formacao, cursos, tempo_trabalho, tipo_aluno, ambiente_trabalho, userid
+        )
+        
+        if success:
+            flash('Dados atualizados com sucesso!', 'success')
+        else:
+            flash('Erro ao atualizar dados!', 'error')
+        
+        return redirect(url_for('profile.configuracoes_personal'))
+    
+    # Obter dados do personal se existirem
+    personal_data = User.get_personal_data(userid)
+    
+    # Preparar os dados para o template
+    user_info = {
+        'id': user_data.id,
+        'nome': user_data.nome,
+        'email': user_data.email,
+        'telefone': user_data.telefone,
+        'data_nascimento': user_data.data_nascimento,
+        'idade': user_data.idade,
+        'peso': user_data.peso,
+        'altura': user_data.altura,
+        'tipo_usuario': user_data.tipo_usuario,
+        'formacao': personal_data['dau_per_formacao'] if personal_data else '',
+        'cursos': personal_data['dau_per_cursos'] if personal_data else '',
+        'tempo_trabalho': personal_data['dau_per_tempo_trabalho'] if personal_data else '',
+        'tipo_aluno': personal_data['dau_per_tipo_aluno'] if personal_data else '',
+        'ambiente_trabalho': personal_data['dau_per_ambiente_trabalho'] if personal_data else ''
+    }
+    
+    return render_template('configuracoes_personal.html', user=user_info, user_info=user_info)
