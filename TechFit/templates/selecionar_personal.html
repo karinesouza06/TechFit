@@ -101,10 +101,12 @@
     }
 
     .profile-icon img {
-        width: 70%;
-        height: 70%;
-        object-fit: contain;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
     }
+
 
     .personal-info h3 {
         color: var(--techfit-400);
@@ -204,7 +206,7 @@
         <div class="personal-card">
             <div class="personal-header">
                 <div class="profile-icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Ícone Perfil">
+                    <img src="{{ url_for('profile.imagem_aluno_perso', user_id=personal.use_id) }}" alt="profile_image" class="picture__img">
                 </div>
                 <div class="personal-info">
                     <h3>{{ personal.use_nome }}</h3>
