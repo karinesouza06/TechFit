@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import obter_conexao 
 class User(UserMixin):
     id : str
-    def __init__(self, id, nome, email, senha, telefone, data_nascimento, genero, tipo_usuario, dias_treino, horario_treino, dias_trabalho, horario_trabalho, idade, peso, altura, foco_treino, tipo_treino, formacao, cursos, tempo_trabalho, tipo_aluno, ambiente_trabalho, contador = 0):
+    def __init__(self, id, nome, email, senha, telefone, data_nascimento, genero, tipo_usuario, dias_treino, horario_treino, dias_trabalho, horario_trabalho, idade, peso, altura, foco_treino, tipo_treino, contador = 0):
         self.id = id 
         self.nome = nome
         self.email = email
@@ -22,11 +22,6 @@ class User(UserMixin):
         self.foco_treino = foco_treino 
         self.tipo_treino = tipo_treino
         self.contador = contador
-        self.formacao = formacao
-        self.cursos = cursos
-        self.tempo_trabalho = tempo_trabalho
-        self.tipo_aluno = tipo_aluno
-        self.ambiente_trabalho = ambiente_trabalho
     
     def get_id(self):
         return self.id
@@ -87,15 +82,6 @@ class User(UserMixin):
                 tipo_treino=user['use_tipo_treino']
             )
         return None
-
-    @classmethod
-    def get_personal(cls, dau_per_id):
-        conn = obter_conexao()
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM dados_users_personais WHERE use_id = ?', (dau_per_id,))
-        consultar_personal= cursor.fetchone()
-        conn.close()
-        return consultar_personal
         
     @classmethod
     def exists(cls, email):
