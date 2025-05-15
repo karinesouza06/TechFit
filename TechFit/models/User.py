@@ -117,6 +117,19 @@ class User(UserMixin):
             (nome, email, telefone, data_nascimento, idade, peso, altura, foco_treino, id)
         )
         conn.commit()
+        
+    @classmethod
+    def get_personal_data(cls, user_id):
+        conn = obter_conexao()
+        try:
+            personal_data = conn.execute(
+                "SELECT * FROM dados_users_personais WHERE dau_per_use_id = ?",
+                (user_id,)
+            ).fetchone()
+            return personal_data
+        finally:
+            conn.close()
+
 
     @classmethod
     def atualizar_dados_personal(cls, nome, email, telefone, data_nascimento, idade, peso, altura, 
