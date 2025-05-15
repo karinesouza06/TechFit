@@ -98,7 +98,7 @@ def logout():
 def visualizar_alunos():
     conn = obter_conexao()
     alunos = conn.execute('''
-        SELECT use_id, use_nome, use_email, use_telefone
+        SELECT use_id, use_nome, use_email, use_telefone,  use_horario_treino, use_dias_treino
         FROM users
         WHERE use_tipo_usuario = 'aluno'
     ''').fetchall()
