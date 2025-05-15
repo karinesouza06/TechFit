@@ -63,7 +63,7 @@
             border-radius: 25px;
             width: calc(100% - 36px);
             padding: 30px;
-            background-color: #EBF2F2; 
+            background-color: #006494;
             /* white */
             box-sizing: border-box;
             position: relative;
@@ -72,6 +72,8 @@
             opacity: 95%;
             color: black;
         }
+
+        
 
         #sidebar {
             display: flex;
@@ -273,32 +275,38 @@
             } 
         }
 
-        .info2-items {
-            /* background: rgba(255, 255, 255, 0.1); */
-            background-color: #006494;
-            border-radius: 15px;
-            padding: 20px;
-            width: 22%;
-            height: auto;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--techfit-300);
-            transition: transform 0.3s ease;
-            text-align: center;
-            margin-left: 15px;
-            
-        }
+
         .info2-items p {
-            color: #EBF2F2;
+            color:#006494;
         }
 
         .info2-items strong {
+            color:#006494;
+        }
+
+        .profile-container3 h1 {
             color: #EBF2F2;
         }
 
-        .profile-info2{
+        .profile-info2 {
+            margin-top: 10px;
             display: flex;
-            flex-direction: row;
+            flex-wrap: wrap; 
+            gap: 20px;
+            justify-content: flex-start;
+            overflow-y: scroll;
+            
         }
+
+        .info2-items {
+            width: calc(25% - 15px); 
+            background-color: #F9F9F9;
+            padding: 10px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
     </style>
 
 </head>
@@ -316,9 +324,9 @@
 
                 <li class="side-item {% if request.endpoint == 'profile_admin' %}active{% endif %}">
                     <a href="{{ url_for('auth.admin') }}">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-house"></i>
                         <span class="item-description">
-                            Perfil
+                            Home
                         </span>
                     </a>
                 </li>
@@ -342,14 +350,14 @@
 
                 <li class="side-item {% if request.endpoint == 'auth.visualizar_alunos' %}active{% endif %}">
                     <a href="{{ url_for('auth.visualizar_alunos') }}">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-person-chalkboard"></i>
                         <span class="item-description">Visualizar Alunos</span>
                     </a>
                 </li>
 
                 <li class="side-item {% if request.endpoint == 'auth.visualizar_personais' %}active{% endif %}">
                     <a href="{{ url_for('auth.visualizar_personais') }}">
-                        <i class="fa-solid fa-gear"></i>
+                        <i class="fa-solid fa-person-chalkboard"></i>
                         <span class="item-description">Visualizar Personais</span>
                     </a>
                 </li>
@@ -408,11 +416,6 @@
                     logo.style.margin = "0";
                 }
             });
-        });
-    </script>
-
-</body>
-</html>                                                                                                                                                                                                                                                                                                        });
         });
     </script>
 
