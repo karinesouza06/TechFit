@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}  {% endblock %}
+
+{% block titlePage %} {% endblock %}
+
+{% block style %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+    :root {
+        --techfit-100: #ffff;
+        --techfit-200: #006aa7;
+        --techfit-300: #247ba0;
+        --techfit-400: #006494;  
+        --techfit-500: #e8f1f2;  
+    }
+
+    body {
+        display: flex;
+        width: 100%;
+        min-height: 100vh; 
+        color:#006aa7;
+        flex-direction: column; /* Flex para permitir o texto acima */
+        align-items: center; /* Centraliza horizontalmente */
+        justify-content: flex-start; /* Alinha no topo */
+        }
+    
+    .welcome-text {
+        text-align: center; /* Centraliza o texto */
+        margin: 20px 0; /* Margem superior e inferior */
+    }
+
+    h1 {
+        text-align: left;
+        color: var(--techfit-100);
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: var(--techfit-400); /* Cor azul */
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 20px;
+        line-height: 1.5; /* Melhora a legibilidade */
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-text">
+    <h2>Obrigado pela sua contribuição!</h2>
+    <div style="margin-bottom: 8px;"></div>
+    <p>Nós, da equipe TechFit, agradecemos sinceramente pela sua sugestão. É muito gratificante contar com pessoas que, como você, se preocupam em melhorar e evoluir nosso projeto. Sua participação faz toda a diferença!</p>
+</div>
+{% endblock %}
+
+
