@@ -62,6 +62,25 @@ class User(UserMixin):
             return None
 
     @classmethod
+    def get_personal(cls, user_id):
+        conn = obter_conexao()
+        user = conn.execute("SELECT * FROM dados_users_personais WHERE use_id = ?", (user_id,)).fetchone()
+        conn.close()
+        if user:
+            loaduser = cls(
+                id=user['dau_per_id'], 
+                formacao=user['dau_per_formacao'], 
+                cursos=user['dau_per_cursos'], 
+                tempo_trabalho=user['dau_per_tempo_trabalho'], 
+                tipo_aluno=user['dau_per_tipo_aluno'], 
+                ambiente_trabalho=user['dau_per_ambiente_trabalho'], 
+                user_id=user['dau_per_use_id']
+            )
+            return loaduser
+        else:
+            return None
+
+    @classmethod
     def get_by_email(cls, email):
         conn = obter_conexao()
         user = conn.execute("SELECT * FROM users WHERE use_email = ?", (email,)).fetchone()
