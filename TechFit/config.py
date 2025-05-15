@@ -1,2 +1,0 @@
-SECRET_KEY = 'ULTRAMEGADIFICIL'
-SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
