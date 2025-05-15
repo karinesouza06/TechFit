@@ -137,6 +137,19 @@ def seleciona_personal():
     conn.close()
     return render_template('selecionar_personal.html', personais=personais)
 
+@profile_bp.route('/imagem_usuario/<int:user_id>')
+def imagem_aluno_perso(user_id):
+    conn = obter_conexao()
+    cursor = conn.cursor()
+    cursor.execute("SELECT use_imagem FROM users WHERE use_id = ?", (user_id,))
+    resultado = cursor.fetchone()
+    conn.close()
+
+    if resultado and resultado[0]:
+        return Response(resultado[0], mimetype='image/jpeg')
+    else:
+        return redirect(url_for('static', filename='placeholder.png'))
+
 
 
 
