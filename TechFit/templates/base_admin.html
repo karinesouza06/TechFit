@@ -287,8 +287,8 @@
 
             <ul id="side_items">
 
-                <li class="side-item {% if request.endpoint == 'profile_personal' %}active{% endif %}">
-                    <a href="{{ url_for('profile.profile_personal') }}">
+                <li class="side-item {% if request.endpoint == 'profile_admin' %}active{% endif %}">
+                    <a href="{{ url_for('profile.profile_admin') }}">
                         <i class="fa-solid fa-user"></i>
                         <span class="item-description">
                             Perfil
@@ -368,11 +368,6 @@
                     logo.style.margin = "0";
                 }
             });
-        });
-    </script>
-
-</body>
-</html>                                                                                                                                                                                                                                                                                                        });
         });
     </script>
 
