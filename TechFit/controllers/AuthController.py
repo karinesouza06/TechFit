@@ -53,7 +53,7 @@ def login():
             elif user.tipo_usuario.lower() == 'admin':
                 return redirect(url_for('auth.admin'))
             else:
-                return redirect(url_for('profile.profile_personal'))
+                return redirect(url_for('profile.configuracoes_personal'))
             
         else:
             flash('Credenciais inválidas')
