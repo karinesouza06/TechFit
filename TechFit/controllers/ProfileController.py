@@ -51,7 +51,7 @@ def upload_imagem():
 def redirecionar_para_perfil():
     user = User.get(current_user.get_id())
     if user and user.tipo_usuario == 'personal':
-        return redirect(url_for('profile.profile_personal'))
+        return redirect(url_for('profile.configuracoes_personal'))
     else:
         return redirect(url_for('profile.profile'))
 
@@ -300,7 +300,7 @@ def montar_treino(aluno_id):
 def solicitacoes_pendentes():
     if current_user.tipo_usuario.lower() != 'personal':
         flash('Acesso restrito a personais')
-        return redirect(url_for('profile.profile_personal'))
+        return redirect(url_for('profile.configuracoes_personal'))
     
     conn = obter_conexao()
     solicitacoes = conn.execute('''
