@@ -1,0 +1,384 @@
+
+{% extends "base_personal.html" %}
+
+{% block title %} Configuracões {% endblock %}
+
+{% block titlePage %} Configuracões {% endblock %}
+
+{% block style %}
+<style>
+    /* fonte fina  */
+    @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+    /* fonte grossa */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+    :root {
+        --techfit-100: #ffff;
+        --techfit-200: #006aa7;
+        --techfit-300: #247ba0;
+        --techfit-400: #006494;  /* Fundo escuro */
+        --techfit-500: #e8f1f2;  /* Botões claros */
+    }
+
+    * {
+        font-family: "Didact Gothic", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .profile-page {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    .profile-container1 {
+        display: flex;
+        flex-direction: column;
+        background-color: #006aa7;
+        color:#fff;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 40%;
+        margin-right: 30px;
+        padding: 2%;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        gap: 10px;
+    }
+
+    .profile-container1 h2 {
+        text-align: center;
+        margin-bottom: 5px;
+        color: #fff;
+    }
+
+    .picture {
+        width: 70%; /* Mantém o tamanho do contêiner */
+        height: 0; /* Altura inicial zero para usar padding */
+        padding-top: 70%; /* Mantém a proporção quadrada */
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        cursor: pointer;
+        transition: color 300ms ease-in-out, background 300ms ease-in-out;
+        outline: none;
+        overflow: hidden;
+        border-radius: 50%; 
+        position: relative; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #picture__input {
+        display: none;
+    }
+
+    .picture:hover {
+        color: #777;
+        background: #ccc;
+    }
+
+    .picture:active {
+        border-color: turquoise;
+        color: turquoise;
+        background: #eee;
+    }
+
+    .picture:focus {
+        color: #777;
+        background: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .picture__img {
+        position: absolute; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%; /* Para manter a imagem circular */
+        object-fit: cover; 
+    }
+
+    .profile-info1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .profile-info1 .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    .profile-info1 .info-item p {
+        color:#fff;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .profile-info1 .info-item i {
+        font-size: 18px;
+    }
+
+
+    .profile-container2 {
+        display: flex;
+        flex-direction: column;
+        background-color: #006aa7;
+        width: 100%; 
+        max-width: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+        padding: 0;
+        gap: 10px;
+        box-sizing: border-box;
+        overflow: hidden; 
+    }
+
+    .profile-info2 {
+        height: 90%;
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        gap: 10px; 
+    }
+
+    
+    
+    h1 {
+        text-align: left;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+    
+    .form {
+        display: flex;
+        width: 100%;
+        padding: 15px;
+        justify-self: center;
+        background-color: #006aa7;
+        flex-direction: column;
+        border-radius: 10px;
+        
+    }
+
+    .input-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .input-box {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+    }
+
+    .input-box label {
+        font-size: 14px;
+        color:#fff;
+        margin-bottom: 5px;
+    }
+
+    .input-box input, select {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: var(--techfit-500);  /* Botões claros */
+        color: var(--techfit-400);  /* Texto azul escuro */
+    }
+
+    .input-box input:focus {
+        border-color: #1C64F2;
+        outline: none;
+    }
+
+    
+
+    .continue-button {
+        text-align: center;
+        margin-top: 20px;
+        width:100%;
+        
+    }
+
+    .continue-button button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 170px;
+        margin-bottom: 5px;
+        background-color: var(--techfit-500);  /* Botões claros */
+        color: var(--techfit-400);  /* Texto azul escuro */
+        border: 2px solid;
+    }
+
+    .continue-button button:hover {
+        background-color:#006494;
+        color:#fff;    
+        border: none;
+    }
+
+    .continue-button button a {
+        color: var(--techfit-400);
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .input-box {
+            flex: 1 1 100%;
+        }
+
+        .form {
+            margin: 20px;
+            padding: 15px;
+        }
+
+        .form-header .title h1 {
+            font-size: 20px;
+        }
+    }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+    <div class="profile-container1">
+        <form method="POST" action="{{ url_for('profile.upload_imagem') }}" enctype="multipart/form-data" class="picture">
+            <label for="picture__input" tabIndex="0">
+                <span class="picture__image">Escolha uma imagem</span>
+                <img src="{{ url_for('profile.imagem_usuario', user_id=user_info.id) }}" alt="profile_image" class="picture__img">
+            </label>
+            <input type="file" name="picture_input" id="picture__input" style="display: none;" onchange="this.form.submit()">
+        </form>
+        <h2>Perfil do {{ user_info.tipo_usuario}}</h2>
+        <div class="profile-info1">
+            <div class="info-item">
+                <i class="fas fa-user"></i>
+                <p>Nome: {{ user_info.nome }}</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <p>Email: {{ user_info.email }}</p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <p>Data de Nascimento: {{ user_info.data_nascimento }} </p>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <p>Telefone: {{ user_info.telefone }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container2">
+        <div class="form">
+            <h1>Editar Dados</h1>
+            <form method="POST" action="{{ url_for('profile.configuracoes_personal') }}">
+                <div class="input-group">
+                <div class="input-box">
+                    <label for="nome_edit">Nome</label>
+                    <input id="nome_edit" type="text" name="nome_edit" placeholder="Insira seu nome" value="{{ user_info.nome }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="email_edit">Email</label>
+                    <input id="email_edit" type="text" name="email_edit" placeholder="Insira seu email" value="{{ user_info.email }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="telefone_edit">Telefone</label>
+                    <input id="telefone_edit" type="text" name="telefone_edit" placeholder="Insira seu Telefone" value="{{ user_info.telefone }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="data_nascimento_edit">Data Nascimento</label>
+                    <input name='data_nascimento_edit' type="date" id="data_nascimento_edit" value="{{ user_info.data_nascimento }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="idade_edit">Idade</label>
+                    <input name='idade_edit' type="number" id="idade_edit" value="{{ user_info.idade }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="peso_edit">Peso</label>
+                    <input name='peso_edit' type="text" id="peso_edit" value="{{ user_info.peso }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="altura_edit">Altura</label>
+                    <input name='altura_edit' type="text" id="altura_edit" value="{{ user_info.altura }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="formacao_edit">Formação</label>
+                    <input name='formacao_edit' type="text" id="formacao_edit" value="{{ user_info.formacao or '' }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="cursos_edit">Cursos</label>
+                    <input name='cursos_edit' type="text" id="cursos_edit" value="{{ user_info.cursos or '' }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="trabalho_edit">Tempo de Trabalho</label>
+                    <input name='trabalho_edit' type="text" id="trabalho_edit" value="{{ user_info.tempo_trabalho or '' }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="tipo_aluno_edit">Tipo de Aluno</label>
+                    <input name='tipo_aluno_edit' type="text" id="tipo_aluno_edit" value="{{ user_info.tipo_aluno or '' }}" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="ambiente_edit">Ambiente de Trabalho</label>
+                    <input name='ambiente_edit' type="text" id="ambiente_edit" value="{{ user_info.ambiente_trabalho or '' }}" required>
+                </div>
+                <div class="continue-button">
+                    <button type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // Função para alternar visibilidade da senha
+    function togglePasswordVisibility(inputId) {
+        const inputField = document.getElementById(inputId);
+        const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+        inputField.setAttribute('type', type);
+    }
+</script>
+{% endblock %}
