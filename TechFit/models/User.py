@@ -143,7 +143,7 @@ class User(UserMixin):
                 VALUES (?, ?)
                 ON CONFLICT(user_id, data) DO UPDATE SET 
                 quantidade = quantidade + excluded.quantidade
-            ''', (user_id, quantidade))
+            ''', (user_id, quantidade))  # Já está em ml, não precisa converter
             conn.commit()
         except Exception as e:
             print(f"Erro ao registrar consumo de água: {e}")
@@ -158,10 +158,10 @@ class User(UserMixin):
                 SELECT quantidade FROM consumo_agua 
                 WHERE user_id = ? AND data = CURRENT_DATE
             ''', (user_id,)).fetchone()
-            return consumo[0] if consumo else 0.0
+            return consumo[0] if consumo else 0  # Retorna 0 ml se não houver registro
         except Exception as e:
             print(f"Erro ao obter consumo de água: {e}")
-            return 0.0
+            return 0
         finally:
             conn.close()
 
