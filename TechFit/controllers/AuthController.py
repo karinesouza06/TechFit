@@ -67,12 +67,13 @@ def agua():
         
     if request.method == 'POST':
         quantidade = request.json.get('quantidade')
+        # Não precisa de conversão pois agora já recebemos em ml
         User.registrar_consumo_agua(current_user.id, quantidade)
         return jsonify({'success': True})
     
     if request.method == 'GET':
         total = User.obter_consumo_diario(current_user.id)
-        return jsonify({'total': total})
+        return jsonify({'total': total or 0})  # Retorna 0 se for None
 
 
 
