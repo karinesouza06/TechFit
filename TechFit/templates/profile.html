@@ -337,6 +337,12 @@
         font-family: "Didact Gothic", sans-serif;
     }
 
+    #valorAgua {
+        text-align: center !important;
+        margin: 0 auto !important;
+        display: block !important;
+    } 
+
     #bmi span:last-child {
         font-size: 0.875rem;
         color:var(--techfit-300);
@@ -826,9 +832,9 @@
                 
                 <div id="infos2" class="hidden">
                     <div id="result2">
-                        <div id="bmi2"> 
-                            <span id="valorAgua" style="color: #ffff;">0.00</span>
-                            <span style="font-size: 1.25rem; color: #ffff;">Quantidade total de água bebida (em mililitros)</span>  <!-- Alterado -->
+                        <div id="bmi2" style="display: flex; flex-direction: column; align-items: center;"> 
+                            <span id="valorAgua" style="color: #ffff; text-align: center; width: 100%;">0 mL</span>
+                            <span style="font-size: 1.25rem; color: #ffff; text-align: center;">Quantidade total de água bebida</span>
                         </div> 
                     </div>
                 </div>   
@@ -1043,6 +1049,16 @@
         }
     });
 
+    function formatarQuantidadeAgua(ml) {
+    if (ml >= 1000) {
+        // Converte para litros (ex: 1500ml -> 1.5L)
+        return (ml / 1000).toFixed(2) + ' L';
+    } else {
+        // Mantém em ml (ex: 500ml -> 500ml)
+        return ml + ' mL';
+    }
+    }
+
     
     // Substitua a variável global e a função existente
     function somar_agua(event) {
@@ -1050,7 +1066,7 @@
         const input = document.getElementById('qtd_agua');
         const valor = parseFloat(input.value);
 
-        if (!isNaN(valor) && valor > 0) {
+        if (!isNaN(valor) ){
             fetch('/agua', {
                 method: 'POST',
                 headers: {
@@ -1075,7 +1091,8 @@
         fetch('/agua')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('valorAgua').textContent = data.total.toFixed(0); // Removemos as casas decimais para ml
+            const totalMl = data.total || 0;
+            document.getElementById('valorAgua').textContent = formatarQuantidadeAgua(totalMl);
             document.getElementById('infos2').classList.remove('hidden');
         });
     }
