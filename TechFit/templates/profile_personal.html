@@ -1,9 +1,9 @@
 
 {% extends "base_personal.html" %}
 
-{% block title %} Configuracões {% endblock %}
+{% block title %} Perfil do Personal {% endblock %}
 
-{% block titlePage %} Configuracões {% endblock %}
+{% block titlePage %} Perfil do Personal {% endblock %}
 
 {% block style %}
 <style>
@@ -303,7 +303,7 @@
     <div class="profile-container2">
         <div class="form">
             <h1>Editar Dados</h1>
-            <form method="POST" action="{{ url_for('profile.configuracoes_personal') }}">
+            <form method="POST" action="{{ url_for('profile.profile_personal') }}">
                 <div class="input-group">
                 <div class="input-box">
                     <label for="nome_edit">Nome</label>
@@ -352,7 +352,7 @@
 
                 <div class="input-box">
                     <label for="trabalho_edit">Tempo de Trabalho</label>
-                    <input name='trabalho_edit' type="text" id="trabalho_edit" value="{{ user_info.tempo_trabalho or '' }}" required>
+                    <input name='trabalho_edit' type="text" id="trabalho_edit" placeholder="ex: 2 anos/meses"  value="{{ user_info.tempo_trabalho or '' }}" required>
                 </div>
 
                 <div class="input-box">
