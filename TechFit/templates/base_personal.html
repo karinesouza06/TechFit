@@ -286,18 +286,9 @@
             </div>
 
             <ul id="side_items">
-
-                <!-- <li class="side-item {% if request.endpoint == 'profile_personal' %}active{% endif %}">
-                    <a href="{{ url_for('profile.profile_personal') }}">
-                        <i class="fa-solid fa-user"></i>
-                        <span class="item-description">
-                            Perfil
-                        </span>
-                    </a>
-                </li> -->
                 
-                <li class="side-item {% if request.endpoint == 'configuracoes_personal' %}active{% endif %}">
-                    <a href="{{ url_for('profile.configuracoes_personal') }}">
+                <li class="side-item {% if request.endpoint == 'profile_personal' %}active{% endif %}">
+                    <a href="{{ url_for('profile.profile_personal') }}">
                         <i class="fa-solid fa-user-gear"></i>
                         <span class="item-description">
                            Perfil
