@@ -51,7 +51,7 @@ def upload_imagem():
 def redirecionar_para_perfil():
     user = User.get(current_user.get_id())
     if user and user.tipo_usuario == 'personal':
-        return redirect(url_for('profile.configuracoes_personal'))
+        return redirect(url_for('profile.profile_personal'))
     else:
         return redirect(url_for('profile.profile'))
 
@@ -187,19 +187,12 @@ def get_medidas_corpo():
 
 
 #DADOS DOS PERSONAIS
-@profile_bp.route('/profile_personal')
+@profile_bp.route('/profile_personal', methods=['GET', 'POST']) 
 @login_required
 def profile_personal():
-    user_id = current_user.get_id()
-    user = User.get(user_id)
     
-    return render_template('profile_personal.html', user_info=user)
-
-
-@profile_bp.route('/configuracoes_personal', methods=['GET', 'POST'])
-@login_required
-def configuracoes_personal():
     userid = current_user.get_id()
+    user = User.get(userid)
     user_data = User.get(userid)  # Use User.get() que retorna um objeto User
     
     if request.method == 'POST':
@@ -226,7 +219,7 @@ def configuracoes_personal():
         else:
             flash('Erro ao atualizar dados!', 'error')
         
-        return redirect(url_for('profile.configuracoes_personal'))
+        return redirect(url_for('profile.profile_personal')) 
     
     # Obter dados do personal se existirem
     personal_data = User.get_personal_data(userid)
@@ -249,8 +242,7 @@ def configuracoes_personal():
         'ambiente_trabalho': personal_data['dau_per_ambiente_trabalho'] if personal_data else ''
     }
     
-    return render_template('configuracoes_personal.html', user=user_info, user_info=user_info)
-
+    return render_template('profile_personal.html', user=user_info, user_info=user, user_info2=user_info)
 
 @profile_bp.route('/seus_alunos', methods=['GET', 'POST'])
 @login_required
@@ -300,7 +292,7 @@ def montar_treino(aluno_id):
 def solicitacoes_pendentes():
     if current_user.tipo_usuario.lower() != 'personal':
         flash('Acesso restrito a personais')
-        return redirect(url_for('profile.configuracoes_personal'))
+        return redirect(url_for('profile.profile_personal'))
     
     conn = obter_conexao()
     solicitacoes = conn.execute('''
