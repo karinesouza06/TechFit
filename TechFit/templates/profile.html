@@ -690,7 +690,118 @@
         margin-top: 15px;
     }
 
+    /* Ajustes responsivos para modais */
+    @media screen and (max-width: 789px) {
+        #title {
+            font-size: 1.8rem !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+        }
+    }
 
+    /* Centralização dos modais em telas pequenas */
+    @media screen and (max-width: 877px) {
+        .modal-content {
+            width: 90% !important;
+            margin: 5% auto !important;
+        }
+
+        #container {
+            width: 100% !important;
+            flex-direction: column;
+        }
+
+        #calculator {
+            width: 100% !important;
+            padding: 15px !important;
+        }
+
+        .input-box label {
+            font-size: 1rem !important;
+        }
+
+        .input-field input {
+            font-size: 1rem !important;
+            width: 70% !important;
+        }
+
+        #calculate, #calcularAgua, #registrar_treino {
+            width: 90% !important;
+            margin: 0 auto !important;
+            display: block !important;
+        }
+    }
+
+    /* Ajustes específicos para telas muito pequenas (461px) */
+    @media screen and (max-width: 300px) {
+        .modal-content {
+            width: 95% !important;
+            margin: 10% auto !important;
+            padding: 10px !important;
+        }
+
+        #title {
+            font-size: 1.5rem !important;
+            margin-top: 10px !important;
+        }
+
+        .input-field {
+            padding: 0.2rem !important;
+        }
+
+        .input-field i, .input-field span {
+            font-size: 1rem !important;
+            padding: 0.4rem 0.6rem !important;
+        }
+
+        #data_treino {
+            width: 70% !important;
+            margin-left: 0 !important;
+            margin-bottom: 10px;
+        }
+
+        #modal4 .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 800px;
+        margin: 20px auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Container do gráfico responsivo */
+    #chart_div {
+        width: 100%;
+        min-height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Ajustes específicos para iPhone SE e telas pequenas */
+    @media screen and (max-width: 375px) {
+        #modal4 .modal-content {
+            padding: 15px;
+            width: 95%;
+        }
+        
+        #chart_div {
+            min-height: 250px;
+        }
+    }
+
+    /* Garantir que o modal fique centralizado em todas as telas */
+    .modal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-y: auto;
+    }
+    }
  
 </style>
 {% endblock %}
@@ -851,30 +962,18 @@
                 <h2 id="title" style="color: #ffff;">Registrar Treino</h2>
                 <span class="close" onclick="closeModal('modal3')">&times;</span>
                 <br>
-                <h3 class="resultTreino" style="color: #ffff;">Dias Registrados:  {{ user_info.total_treinos }}</h3>
+                <h3 class="resultTreino" style="color: #ffff;">Dias Registrados: {{ user_info.total_treinos }}</h3>
 
                 <div id="alert" class="alert hidden" role="alert">
                     Treino registrado com sucesso!
                 </div>
 
-                <form method="POST" action="{{ url_for('training.registrar_treino') }}">
-                    <label for="data_treino" style="color: #ffff;">Data do Treino:</label>
-                    <input type="date" id="data_treino" name="data_treino" required>
+                <form method="POST" action="{{ url_for('training.registrar_treino') }}" style="display: flex; flex-direction: column;">
+                    <label for="data_treino" style="color: #ffff; margin-bottom: 5px;">Data do Treino:</label>
+                    <input type="date" id="data_treino" name="data_treino" required style="margin-bottom: 10px;">
                     <button type="submit" id="registrar_treino">Registrar Treino</button>
-                    <!-- <button type="button" onclick="listarTreinos()">Listar Treinos</button> -->
                 </form>
-                
-                <!-- Modal para listar treinos -->
-                <div id="listar-treinos-modal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="fecharModal()">&times;</span>
-                        <h2>Dias de Treino Registrados</h2>
-                        <ul id="treinos-lista"></ul> <!-- Lista de treinos será exibida aqui -->
-                    </div>
-                </div>
-
             </section>
-            
         </main>
     </div>
 </div>
@@ -903,16 +1002,13 @@
    // instancia o gráfico de barras, passa os dados e
    // os desenha.
     function drawChart() {
-    // Primeiro buscamos os dados do servidor
     fetch('/get_medidas_corpo')
         .then(response => response.json())
         .then(data => {
-            // Criamos a tabela de dados
             var dataTable = new google.visualization.DataTable();
             dataTable.addColumn('string', 'Parte do Corpo');
             dataTable.addColumn('number', 'Medida (cm)');
             
-            // Adicionamos as linhas com os dados do banco
             dataTable.addRows([
                 ['Quadril', data.quadril || 0],
                 ['Peitoral', data.peitoral || 0],
@@ -922,27 +1018,76 @@
                 ['Dorsal', data.dorsal || 0]
             ]);
 
-            // Configurações do gráfico
+            // Obter dimensões do container
+            var container = document.getElementById('chart_div');
+            var containerWidth = container.offsetWidth;
+            var containerHeight = Math.max(300, window.innerHeight * 0.5);
+
             var options = {
                 'title': 'Medidas do Corpo',
-                'width': 600,
-                'height': 400,
+                'width': '100%',
+                'height': containerHeight,
+                'chartArea': {
+                    width: '85%',  // Ajuste para dar mais espaço
+                    height: '70%',
+                    left: '15%'    // Mais margem para os labels
+                },
                 'hAxis': {
-                    title: 'Medida (cm)'
+                    title: 'Medida (cm)',
+                    titleTextStyle: { color: '#808080' },
+                    textStyle: { color: '#808080' },
+                    baselineColor: '#808080',
+                    minValue: 0    // Garante que comece em zero
                 },
                 'vAxis': {
-                    title: 'Parte do Corpo'
+                    title: 'Parte do Corpo',
+                    titleTextStyle: { color: '#808080' },
+                    textStyle: { 
+                        color: '#808080',
+                        fontSize: 12
+                    },
+                    baselineColor: '#808080'
                 },
-                'colors': ['#006494'], 
-                'tooltip': { isHtml: true }
+                'colors': ['#006494'],
+                'backgroundColor': '#FFF',
+                'titleTextStyle': { 
+                    color: '#808080',
+                    fontSize: 16
+                },
+                'legend': { 
+                    position: 'none'  // Remove a legenda
+                },
+                // Adiciona tooltips personalizados
+                'tooltip': {
+                    isHtml: true,
+                    textStyle: {
+                        fontSize: 14
+                    }
+                }
             };
 
-            // Desenhamos o gráfico
-            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+            var chart = new google.visualization.BarChart(container);
+            
+            // Adiciona listener para formatar o tooltip
+            google.visualization.events.addListener(chart, 'onmouseover', function(e) {
+                // Garante que o tooltip mostre o valor + "cm"
+                if (e.row != null) {
+                    chart.setSelection([{row: e.row, column: 1}]);
+                }
+            });
+
             chart.draw(dataTable, options);
+
+            window.addEventListener('resize', function() {
+                containerHeight = Math.max(300, window.innerHeight * 0.5);
+                options.height = containerHeight;
+                chart.draw(dataTable, options);
+            });
         })
         .catch(error => {
             console.error('Erro ao buscar medidas:', error);
+            document.getElementById('chart_div').innerHTML = 
+                '<p style="color: #808080; text-align: center;">Não foi possível carregar o gráfico.</p>';
         });
 }
     //MODAL DE RESGISTRAR TREINOS
