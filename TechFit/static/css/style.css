@@ -18,6 +18,8 @@
     --techfit-500: #EBF2F2;    /* Fundo claro (day) */
 }
 
+
+
 .dark {
     --techfit-100: #EBF2F2;    /* Texto claro (dark) */
     --techfit-200: #9AC7D9;    /* Elementos secundários */
@@ -97,7 +99,7 @@
 }
 
 .dark\:text-white {
-    color: var(--techfit-100) !important; /* Texto claro */
+    color: #2682A6 !important; /* Texto claro */
 }
 
 .dark\:bg-gray-700 {
@@ -180,7 +182,7 @@
 }
 
 .carousel-button {
-    background-color: var(--techfit-100);
+    background-color: var(--techfit-200);
 }
 
 #button-cadastro {
@@ -190,6 +192,7 @@
 #button-cadastro:hover {
     background-color: var(--techfit-400);
 }
+
 
 
 /*MODAL DE LOGIN*/
@@ -278,7 +281,7 @@ dialog {
     background-color: #F9FAFB;
     border-radius: 8px;
     padding: 10px 16px;
-    color: #2682A6;
+    color: var(--techfit-200);
 }
 
 .input-group input:focus {
@@ -291,7 +294,7 @@ dialog {
 
 .forgot-password {
     font-size: 12px;
-    color: var(--techfit-400);
+    color: var(--techfit-200);
     text-decoration: none;
 }
 
@@ -303,6 +306,10 @@ dialog {
     padding: 10px 16px;
     font-size: 14px;
     cursor: pointer;
+}
+
+#h2_index{
+  color:var(--techfit-500);
 }
 
 .register {
@@ -318,7 +325,7 @@ dialog {
 
 .register a {
     font-size: 14px;
-    color:var(--techfit-400);
+    color:var(--techfit-200);
     text-decoration: none;
 }
 
@@ -345,14 +352,14 @@ dialog {
 }
 
 #login_button {
-    background-color: var(--techfit-300); /* Botão em azul médio */
+    background-color: var(--techfit-200); /* Botão em azul médio */
 }
 
 .forgot-password, .register a {
-    color: var(--techfit-100); /* Links em azul médio */
+    color: var(--techfit-200); /* Links em azul médio */
 }
 .nav-itens:hover {
-    color: var(--techfit-400);
+    color: var(--techfit-200);
    
 }
 
@@ -361,11 +368,11 @@ dialog {
 }
 
 #footer {
-    background-color: var(--techfit-500);
+    background-color: var(--techfit-200);
 }
 
 .hr-footer, hr {
-    color:var(--techfit-100) ;
+    color:var(--techfit-200) ;
 }
 
 
