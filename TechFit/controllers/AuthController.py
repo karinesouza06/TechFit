@@ -38,7 +38,7 @@ def register():
     return render_template('index.html')
     
 
-@auth_bp.route('/login', methods=['POST', 'GET'])
+@auth_bp.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -49,16 +49,16 @@ def login():
             login_user(user)
             
             if user.tipo_usuario.lower() == 'aluno':
-                return redirect(url_for('profile.profile'))
+                return jsonify({'redirect': url_for('profile.profile')})
             elif user.tipo_usuario.lower() == 'admin':
-                return redirect(url_for('auth.admin'))
+                return jsonify({'redirect': url_for('auth.admin')})
             else:
-                return redirect(url_for('profile.profile_personal'))
+                return jsonify({'redirect': url_for('profile.profile_personal')})
             
         else:
-            flash('Credenciais inválidas')
-            return redirect(url_for('index'))
-    return redirect(url_for('auth.login'))
+            return jsonify({'error': 'Email ou senha incorretos'}), 401
+    
+    return jsonify({'error': 'Método não permitido'}), 405
 
 @auth_bp.route('/agua', methods=['POST', 'GET'])
 def agua():
@@ -123,3 +123,5 @@ def visualizar_personais():
     ''').fetchall()
     conn.close()
     return render_template('visualizar_personais.html', personais=personais)
+
+
