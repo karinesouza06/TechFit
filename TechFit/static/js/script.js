@@ -196,3 +196,59 @@ togglePasswordVisibility('senha', 'togglePasswordCadastro', 'togglePasswordIconC
 
 // Aplicar a função para o campo de confirmação de senha do cadastro
 togglePasswordVisibility('confirmarSenha', 'toggleConfirmarSenhaCadastro', 'toggleConfirmarSenhaIconCadastro');
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.querySelector('#modal-1 form');
+    const loginError = document.getElementById('loginError');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Limpa mensagens de erro anteriores
+            loginError.textContent = '';
+            loginError.classList.remove('show');
+            
+            // Mostra loading no botão
+            const submitButton = loginForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            
+            try {
+                const formData = new FormData(loginForm);
+                const response = await fetch(loginForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Login bem-sucedido - redirecionar
+                    window.location.href = data.redirect || '/';
+                } else {
+                    // Mostrar erro
+                    loginError.textContent = data.error || 'Email ou senha incorretos';
+                    loginError.classList.add('show');
+                    
+                    // Adiciona shake animation para indicar erro
+                    loginForm.classList.add('shake');
+                    setTimeout(() => {
+                        loginForm.classList.remove('shake');
+                    }, 500);
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                loginError.textContent = 'Ocorreu um erro ao tentar fazer login';
+                loginError.classList.add('show');
+            } finally {
+                // Restaura o botão
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            }
+        });
+    }
+});
