@@ -27,6 +27,7 @@
         padding: 0;
         box-sizing: border-box;
     }
+  
 
     body {
         display: flex;
@@ -252,20 +253,69 @@
         text-decoration: none;
     }
 
-    @media (max-width: 768px) {
-        .input-box {
-            flex: 1 1 100%;
-        }
-
-        .form {
-            margin: 20px;
-            padding: 15px;
-        }
-
-        .form-header .title h1 {
-            font-size: 20px;
-        }
+@media (max-width: 1024px) {
+    .profile-container1 {
+        width: 90%; /* Ajusta a largura do container */
+        margin-right: 0; /* Remove a margem direita */
+        margin-bottom: 20px; /* Adiciona margem inferior */
     }
+
+    .profile-container2 {
+        width: 90%; /* Ajusta a largura do container */
+    }
+
+    .input-box {
+        flex: 1 1 100%; /* Muda para uma coluna em telas menores */
+    }
+
+    .form {
+        padding: 15px;
+    }
+
+    .continue-button button {
+        width: 100%; /* Botão ocupa toda a largura */
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container1 {
+        flex-direction: column; /* Muda a direção para coluna em telas menores */
+        align-items: center; /* Centraliza os itens */
+    }
+
+    .picture {
+        width: 80%; /* Ajusta a largura da imagem */
+        padding-top: 80%; /* Mantém a proporção */
+    }
+
+    .input-group {
+        flex-direction: column; /* Coloca os inputs em coluna */
+    }
+
+    .input-box {
+        flex: 1 1 100%; /* Ajusta as caixas de entrada para 100% */
+    }
+
+    .form {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .form-header .title h1 {
+        font-size: 20px; /* Ajusta o tamanho do título */
+    }
+}
+
+@media (max-width: 480px) {
+    .continue-button button {
+        font-size: 14px; /* Reduz o tamanho da fonte do botão */
+        padding: 10px; /* Ajusta o padding do botão */
+    }
+
+    .profile-container1, .profile-container2 {
+        border-radius: 8px; /* Reduz o raio dos cantos */
+    }
+}
 
 </style>
 

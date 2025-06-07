@@ -387,6 +387,109 @@
         outline: 2px solid var(--techfit-500);
         background: rgba(255, 255, 255, 0.15);
     }
+    
+    @media (max-width: 1200px) {
+            .montar-treino-section {
+                margin: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .exercise-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .workout-type-selector input[type="text"] {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .montar-treino-section {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .student-header h2 {
+                font-size: 1.7rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .category-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .montar-treino-section {
+                padding: 1rem;
+                margin: 0.5rem;
+            }
+            
+            .student-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .exercise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .exercise-item {
+                padding: 1rem;
+            }
+            
+            .exercise-config {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .config-input {
+                width: 100%;
+            }
+            
+            .student-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .exercise-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
+            }
+            
+            .pill {
+                width: fit-content;
+            }
+            
+            .workout-type-selector input[type="text"] {
+                padding: 0.7rem 1rem;
+            }
+        }
 </style>
 {% endblock %}
 
@@ -492,9 +595,9 @@
         </div>
 
         <div class="form-actions">
-            <button type="button" class="btn btn-secondary">
+            <!-- <button type="button" class="btn btn-secondary">
                 Salvar Rascunho
-            </button>
+            </button> -->
             <button type="submit" class="btn btn-primary">
                 Finalizar Treino
             </button>

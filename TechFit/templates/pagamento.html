@@ -154,23 +154,78 @@
         box-shadow: 0 4px 15px rgba(0, 106, 167, 0.3);
     }
 
-    @media (max-width: 768px) {
-        body {
-            padding: 1rem;
-        }
-
-        .payment-container {
-            padding: 1.5rem;
-        }
-
-        .payment-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .payment-methods {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    
+/* Responsividade */
+@media (max-width: 1024px) {
+    body {
+        padding: 1rem; /* Reduz o padding em telas menores */
     }
+
+    .payment-container {
+        padding: 1.5rem; /* Ajusta o padding do container */
+    }
+
+    .payment-grid {
+        grid-template-columns: 1fr; /* Muda para uma coluna em telas menores */
+    }
+
+    .payment-methods {
+        grid-template-columns: repeat(2, 1fr); /* Ajusta para duas colunas */
+    }
+
+    .input-field {
+        font-size: 0.9rem; /* Reduz o tamanho da fonte dos inputs */
+    }
+
+    .submit-btn {
+        padding: 0.875rem; /* Ajusta o padding do botão */
+    }
+}
+
+@media (max-width: 768px) {
+    .payment-methods {
+        grid-template-columns: 1fr; /* Uma coluna para os métodos de pagamento */
+    }
+
+    .input-group {
+        margin-bottom: 1rem; /* Reduz a margem entre os grupos de input */
+    }
+
+    .payment-header h1 {
+        font-size: 1.5rem; /* Ajusta o tamanho do título */
+    }
+
+    .payment-header p {
+        font-size: 0.9rem; /* Ajusta o tamanho da descrição */
+    }
+
+    .input-label {
+        font-size: 0.9rem; /* Reduz o tamanho das labels */
+    }
+
+    .input-field {
+        padding: 0.75rem; /* Ajusta o padding dos inputs */
+    }
+
+    .submit-btn {
+        font-size: 0.9rem; /* Reduz o tamanho da fonte do botão */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem; /* Reduz ainda mais o padding em telas pequenas */
+    }
+
+    .payment-container {
+        margin: 0; /* Remove margens em telas muito pequenas */
+        border-radius: 10px; /* Ajusta o raio do container */
+    }
+
+    .input-field {
+        font-size: 0.85rem; /* Reduz ainda mais o tamanho da fonte dos inputs */
+    }
+}
 </style>
 {% endblock %}
 
