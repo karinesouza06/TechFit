@@ -7,196 +7,479 @@
 {% block style %}
 <style>
     :root {
-        --techfit-100: #ffffff;
-        --techfit-200: #006aa7;
-        --techfit-300: #247ba0;
-        --techfit-400: #004d74;
-        --techfit-500: #e8f1f2;
-    }
+            --techfit-100: #ffffff;
+            --techfit-200: #006aa7;
+            --techfit-300: #247ba0;
+            --techfit-400: #004d74;
+            --techfit-500: #e8f1f2;
+        }
 
-    body {
-        background: #e8f1f2;
-        color: #004d74;
-        font-family: 'Open Sans', sans-serif;
-        min-height: 100vh;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
 
-    .solicitacoes-container {
-        max-width: 800px;  /* Reduzi a largura máxima */
-        margin: 2rem auto;
-        padding: 1.5rem;
-    }
+        body {
+            background: #e8f1f2;
+            color: #004d74;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #e8f1f2 0%, #d0e5ea 100%);
+        }
 
-    .section-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .section-header h1 {
-        font-size: 2rem;
-        position: relative;
-        display: inline-block;
-        padding-bottom: 0.5rem;
-    }
-
-    .section-header h1::after {
-        content: '';
-        position: absolute;
-        width: 50%;
-        height: 3px;
-        background: var(--techfit-500);
-        bottom: 0;
-        left: 25%;
-        border-radius: 2px;
-    }
-
-    .solicitacoes-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .solicitacao-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 12px;
-        padding: 1.2rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .solicitacao-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: var(--techfit-200);
-    }
-
-    .solicitacao-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 0.8rem;
-    }
-
-    .profile-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: var(--techfit-500);
-        margin-right: 0.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .profile-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .solicitacao-info h3 {
-        color: var(--techfit-400);
-        margin-bottom: 0.3rem;
-        font-size: 1.1rem;
-    }
-
-    .solicitacao-details {
-        color: var(--techfit-300);
-        font-size: 0.85rem;
-    }
-
-    .detail-item {
-        margin: 0.6rem 0;
-        padding: 0.4rem;
-        background: rgba(232, 241, 242, 0.3);
-        border-radius: 6px;
-        font-size: 0.85rem;
-    }
-
-    .botoes-solicitacao {
-        display: flex;
-        gap: 0.8rem;
-        margin-top: 1rem;
-    }
-
-    .btn-aceitar, .btn-rejeitar {
-        flex: 1;
-        padding: 0.6rem;
-        border: none;
-        border-radius: 6px;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 0.85rem;
-        text-align: center;
-        text-decoration: none;
-    }
-
-    .btn-aceitar {
-        background: #28a745;
-    }
-
-    .btn-aceitar:hover {
-        background: #218838;
-        transform: translateY(-2px);
-    }
-
-    .btn-rejeitar {
-        background: #dc3545;
-    }
-
-    .btn-rejeitar:hover {
-        background: #c82333;
-        transform: translateY(-2px);
-    }
-
-    .empty-state {
-        text-align: center;
-        padding: 2rem;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 12px;
-        margin: 1rem auto;
-        max-width: 400px;
-    }
-
-    .empty-state img {
-        width: 80px;
-        margin-bottom: 1rem;
-    }
-
-    .empty-state p {
-        color: var(--techfit-400);
-        font-size: 1rem;
-    }
-
-    @media (max-width: 768px) {
         .solicitacoes-container {
-            padding: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        
-        .section-header h1 {
-            font-size: 1.7rem;
-        }
-        
-        .botoes-solicitacao {
-            flex-direction: column;
-        }
-    }
 
-    /* Estilo para quando há apenas uma solicitação */
-    @media (min-width: 769px) {
-        .solicitacoes-grid.single-item {
-            grid-template-columns: repeat(auto-fit, minmax(350px, 0.6fr));
-            justify-content: center;
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 15px;
         }
-    }
+
+        .section-header h1 {
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            color: var(--techfit-400);
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header h1::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 4px;
+            background: var(--techfit-200);
+            bottom: 0;
+            left: 15%;
+            border-radius: 4px;
+        }
+
+        .solicitacoes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+            padding: 10px;
+        }
+
+        .solicitacao-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 106, 167, 0.15);
+        }
+
+        .solicitacao-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .solicitacao-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--techfit-200);
+            background: linear-gradient(90deg, var(--techfit-200), var(--techfit-300));
+        }
+
+        .solicitacao-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: var(--techfit-500);
+            margin-right: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
+        }
+
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .solicitacao-info h3 {
+            color: var(--techfit-400);
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .solicitacao-info p {
+            color: var(--techfit-300);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .solicitacao-details {
+            color: var(--techfit-300);
+            font-size: 0.95rem;
+            padding: 10px 0;
+        }
+
+        .detail-item {
+            margin: 15px 0;
+            padding: 12px 15px;
+            background: rgba(232, 241, 242, 0.4);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background 0.3s ease;
+        }
+
+        .detail-item:hover {
+            background: rgba(232, 241, 242, 0.7);
+        }
+
+        .detail-item i {
+            color: var(--techfit-200);
+            min-width: 25px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .botoes-solicitacao {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-aceitar, .btn-rejeitar {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-aceitar {
+            background: #28a745;
+            background: linear-gradient(to right, #28a745, #2ecc71);
+        }
+
+        .btn-aceitar:hover {
+            background: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-rejeitar {
+            background: #dc3545;
+            background: linear-gradient(to right, #dc3545, #e74c3c);
+        }
+
+        .btn-rejeitar:hover {
+            background: #c82333;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(220, 53, 69, 0.4);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 30px;
+            background: white;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .empty-state img {
+            width: 120px;
+            margin-bottom: 25px;
+            opacity: 0.8;
+            filter: grayscale(30%);
+        }
+
+        .empty-state h3 {
+            color: var(--techfit-400);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .empty-state p {
+            color: var(--techfit-300);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Responsividade para tablets grandes e desktops pequenos */
+        @media (max-width: 1200px) {
+            .solicitacoes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 22px;
+            }
+            
+            .solicitacao-card {
+                padding: 22px;
+            }
+            
+            .profile-icon {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* Responsividade para tablets */
+        @media (max-width: 992px) {
+            .section-header h1 {
+                font-size: 2rem;
+            }
+            
+            .solicitacoes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+            
+            .solicitacao-card {
+                padding: 20px;
+            }
+            
+            .btn-aceitar, .btn-rejeitar {
+                padding: 13px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Responsividade para tablets pequenos e smartphones grandes */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .section-header h1 {
+                font-size: 1.8rem;
+                padding-bottom: 12px;
+            }
+            
+            .solicitacoes-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .solicitacao-header {
+                margin-bottom: 18px;
+            }
+            
+            .profile-icon {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .solicitacao-info h3 {
+                font-size: 1.2rem;
+            }
+            
+            .detail-item {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .botoes-solicitacao {
+                gap: 12px;
+                margin-top: 18px;
+            }
+            
+            .empty-state {
+                padding: 40px 25px;
+            }
+            
+            .empty-state img {
+                width: 100px;
+            }
+            
+            .empty-state h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Responsividade para smartphones médios */
+        @media (max-width: 576px) {
+            .section-header h1 {
+                font-size: 1.6rem;
+                width: 100%;
+            }
+            
+            .section-header h1::after {
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+            }
+            
+            .solicitacao-card {
+                padding: 18px 15px;
+            }
+            
+            .profile-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .solicitacao-info h3 {
+                font-size: 1.15rem;
+            }
+            
+            .detail-item {
+                margin: 12px 0;
+                padding: 10px;
+                font-size: 0.88rem;
+            }
+            
+            .botoes-solicitacao {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn-aceitar, .btn-rejeitar {
+                padding: 12px;
+                width: 100%;
+            }
+            
+            .empty-state {
+                padding: 35px 20px;
+            }
+            
+            .empty-state img {
+                width: 90px;
+            }
+            
+            .empty-state h3 {
+                font-size: 1.4rem;
+            }
+            
+            .empty-state p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Responsividade para smartphones pequenos (iPhone SE) */
+        @media (max-width: 400px) {
+            body {
+                padding: 12px;
+            }
+            
+            .solicitacoes-container {
+                padding: 15px 10px;
+            }
+            
+            .section-header h1 {
+                font-size: 1.5rem;
+                padding-bottom: 10px;
+            }
+            
+            .solicitacao-card {
+                padding: 16px 12px;
+                border-radius: 12px;
+            }
+            
+            .solicitacao-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .profile-icon {
+                margin-bottom: 12px;
+            }
+            
+            .solicitacao-info h3 {
+                font-size: 1.1rem;
+            }
+            
+            .solicitacao-info p {
+                font-size: 0.88rem;
+            }
+            
+            .detail-item {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .detail-item i {
+                font-size: 1.1rem;
+            }
+            
+            .btn-aceitar, .btn-rejeitar {
+                padding: 11px;
+                font-size: 0.92rem;
+            }
+            
+            .empty-state {
+                padding: 30px 15px;
+            }
+            
+            .empty-state img {
+                width: 80px;
+            }
+            
+            .empty-state h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Responsividade para dispositivos dobráveis (Galaxy Z Fold) */
+        @media (max-width: 768px) and (min-height: 700px) {
+            .solicitacoes-grid {
+                max-width: 700px;
+            }
+            
+            .solicitacao-card {
+                padding: 25px;
+            }
+        }
+
+        /* Responsividade para Nest Hub (1024px) */
+        @media (min-width: 1024px) and (max-height: 600px) {
+            body {
+                padding: 15px;
+            }
+            
+            .solicitacoes-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+            
+            .solicitacao-card {
+                padding: 20px;
+            }
+        }
 </style>
 {% endblock %}
 

@@ -6,190 +6,284 @@
 
 {% block style %}
 <style>
-    :root {
-        --techfit-100: #ffffff;
-        --techfit-200: #006aa7;
-        --techfit-300: #247ba0;
-        --techfit-400: #004d74;
-        --techfit-500: #e8f1f2;
-    }
+     :root {
+            --techfit-100: #ffffff;
+            --techfit-200: #006aa7;
+            --techfit-300: #247ba0;
+            --techfit-400: #004d74;
+            --techfit-500: #e8f1f2;
+        }
 
-    body {
-        background: #e8f1f2;
-        color: #004d74;
-        font-family: 'Open Sans', sans-serif;
-        min-height: 100vh;
-    }
+        body {
+            background: #e8f1f2;
+            color: #004d74;
+            font-family: 'Open Sans', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
 
-    .alunos-container {
-        max-width: 12400px;
-        margin: 2rem auto;
-        padding: 1.5rem 2rem;
-    }
-
-    .section-header {
-        text-align: left;
-        margin-bottom: 1.5rem;
-    }
-
-    .section-header h1 {
-        font-size: 1.8rem;
-        color: var(--techfit-400);
-        font-weight: 600;
-    }
-
-    .alunos-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.2rem;
-        justify-content: flex-start;
-    }
-
-    .aluno-card {
-        background: white;
-        border-radius: 10px;
-        padding: 1rem;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-        transition: all 0.2s ease;
-        width: 260px;
-        min-height: 200px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .aluno-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .aluno-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: var(--techfit-200);
-    }
-    
-    .aluno-card {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .aluno-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 0.8rem;
-    }
-
-    .profile-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: var(--techfit-500);
-        margin-right: 0.8rem;
-        overflow: hidden;
-        flex-shrink: 0;
-    }
-
-    .profile-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .aluno-info {
-        overflow: hidden;
-    }
-
-    .aluno-info h3 {
-        color: var(--techfit-400);
-        margin: 0;
-        font-size: 1rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .aluno-info p {
-        color: var(--techfit-300);
-        font-size: 0.8rem;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .aluno-details {
-        margin-top: 0.5rem;
-        font-size: 0.8rem;
-        color: var(--techfit-300);
-        flex-grow: 1;
-    }
-
-    .detail-item {
-        margin: 0.4rem 0;
-        padding: 0.3rem 0.5rem;
-        background: rgba(232, 241, 242, 0.3);
-        border-radius: 4px;
-        font-size: 0.75rem;
-    }
-
-    .btn-treino {
-        padding: 0.5rem;
-        border: none;
-        border-radius: 5px;
-        background: var(--techfit-200);
-        color: white;
-        font-weight: 500;
-        font-size: 0.8rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        margin-top: 0.5rem;
-        text-align: center;
-        text-decoration: none;
-    }
-
-    .btn-treino:hover {
-        background: var(--techfit-300);
-    }
-
-    .empty-state {
-        text-align: center;
-        padding: 2rem;
-        background: white;
-        border-radius: 10px;
-        margin: 1rem auto;
-        max-width: 400px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-    }
-
-    .empty-state img {
-        width: 70px;
-        margin-bottom: 1rem;
-        opacity: 0.7;
-    }
-
-    .empty-state p {
-        color: var(--techfit-400);
-        font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
         .alunos-container {
-            padding: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
         }
-        
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h1 {
+            font-size: 1.8rem;
+            color: var(--techfit-400);
+            font-weight: 600;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--techfit-200);
+            display: inline-block;
+        }
+
         .alunos-grid {
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
-        
+
         .aluno-card {
-            width: 100%;
-            max-width: 280px;
+            background: white;
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
-    }
+
+        .aluno-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .aluno-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--techfit-200);
+        }
+
+        .aluno-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--techfit-500);
+            margin-right: 1rem;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .aluno-info {
+            overflow: hidden;
+        }
+
+        .aluno-info h3 {
+            color: var(--techfit-400);
+            margin: 0;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .aluno-info p {
+            color: var(--techfit-300);
+            font-size: 0.85rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .aluno-details {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--techfit-300);
+            flex-grow: 1;
+            padding: 0.5rem 0;
+        }
+
+        .detail-item {
+            margin: 0.6rem 0;
+            padding: 0.6rem;
+            background: rgba(232, 241, 242, 0.4);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-item i {
+            color: var(--techfit-200);
+            width: 20px;
+            text-align: center;
+        }
+
+        .btn-treino {
+            padding: 0.7rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--techfit-200);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.8rem;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .btn-treino:hover {
+            background: var(--techfit-300);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-treino i {
+            margin-right: 8px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 12px;
+            margin: 2rem auto;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .empty-state img {
+            width: 90px;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .empty-state h3 {
+            color: var(--techfit-400);
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        .empty-state p {
+            color: var(--techfit-300);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .alunos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
+            
+            .aluno-card {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .alunos-container {
+                padding: 1rem;
+            }
+            
+            .section-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .alunos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 1.2rem;
+            }
+            
+            .aluno-header {
+                margin-bottom: 0.8rem;
+            }
+            
+            .profile-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .btn-treino {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 15px;
+            }
+            
+            .alunos-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            
+            .section-header h1 {
+                font-size: 1.5rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .empty-state {
+                padding: 2rem 1.5rem;
+            }
+            
+            .empty-state img {
+                width: 80px;
+            }
+            
+            .empty-state h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .aluno-card {
+                padding: 1rem 0.8rem;
+            }
+            
+            .detail-item {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+            
+            .btn-treino {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+        }
 </style>
 {% endblock %}
 

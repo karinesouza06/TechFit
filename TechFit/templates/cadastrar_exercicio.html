@@ -6,149 +6,336 @@
 
 {% block style %}
 <style>
-    /* fonte fina  */
-    @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+   /* Importações de fontes */
+        @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --techfit-100: #ffff;
+            --techfit-200: #006aa7;
+            --techfit-300: #247ba0;
+            --techfit-400: #006494;
+            --techfit-500: #e8f1f2;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            --transition: all 0.3s ease;
+        }
 
-    /* fonte grossa */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Didact Gothic", sans-serif;
+        }
 
-    :root {
-        --techfit-100: #ffff;
-        --techfit-200: #006aa7;
-        --techfit-300: #247ba0;
-        --techfit-400: #006494;  /* Fundo escuro */
-        --techfit-500: #e8f1f2;  /* Botões claros */
-    }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #d0e5ea, #b8d9e0);
+            padding: 20px;
+        }
 
-    * {
-        font-family: "Didact Gothic", sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        display: flex;
-        width: 100%;
-        min-height: 100vh; /* Mantém a altura mínima */
-    }
-
-    main {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 80%;
-        flex: 1; /* Faz o main ocupar o restante do espaço */
-        padding: 20px; /* Espaçamento */
-    }
-
-    .div-cad_exercise {
-        display: flex;
-        flex-direction: column;
-        background-color: #006aa7;
-        color:#fff;
-        width: 90%; 
-        height: 80%; 
-        max-width: 600px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-        border-radius: 10px;
-        padding: 20px;
-        box-sizing: border-box;
-    }
- 
-    h1 {
-        text-align: left;
-        color: #fff;
-        margin-bottom: 10px;
-    }
-    
-    .form {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        background-color: #006aa7;
-        border-radius: 10px;
-        padding: 15px;
-    }
-
-    .input-group {
-        display: flex;
-        flex-direction: column; 
-        gap: 20px; 
-        padding-bottom: 30px;
-    }
-
-    .input-row {
-        display: flex;
-        justify-content: space-between; /* Ajusta o espaço entre os campos */
-        gap: 20px; /* Espaço entre as colunas */
-    }
-
-    .input-box {
-        width: 100%; /* A largura é 100% */
-        display: flex;
-        flex-direction: column;
-    }
-
-    .input-box label {
-        font-size: 14px;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-
-    .input-box input, select {
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .input-box input:focus {
-        border-color: #1C64F2;
-        outline: none;
-    }
-
-    .continue-button {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .continue-button button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        width: 170px;
-        margin-bottom: 5px;
-        background-color: var(--techfit-500);  /* Botões claros */
-        color: var(--techfit-400);  /* Texto azul escuro */
-        border: 2px solid;
-    }
-
-    .continue-button button:hover {
-        background-color:#006494;
-        color:#fff;
-        border: none; 
-    }
-
-
-    @media (max-width: 768px) {
-        .input-box {
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .div-cad_exercise {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, var(--techfit-200), var(--techfit-400));
+            color: #fff;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: var(--shadow);
+            border-radius: 15px;
+            padding: 30px;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        .div-cad_exercise:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--techfit-500);
+            border-radius: 2px;
         }
 
         .form {
-            padding: 15px;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            background-color: transparent;
+            border-radius: 10px;
+            padding: 10px 0;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding-bottom: 30px;
         }
 
         .input-row {
-            flex-direction: column; /* Para telas pequenas, empilha os campos */
+            display: flex;
+            gap: 20px;
         }
-    }
+
+        .input-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .input-box label {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-box label i {
+            color: var(--techfit-500);
+            font-size: 1.1rem;
+        }
+
+        .input-box input, 
+        .input-box select,
+        .input-box textarea {
+            padding: 14px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: var(--techfit-500);
+            color: var(--techfit-400);
+            transition: var(--transition);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-box input:focus,
+        .input-box select:focus,
+        .input-box textarea:focus {
+            outline: 2px solid #1C64F2;
+            box-shadow: 0 0 15px rgba(28, 100, 242, 0.3);
+        }
+
+        .continue-button {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .continue-button button {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--techfit-500);
+            color: var(--techfit-400);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 2px solid transparent;
+        }
+
+        .continue-button button:hover {
+            background: var(--techfit-400);
+            color: var(--techfit-500);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .continue-button button i {
+            font-size: 1.2rem;
+        }
+
+        /* Responsividade para tablets */
+        @media (max-width: 768px) {
+            .div-cad_exercise {
+                padding: 25px;
+                height: auto;
+            }
+            
+            h1 {
+                font-size: 1.9rem;
+            }
+            
+            .input-row {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .input-box input, 
+            .input-box select,
+            .input-box textarea {
+                padding: 13px;
+            }
+            
+            .continue-button button {
+                padding: 13px 35px;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Responsividade para smartphones médios */
+        @media (max-width: 576px) {
+            body {
+                padding: 15px;
+            }
+            
+            .div-cad_exercise {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+                padding-bottom: 12px;
+            }
+            
+            h1::after {
+                width: 60px;
+                height: 3px;
+            }
+            
+            .input-group {
+                gap: 20px;
+            }
+            
+            .input-box label {
+                font-size: 0.95rem;
+            }
+            
+            .input-box input, 
+            .input-box select,
+            .input-box textarea {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+            
+            .continue-button button {
+                padding: 12px 30px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Responsividade para smartphones pequenos (iPhone SE) */
+        @media (max-width: 400px) {
+            .div-cad_exercise {
+                padding: 18px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .input-group {
+                gap: 18px;
+            }
+            
+            .input-box label {
+                font-size: 0.9rem;
+            }
+            
+            .input-box input, 
+            .input-box select,
+            .input-box textarea {
+                padding: 11px;
+                font-size: 0.9rem;
+            }
+            
+            .continue-button button {
+                padding: 11px 25px;
+                font-size: 0.9rem;
+                max-width: 100%;
+            }
+        }
+
+        /* Ajustes para dispositivos em modo paisagem */
+        @media (max-height: 500px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+            
+            .div-cad_exercise {
+                max-width: 90%;
+                padding: 20px;
+            }
+            
+            .input-row {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .input-box {
+                flex: 1 0 calc(50% - 10px);
+                min-width: 200px;
+            }
+        }
+
+        /* Ajustes para tablets grandes (iPad Pro) */
+        @media (min-width: 1024px) and (max-height: 1366px) {
+            .div-cad_exercise {
+                max-width: 700px;
+                padding: 35px;
+            }
+            
+            .input-row {
+                gap: 25px;
+            }
+            
+            .input-box input, 
+            .input-box select,
+            .input-box textarea {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Ajustes para dispositivos dobráveis (Galaxy Z Fold) */
+        @media (max-width: 768px) and (min-height: 700px) {
+            .div-cad_exercise {
+                max-width: 500px;
+                padding: 30px;
+            }
+        }
 
 </style>
 {% endblock %}
