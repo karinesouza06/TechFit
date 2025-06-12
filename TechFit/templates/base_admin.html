@@ -196,6 +196,10 @@
             background-color: transparent;
         }
 
+        #close-sidebar{
+            display: none;
+        }
+
         #open_btn {
             position: absolute;
             top: 38px;
@@ -207,6 +211,20 @@
             height: 20px;
             border: none;
             cursor: pointer;
+        }
+
+        .hamburger-btn {
+            display: none;
+            font-size: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 10px;
+            margin-right: 60px;
+            z-index: 1001;
+            color: #006494;
         }
 
         #open_btn_icon {
@@ -244,6 +262,27 @@
 
         /* Sidebar e botão de abertura para dispositivos móveis */
         @media (max-width: 768px) {
+
+            .hamburger-btn {
+                display: block;
+            }
+
+            #close-sidebar {
+                display: block;
+                background: transparent;
+                border: none;
+                color:#006494;
+                font-size: 2rem;
+                cursor: pointer;
+                position: absolute;
+                top: 20px;
+                right: 15px;
+            }
+
+            #open_btn {
+                display: none;
+            }
+
             #sidebar {
                 transform: translateX(-100%);
                 /* Move a sidebar para fora da tela */
@@ -259,6 +298,7 @@
             }
 
             header {
+                justify-content: space-around;
                 padding-left: 10px;
             }
 
@@ -313,6 +353,7 @@
 <body>
     <nav id="sidebar">
         <div id="sidebar_content">
+          <button id="close-sidebar" aria-label="Fechar menu">&times;</button>
           <div id="logo_avatar">
                 <img src="{{ url_for('static', filename='images/logo/techfit_icon.png') }}" 
                      id="logo_avatar_avatar" 
@@ -382,6 +423,9 @@
     </nav>
 
     <header>
+        <button  class="hamburger-btn"  id="open_btn2" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">
+            &#9776; <!-- símbolo hambúrguer -->
+        </button>
         <h1>{% block titlePage %} {% endblock %}</h1>
     </header>
     
@@ -395,6 +439,9 @@
             const sidebar = document.getElementById('sidebar');
             const logo = document.getElementById('logo_avatar_avatar');
             const openBtn = document.getElementById('open_btn');
+            const openBtn2 = document.getElementById('open_btn2');
+            const closeSidebarBtn = document.getElementById('close-sidebar');
+            
 
             logo.style.width = "55px";
             logo.style.height = "55px";
@@ -416,7 +463,33 @@
                     logo.style.margin = "0";
                 }
             });
+
+            openBtn2.addEventListener('click', function() {
+                sidebar.classList.toggle('open-sidebar');
+
+                if (sidebar.classList.contains('open-sidebar')) {
+                    logo.src = "{{ url_for('static', filename='images/logo/LogoAnimadaDark.gif') }}?v=" + Date.now();
+                    logo.style.width = "180px";       
+                    logo.style.height = "55px";      
+                    logo.style.objectFit = "cover";  
+                    logo.style.margin = "5px 0";     
+                } else {
+                    logo.src = "{{ url_for('static', filename='images/logo/techfit_icon.png') }}";
+                    logo.style.width = "55px";
+                    logo.style.height = "55px";
+                    logo.style.margin = "0";
+                }
+            });
+
+            closeSidebarBtn.addEventListener('click', function () {
+                sidebar.classList.remove('open-sidebar');
+                logo.src = "{{ url_for('static', filename='images/logo/techfit_icon.png') }}";
+                logo.style.width = "55px";
+                logo.style.height = "55px";
+                logo.style.margin = "0";
+            });
         });
+
     </script>
 
 </body>
