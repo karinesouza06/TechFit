@@ -71,7 +71,7 @@
                                        
                                     >
                                     <button 
-                                        type="submit" 
+                                        type="button" 
                                         id="togglePasswordLogin" 
                                         class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
                                     >
@@ -406,19 +406,19 @@
                     <!-- Campos principais -->
                     <div>
                         <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome completo</label>
-                        <input name='nome' type="text" id="nome" class=" border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <input name='nome' type="text" id="nome" class="border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex: Lívia Montenegro" required>
                         <span class="text-red-500 text-sm hidden" id="nomeError"></span>
                     </div>
         
                     <div>
-                        <label  for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                        <input name="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input name="email" type="email" id="email" placeholder="exemplo@email.com" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                         <span class="text-red-500 text-sm hidden" id="emailError"></span>
                     </div>
         
                     <div>
                         <label for="telefone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefone</label>
-                        <input name='telefone' type="tel" id="telefone" pattern="[0-9]{11}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <input name='telefone' type="tel" id="telefone" pattern="[0-9]{11}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex: 11987654321" required>
                         <span class="text-red-500 text-sm hidden" id="telefoneError"></span>
                     </div>
         
@@ -437,6 +437,7 @@
                                 id="senha" 
                                 minlength="6" 
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                placeholder="Mínimo 7 dígitos" 
                                 required
                             >
                             <button 
