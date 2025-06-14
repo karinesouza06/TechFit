@@ -182,15 +182,82 @@
         font-size: 1.1rem;
     }
 
-    @media (max-width: 768px) {
-        .personal-grid {
-            grid-template-columns: 1fr;
+     @media (max-width: 768px) {
+            .section-header h1 {
+                font-size: 1.7rem;
+                padding-bottom: 0.7rem;
+            }
+            
+            .personal-grid {
+                gap: 1.2rem;
+            }
+            
+            .personal-card {
+                padding: 1.3rem;
+            }
+            
+            .profile-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .personal-info h3 {
+                font-size: 1.15rem;
+            }
+            
+            .btn-solicitar {
+                padding: 0.85rem;
+                font-size: 0.95rem;
+            }
         }
-        
-        .section-header h1 {
-            font-size: 2rem;
+
+        @media (max-width: 576px) {
+            .personal-selection-container {
+                padding: 10px;
+            }
+            
+            .section-header h1 {
+                font-size: 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .personal-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .profile-icon {
+                margin-right: 0;
+                margin-bottom: 0.8rem;
+            }
+            
+            .detail-item {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+            
+            .empty-state {
+                padding: 2rem 1.5rem;
+            }
+            
+            .empty-state img {
+                width: 80px;
+            }
         }
-    }
+
+        @media (max-width: 400px) {
+            .section-header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .personal-card {
+                padding: 1.1rem;
+            }
+            
+            .btn-solicitar {
+                padding: 0.8rem;
+            }
+        }
 </style>
 {% endblock %}
 

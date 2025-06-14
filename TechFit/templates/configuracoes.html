@@ -253,69 +253,120 @@
         text-decoration: none;
     }
 
-@media (max-width: 1024px) {
-    .profile-container1 {
-        width: 90%; /* Ajusta a largura do container */
-        margin-right: 0; /* Remove a margem direita */
-        margin-bottom: 20px; /* Adiciona margem inferior */
-    }
+     @media (max-width: 1100px) {
+            .input-box {
+                flex: 1 1 100%;
+            }
+        }
 
-    .profile-container2 {
-        width: 90%; /* Ajusta a largura do container */
-    }
+        @media (max-width: 900px) {
+            .profile-page {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .profile-container1, 
+            .profile-container2 {
+                width: 100%;
+                max-height: none;
+            }
+            
+            .picture {
+                width: 50%;
+                padding-top: 50%;
+            }
+        }
 
-    .input-box {
-        flex: 1 1 100%; /* Muda para uma coluna em telas menores */
-    }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                height: auto;
+            }
+            
+            .profile-page {
+                width: 100%;
+                gap: 20px;
+            }
+            
+            .profile-container1, 
+            .profile-container2 {
+                padding: 20px;
+                border-radius: 8px;
+            }
+            
+            .profile-container1 h2 {
+                font-size: 1.4rem;
+            }
+            
+            .form h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .picture {
+                width: 60%;
+                padding-top: 60%;
+            }
+            
+            .profile-info1 .info-item {
+                font-size: 14px;
+                gap: 10px;
+            }
+            
+            .input-group {
+                gap: 15px;
+            }
+            
+            .input-box label {
+                font-size: 13px;
+            }
+            
+            .input-box input, select {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            
+            .continue-button button {
+                width: 100%;
+                max-width: 300px;
+                padding: 12px;
+            }
+        }
 
-    .form {
-        padding: 15px;
-    }
-
-    .continue-button button {
-        width: 100%; /* Botão ocupa toda a largura */
-    }
-}
-
-@media (max-width: 768px) {
-    .profile-container1 {
-        flex-direction: column; /* Muda a direção para coluna em telas menores */
-        align-items: center; /* Centraliza os itens */
-    }
-
-    .picture {
-        width: 80%; /* Ajusta a largura da imagem */
-        padding-top: 80%; /* Mantém a proporção */
-    }
-
-    .input-group {
-        flex-direction: column; /* Coloca os inputs em coluna */
-    }
-
-    .input-box {
-        flex: 1 1 100%; /* Ajusta as caixas de entrada para 100% */
-    }
-
-    .form {
-        margin: 20px;
-        padding: 15px;
-    }
-
-    .form-header .title h1 {
-        font-size: 20px; /* Ajusta o tamanho do título */
-    }
-}
-
-@media (max-width: 480px) {
-    .continue-button button {
-        font-size: 14px; /* Reduz o tamanho da fonte do botão */
-        padding: 10px; /* Ajusta o padding do botão */
-    }
-
-    .profile-container1, .profile-container2 {
-        border-radius: 8px; /* Reduz o raio dos cantos */
-    }
-}
+        @media (max-width: 480px) {
+            .profile-container1, 
+            .profile-container2 {
+                padding: 15px;
+            }
+            
+            .picture {
+                width: 70%;
+                padding-top: 70%;
+            }
+            
+            .profile-container1 h2 {
+                font-size: 1.3rem;
+            }
+            
+            .form h1 {
+                font-size: 1.3rem;
+            }
+            
+            .profile-info1 .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                padding: 10px 0;
+            }
+            
+            .input-group {
+                gap: 12px;
+            }
+            
+            .continue-button button {
+                font-size: 15px;
+            }
+        }
 
 </style>
 
