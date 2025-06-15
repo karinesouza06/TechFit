@@ -244,7 +244,7 @@ dialog {
 .modal-title {
     font-size: 25px;
     font-weight:bold;
-    color: var(--techfit-200);
+    color: #2682A6;
     margin-left: 110px;
     
 }
@@ -407,12 +407,23 @@ dialog {
 
 @media (max-width: 640px) {
     dialog {
-        width: 90%;
+        width: 80%;
         padding: 1rem;
     }
     
     .modal-body {
         gap: 12px;
+    }
+
+
+    .modal-header {
+        width: 100%;
+        
+    }
+
+    .modal-title {
+        font-size: 19px;
+        
     }
     
     .input-group input {
