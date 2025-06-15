@@ -1,0 +1,452 @@
+
+/* Link do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* :root{
+    --techfit-100: #ffff;
+    --techfit-200: #247ba0;
+    --techfit-300: #247ba0;
+    --techfit-400: #006494;
+    --techfit-500: #e8f1f2;
+} */
+
+:root {
+    --techfit-100: #036FBC;    /* Azul mais escuro (day) */
+    --techfit-200: #2682A6;    /* Azul médio 1 */
+    --techfit-300: #268EA6;    /* Azul médio 2 */
+    --techfit-400: #9AC7D9;    /* Azul claro */
+    --techfit-500: #EBF2F2;    /* Fundo claro (day) */
+}
+
+
+
+.dark {
+    --techfit-100: #EBF2F2;    /* Texto claro (dark) */
+    --techfit-200: #9AC7D9;    /* Elementos secundários */
+    --techfit-300: #268EA6;    /* Destaques */
+    --techfit-400: #2682A6;    /* Bordas/interações */
+    --techfit-500: #036FBC;    /* Fundo escuro (dark) */
+}
+
+/* Ajuste pequenos da tela no geral */
+.background_list {
+    background:#EBF2F2 ;
+}
+
+.rounded-lg img{
+    padding-left: 15px;
+    border-radius: 0;
+}
+
+
+.mb-6 img {
+    padding-top: 10px;
+}
+
+.mt-8 .mt-4 {
+    padding-top: 120px;
+    padding-left: 10px; 
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.inset-y-0 {
+    top: 0;
+    bottom: 0;
+}
+
+.right-0 {
+    right: 0;
+}
+
+.pr-3 {
+    padding-right: 0.75rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.leading-5 {
+    line-height: 1.25rem;
+}
+
+.toggle-password-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+
+
+/*OUTROS AJUSTES DE CORES*/
+.dark\:bg-gray-900 {
+    background-color: var(--techfit-500) !important; /* Fundo dark mode */
+}
+
+.dark\:text-white {
+    color: #2682A6 !important; /* Texto claro */
+}
+
+.dark\:bg-gray-700 {
+    background-color:#EBF2F2;
+}
+
+/* CARROSSEL */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+    aspect-ratio: 16/9;
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-image {
+    min-width: 100%;
+    object-fit: cover;
+    height: auto;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    width: 50px; 
+    height: 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-button:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+    left: 1rem;
+}
+
+.next {
+    right: 1rem;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicator.active {
+    background: #fff;
+    transform: scale(1.2);
+}
+
+.carousel-button {
+    background-color: var(--techfit-200);
+}
+
+#button-cadastro {
+    background-color: var(--techfit-300);
+}
+
+#button-cadastro:hover {
+    background-color: var(--techfit-400);
+}
+
+
+
+/*MODAL DE LOGIN*/
+*:not(dialog) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+dialog[open] {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    max-width: 90%;
+}
+
+.open-modal {
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+dialog::backdrop {
+    background-color: rgb(0, 0, 0, 0.5);
+}
+
+dialog {
+    border: none;
+    width: 350px;
+    border-radius: 24px;
+    padding: 18px;
+    background-color: var(--techfit-500);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.modal-title {
+    font-size: 25px;
+    font-weight:bold;
+    color: #2682A6;
+    margin-left: 110px;
+    
+}
+
+.close-modal {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #9CA3AF;
+    font-size: 18px;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: var(--techfit-500);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--techfit-200);
+}
+
+.input-group input {
+    border: 1px solid #D1D5DB;
+    background-color: #F9FAFB;
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: var(--techfit-200);
+}
+
+.input-group input:focus {
+    outline: 1px solid #e8f1f2 ;
+}
+
+.password-options  a{
+   float: left;
+}
+
+.forgot-password {
+    font-size: 12px;
+    color: var(--techfit-200);
+    text-decoration: none;
+}
+
+#login_button {
+    background-color:var(--techfit-200);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#h2_index{
+  color:var(--techfit-500);
+}
+
+.register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register span {
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.register a {
+    font-size: 14px;
+    color:var(--techfit-200);
+    text-decoration: none;
+}
+
+.input-group.invalid input {
+    border-color: #ef4444;
+    outline-color: #ef4444;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+/*AJUSTE MODAL LOGIN*/
+dialog {
+    background-color: var(--techfit-500); /* Fundo escuro no dark mode */
+}
+
+.modal-title,
+.input-group label {
+    color: var(--techfit-100); /* Texto principal */
+}
+
+#login_button {
+    background-color: var(--techfit-200); /* Botão em azul médio */
+}
+
+.forgot-password, .register a {
+    color: var(--techfit-200); /* Links em azul médio */
+}
+.nav-itens:hover {
+    color: var(--techfit-200);
+   
+}
+
+.dark .nav-itens:hover {
+    color: var(--techfit-200);
+}
+
+#footer {
+    background-color: var(--techfit-200);
+}
+
+.hr-footer, hr {
+    color:var(--techfit-200) ;
+}
+
+
+/* RESPONSIVIDADES */
+@media (max-width: 768px) {
+    .carousel {
+        aspect-ratio: 9/16; /* Proporção vertical para mobile */
+    }
+    
+    .carousel-button {
+        width: 30px; /* Tamanho reduzido para dispositivos móveis */
+        height: 30px; /* Tamanho reduzido para dispositivos móveis */
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .aluno-fields,
+    .personal-fields {
+        margin-top: 1rem;
+    }
+    
+    input[type="time"] {
+        padding: 0.75rem;
+    }
+}
+
+
+@media (max-width: 640px) {
+    dialog {
+        width: 80%;
+        padding: 1rem;
+    }
+    
+    .modal-body {
+        gap: 12px;
+    }
+
+
+    .modal-header {
+        width: 100%;
+        
+    }
+
+    .modal-title {
+        font-size: 19px;
+        
+    }
+    
+    .input-group input {
+        padding: 8px 12px;
+    }
+}
+
+
+dialog[open] {
+    z-index: 9999;
+    position: fixed !important;
+}
+
+.login-error {
+    color: #ef4444;
+    background-color: #fee2e2;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: none; /* Inicialmente escondido */
+}
+
+.login-error.show {
+    display: block; /* Mostrar quando tiver erro */
+}
