@@ -197,7 +197,9 @@
         min-width: 150px; 
         max-width: calc(50% - 10px); 
         position: relative; 
+        overflow: hidden;
     }
+   
 
     .info2-buttons {
         margin-top: 10px;
@@ -394,6 +396,37 @@
     .hidden {
         display: none;
     }
+
+    #modal4 {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+    }       
+
+    #modal4 .modal-content {
+        position: relative;
+        background-color: var(--techfit-400);
+        padding: 20px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: visible;
+    }
+
+
 
     @media screen and (max-width: 1024px) {
         #img {
@@ -629,6 +662,21 @@
             width: 100%;
             height: auto;
         }
+
+        .info2-buttons {
+            font-size: 15px;
+            padding: 5px;
+        }
+
+        .profile-container1 h2,
+        .profile-container2 h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info2-item-text p {
+            font-size: 16px;
+        }
     }
 
     /* final */
@@ -647,6 +695,72 @@
    
     } 
 
+    #modal4 {
+        display:none;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* 👈 Garante altura total da viewport */
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        overflow-y: auto;
+        padding: 20px; /* 👈 evita que o conteúdo encoste nas bordas */
+}
+
+
+    #modal4 .modal-content{ 
+        position: relative;
+        background-color: var(--techfit-400);
+        padding: 20px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #modal4 .close{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: var(--techfit-400); 
+        font-size: 28px;
+        font-weight: bold;
+        z-index: 1001;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 30px;
+    }
+
+    #modal4 .close:hover, .close:focus{
+        color: var(--techfit-200); 
+        text-decoration: none;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    #chart_div {
+        width: 100%;
+        min-height: 400px;
+        background: white;
+        border-radius: 8px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
     .modal-content {
         margin: 15% auto; 
         padding: 20px;
@@ -654,6 +768,8 @@
         position: relative;
         
     }
+
+   
 
     #container {
         display: flex;
@@ -682,6 +798,23 @@
     #registrar_treino {
         margin-top: 15px;
     }
+
+    @media screen and (min-width: 769px){
+        .info2-buttons {
+            font-size: 18px;
+             padding: 8px; /* Aumentado de 15px */
+        }
+
+        .profile-container1 h2,
+        .profile-container2 h1 {
+            font-size: 28px;
+            margin-bottom: 15px; /* Aumentado de 20px */
+        }
+        .info2-item-text p {
+            font-size: 18px; /* Aumentado o texto dentro dos cards */
+        }
+    }
+
 
     /* Ajustes responsivos para modais */
     @media screen and (max-width: 789px) {
@@ -771,13 +904,13 @@
         }
 
     /* Container do gráfico responsivo */
-    #chart_div {
-        width: 100%;
-        min-height: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        #chart_div {
+            width: 100%;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
     /* Ajustes específicos para iPhone SE e telas pequenas */
     @media screen and (max-width: 375px) {
@@ -798,7 +931,8 @@
         justify-content: center;
         overflow-y: auto;
     }
-    }
+
+   }
 
  
 
@@ -1087,7 +1221,6 @@
         <span class="close" onclick="closeModal('modal4')">&times;</span>
         <!--Div that will hold the pie chart-->
         <div id="chart_div"></div>
-        <p></p>
     </div>
 </div>
 
@@ -1222,6 +1355,9 @@
     // Funções para abrir e fechar modais
     function openModal(modalId) {
         document.getElementById(modalId).style.display = "flex"; // Altere para "flex" para centralizar
+        if (modalId === 'modal4') {
+           drawChart();
+        }
     }
 
     function closeModal(modalId) {
