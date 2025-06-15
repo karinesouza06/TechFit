@@ -261,8 +261,20 @@
         /* Sidebar e botão de abertura para dispositivos móveis */
         @media (max-width: 768px) {
             header {
-                justify-content: space-around;
+                background-color: #EBF2F2;
+                width: 100%;
+                padding: 24px 24px 24px 24px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 998;
+                max-height: 96px;
+                display: flex;
+                align-items: center;
+                gap: 20px; /* adiciona espaçamento entre hambúrguer e h1 */
+                box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.1);
             }
+
             .hamburger-btn {
                 display: block;
             }
@@ -297,10 +309,6 @@
                 /* Exibe a sidebar ao abrir */
             }
 
-            header {
-                padding-left: 10px;
-            }
-
             main {
                 width: 100%;
             }
@@ -309,9 +317,12 @@
                 padding: 0;
             }
 
-            h1 {
-                font-size: 25px;
-            } 
+            header h1 {
+                
+                margin: 0;
+                font-size: 28px;
+            }
+
         }
     </style>
 
