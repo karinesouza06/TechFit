@@ -29,13 +29,7 @@
         }
 
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            min-height: 100vh;
             background-color: #f0f8ff;
-            padding: 20px;
         }
 
         .profile-page {
@@ -49,38 +43,45 @@
             display: flex;
             flex-direction: column;
             background-color: #006aa7;
-            color:#fff;
+            color:#ffff;
+            padding: 2%;
             align-items: center;
             justify-content: center;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            gap: 20px;
-            flex: 0 0 350px;
+            margin: 0 auto;
+            width: 40%;
+            margin-right: 30px;
+            padding: 2%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            gap: 10px;
         }
 
         .profile-container1 h2 {
             text-align: center;
             margin-bottom: 5px;
-            color: #fff;
-            font-size: 1.8rem;
+            color:#ffff;
+        }
+
+        .profile-info1 .info-item p {
+        color: #ffff;
         }
 
         .picture {
-            width: 200px;
-            height: 200px;
+            width: 70%; /* Mantém o tamanho do contêiner */
+            height: 0; /* Altura inicial zero para usar padding */
+            padding-top: 70%; /* Mantém a proporção quadrada */
             background: #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #aaa;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: color 300ms ease-in-out, background 300ms ease-in-out;
             outline: none;
             overflow: hidden;
             border-radius: 50%; 
             position: relative; 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         #picture__input {
@@ -88,8 +89,20 @@
         }
 
         .picture:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            color: #777;
+            background: #ccc;
+        }
+
+        .picture:active {
+            border-color: turquoise;
+            color: turquoise;
+            background: #eee;
+        }
+
+        .picture:focus {
+            color: #777;
+            background: #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         .picture__img {
@@ -98,52 +111,52 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            border-radius: 50%; /* Para manter a imagem circular */
             object-fit: cover; 
         }
 
         .profile-info1 {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             width: 100%;
         }
 
         .profile-info1 .info-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            font-size: 1.1rem;
-            width: 100%;
+            gap: 10px;
+            font-size: 16px;
+            color: var(--techfit-200);
         }
 
         .profile-info1 .info-item p {
-            color:#fff;
             word-wrap: break-word;
+            word-break: break-word;
             overflow-wrap: break-word;
-            flex: 1;
         }
 
         .profile-info1 .info-item i {
-            font-size: 1.3rem;
-            min-width: 24px;
-            text-align: center;
+            color: #ffff;
+            font-size: 18px;
         }
 
         .profile-container2 {
             display: flex;
             flex-direction: column;
-            background-color: #006aa7;
+            background-color: #006aa7;  /* Fundo escuro */
+            color:#ffff;
             width: 100%; 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            padding: 30px;
-            gap: 20px;
+            max-width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            padding: 20px;
+            gap: 10px;
+            box-sizing: border-box;
             overflow: hidden; 
         }
-
         .profile-info2 {
             display: flex;
             flex-wrap: wrap; 
@@ -293,37 +306,50 @@
         @media (max-width: 480px) {
             .profile-container1, 
             .profile-container2 {
-                padding: 20px 15px;
+                padding: 15px;
+            }
+
+            .profile-info2 {
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            .profile-info1 .info-item i {
+                color: #ffff;
+                font-size: 12px;
             }
             
             .picture {
-                width: 140px;
-                height: 140px;
+                width: 70%;
+                padding-top: 70%;
             }
             
             .profile-container1 h2 {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             
-            h1 {
-                font-size: 1.5rem;
-                margin-bottom: 12px;
+            .profile-container2 h1 {
+                font-size: 1.3rem;
+                
+                
             }
             
             .profile-info1 .info-item {
-                font-size: 0.95rem;
+                display: flex;
+                align-items: center;
+                font-size: 12px;
+                gap: 3px;
             }
             
-            .input-box input, select {
-                padding: 10px 12px;
-                font-size: 0.95rem;
+            .input-group {
+                gap: 12px;
             }
             
             .continue-button button {
-                padding: 12px 20px;
-                font-size: 1rem;
+                font-size: 15px;
             }
-        }
+         
+        }  
 
         /* Ajustes para telas muito estreitas (ex: Galaxy Fold) */
         @media (max-width: 350px) {
