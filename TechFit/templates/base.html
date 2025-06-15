@@ -218,7 +218,7 @@
             border: none;
             cursor: pointer;
             position: fixed;
-            top: 20px;
+            top: 15px;
             left: 10px;
             margin-right: 60px;
             z-index: 1001;
@@ -260,10 +260,21 @@
 
         /* Sidebar e botão de abertura para dispositivos móveis */
         @media (max-width: 768px) {
-
             header {
-                justify-content: space-around;
+                background-color: #EBF2F2;
+                width: 100%;
+                padding: 21px 21px 21px 21px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 998;
+                max-height: 96px;
+                display: flex;
+                align-items: center;
+                gap: 20px; /* adiciona espaçamento entre hambúrguer e h1 */
+                box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.1);
             }
+
             .hamburger-btn {
                 display: block;
             }
@@ -298,10 +309,6 @@
                 /* Exibe a sidebar ao abrir */
             }
 
-            header {
-                padding-left: 10px;
-            }
-
             main {
                 width: 100%;
             }
@@ -310,9 +317,12 @@
                 padding: 0;
             }
 
-            h1 {
+            header h1 {
+                
+                margin: 0;
                 font-size: 25px;
-            } 
+            }
+
         }
     </style>
 
@@ -405,7 +415,7 @@
             <form action="{{url_for('auth.logout')}}" method="POST">
                 <button id="logout_btn" type="submit">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <span class="item-description">Sair</span>
+                    <span class="item-description" style="color: black;">Sair</span>
                 </button>
             </form>
         </div>                   
