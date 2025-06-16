@@ -324,6 +324,30 @@
             }
 
         }
+        .notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.side-item {
+    position: relative; /* Para o posicionamento absoluto do badge */
+}
+
+.side-item a {
+    position: relative;
+    padding: 8px; /* Ajuste conforme necessário */
+}
     </style>
 
 </head>
@@ -358,11 +382,14 @@
                     </a>
                 </li>
 
-                <li class="side-item  {% if request.endpoint == 'solicitacoes_pendentes' %}active{% endif %}">
-                    <a href="{{ url_for('profile.solicitacoes_pendentes')  }}">
+                <li class="side-item {% if request.endpoint == 'solicitacoes_pendentes' %}active{% endif %}">
+                    <a href="{{ url_for('profile.solicitacoes_pendentes') }}">
                         <i class="fa-solid fa-address-book"></i>
+                        {% if solicitacoes_pendentes_count and solicitacoes_pendentes_count > 0 %}
+                        <span class="notification-badge">{{ solicitacoes_pendentes_count }}</span>
+                        {% endif %}
                         <span class="item-description">
-                           Solicitações pendentes
+                            Solicitações pendentes
                         </span>
                     </a>
                 </li>
