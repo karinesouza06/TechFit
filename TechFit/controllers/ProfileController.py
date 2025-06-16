@@ -301,9 +301,26 @@ def solicitacoes_pendentes():
         JOIN users u ON s.aluno_id = u.use_id
         WHERE s.personal_id = ? AND s.status = 'pendente'
     ''', (current_user.id,)).fetchall()
+    
+    # Obter a contagem para o template
+    count = len(solicitacoes)
     conn.close()
     
-    return render_template('solicitacoes_pendentes.html', solicitacoes=solicitacoes)
+    return render_template('solicitacoes_pendentes.html', 
+                         solicitacoes=solicitacoes,
+                         solicitacoes_pendentes_count=count)
+
+@profile_bp.context_processor
+def contador_solicitacoes():
+    if current_user.is_authenticated and current_user.tipo_usuario.lower() == 'personal':
+        conn = obter_conexao()
+        count = conn.execute('''
+            SELECT COUNT(*) FROM solicitacoes_personal 
+            WHERE personal_id = ? AND status = 'pendente'
+        ''', (current_user.id,)).fetchone()[0]
+        conn.close()
+        return {'solicitacoes_pendentes_count': count}
+    return {}
 
 
 @profile_bp.route('/aceitar_solicitacao/<int:solicitacao_id>')
@@ -346,6 +363,12 @@ def aceitar_solicitacao(solicitacao_id):
         
         conn.commit()
         flash('Solicitação aceita com sucesso!', 'success')
+
+        response = redirect(url_for('profile.solicitacoes_pendentes'))
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Pragma'] = 'no-cache'
+        return response
+
         
     except Exception as e:
         conn.rollback()
@@ -367,7 +390,10 @@ def rejeitar_solicitacao(solicitacao_id):
     conn.commit()
     conn.close()
     flash('Solicitação rejeitada.')
-    return redirect(url_for('profile.solicitacoes_pendentes'))
+    response = redirect(url_for('profile.solicitacoes_pendentes'))
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    return response, redirect(url_for('profile.solicitacoes_pendentes'))
 
 
 @profile_bp.route('/sugestao', methods=["GET", "POST"])
