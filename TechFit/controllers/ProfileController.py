@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, flash, url_for, request, Response
+from flask import Blueprint, render_template, redirect, flash, url_for, request, ResponseAdd commentMore actions
 from flask_login import login_required, current_user
 from models.User import User
 from models import User, Treino
@@ -51,7 +51,7 @@ def upload_imagem():
 def redirecionar_para_perfil():
     user = User.get(current_user.get_id())
     if user and user.tipo_usuario == 'personal':
-        return redirect(url_for('profile.profile_personal'))
+        return redirect(url_for('profile.configuracoes_personal'))
     else:
         return redirect(url_for('profile.profile'))
 
@@ -187,12 +187,19 @@ def get_medidas_corpo():
 
 
 #DADOS DOS PERSONAIS
-@profile_bp.route('/profile_personal', methods=['GET', 'POST']) 
+@profile_bp.route('/profile_personal')
 @login_required
 def profile_personal():
+    user_id = current_user.get_id()
+    user = User.get(user_id)
     
+    return render_template('profile_personal.html', user_info=user)
+
+
+@profile_bp.route('/configuracoes_personal', methods=['GET', 'POST'])
+@login_required
+def configuracoes_personal():
     userid = current_user.get_id()
-    user = User.get(userid)
     user_data = User.get(userid)  # Use User.get() que retorna um objeto User
     
     if request.method == 'POST':
@@ -219,7 +226,7 @@ def profile_personal():
         else:
             flash('Erro ao atualizar dados!', 'error')
         
-        return redirect(url_for('profile.profile_personal')) 
+        return redirect(url_for('profile.configuracoes_personal'))
     
     # Obter dados do personal se existirem
     personal_data = User.get_personal_data(userid)
@@ -242,7 +249,8 @@ def profile_personal():
         'ambiente_trabalho': personal_data['dau_per_ambiente_trabalho'] if personal_data else ''
     }
     
-    return render_template('profile_personal.html', user=user_info, user_info=user, user_info2=user_info)
+    return render_template('configuracoes_personal.html', user=user_info, user_info=user_info)
+
 
 @profile_bp.route('/seus_alunos', methods=['GET', 'POST'])
 @login_required
@@ -292,7 +300,7 @@ def montar_treino(aluno_id):
 def solicitacoes_pendentes():
     if current_user.tipo_usuario.lower() != 'personal':
         flash('Acesso restrito a personais')
-        return redirect(url_for('profile.profile_personal'))
+        return redirect(url_for('profile.configuracoes_personal'))
     
     conn = obter_conexao()
     solicitacoes = conn.execute('''
@@ -301,26 +309,9 @@ def solicitacoes_pendentes():
         JOIN users u ON s.aluno_id = u.use_id
         WHERE s.personal_id = ? AND s.status = 'pendente'
     ''', (current_user.id,)).fetchall()
-    
-    # Obter a contagem para o template
-    count = len(solicitacoes)
     conn.close()
     
-    return render_template('solicitacoes_pendentes.html', 
-                         solicitacoes=solicitacoes,
-                         solicitacoes_pendentes_count=count)
-
-@profile_bp.context_processor
-def contador_solicitacoes():
-    if current_user.is_authenticated and current_user.tipo_usuario.lower() == 'personal':
-        conn = obter_conexao()
-        count = conn.execute('''
-            SELECT COUNT(*) FROM solicitacoes_personal 
-            WHERE personal_id = ? AND status = 'pendente'
-        ''', (current_user.id,)).fetchone()[0]
-        conn.close()
-        return {'solicitacoes_pendentes_count': count}
-    return {}
+    return render_template('solicitacoes_pendentes.html', solicitacoes=solicitacoes)
 
 
 @profile_bp.route('/aceitar_solicitacao/<int:solicitacao_id>')
@@ -363,12 +354,6 @@ def aceitar_solicitacao(solicitacao_id):
         
         conn.commit()
         flash('Solicitação aceita com sucesso!', 'success')
-
-        response = redirect(url_for('profile.solicitacoes_pendentes'))
-        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-        response.headers['Pragma'] = 'no-cache'
-        return response
-
         
     except Exception as e:
         conn.rollback()
@@ -390,10 +375,7 @@ def rejeitar_solicitacao(solicitacao_id):
     conn.commit()
     conn.close()
     flash('Solicitação rejeitada.')
-    response = redirect(url_for('profile.solicitacoes_pendentes'))
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    response.headers['Pragma'] = 'no-cache'
-    return response, redirect(url_for('profile.solicitacoes_pendentes'))
+    return redirect(url_for('profile.solicitacoes_pendentes'))
 
 
 @profile_bp.route('/sugestao', methods=["GET", "POST"])
