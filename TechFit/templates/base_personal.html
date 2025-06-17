@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="pt-br">
 
 <head>
@@ -14,7 +14,7 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -218,7 +218,7 @@
             border: none;
             cursor: pointer;
             position: fixed;
-            top: 15px;
+            top: 20px;
             left: 10px;
             margin-right: 60px;
             z-index: 1001;
@@ -261,9 +261,10 @@
         /* Sidebar e botão de abertura para dispositivos móveis */
         @media (max-width: 768px) {
             header {
+                justify-content: space-around;
                 background-color: #EBF2F2;
                 width: 100%;
-                padding: 21px 21px 21px 21px;
+                padding: 24px 24px 24px 24px;
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -309,6 +310,10 @@
                 /* Exibe a sidebar ao abrir */
             }
 
+            header {
+                padding-left: 10px;
+            }
+
             main {
                 width: 100%;
             }
@@ -317,37 +322,16 @@
                 padding: 0;
             }
 
+            h1 {
+                font-size: 25px;
+            } 
             header h1 {
                 
                 margin: 0;
-                font-size: 25px;
+                font-size: 28px;
             }
 
         }
-        .notification-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #dc3545;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: bold;
-}
-
-.side-item {
-    position: relative; /* Para o posicionamento absoluto do badge */
-}
-
-.side-item a {
-    position: relative;
-    padding: 8px; /* Ajuste conforme necessário */
-}
     </style>
 
 </head>
@@ -363,7 +347,7 @@
             </div>
 
             <ul id="side_items">
-                
+
                 <li class="side-item {% if request.endpoint == 'profile_personal' %}active{% endif %}">
                     <a href="{{ url_for('profile.profile_personal') }}">
                         <i class="fa-solid fa-user-gear"></i>
@@ -382,14 +366,11 @@
                     </a>
                 </li>
 
-                <li class="side-item {% if request.endpoint == 'solicitacoes_pendentes' %}active{% endif %}">
-                    <a href="{{ url_for('profile.solicitacoes_pendentes') }}">
+                <li class="side-item  {% if request.endpoint == 'solicitacoes_pendentes' %}active{% endif %}">
+                    <a href="{{ url_for('profile.solicitacoes_pendentes')  }}">
                         <i class="fa-solid fa-address-book"></i>
-                        {% if solicitacoes_pendentes_count and solicitacoes_pendentes_count > 0 %}
-                        <span class="notification-badge">{{ solicitacoes_pendentes_count }}</span>
-                        {% endif %}
                         <span class="item-description">
-                            Solicitações pendentes
+                           Solicitações pendentes
                         </span>
                     </a>
                 </li>
@@ -411,8 +392,8 @@
                         </span>
                     </a>
                 </li>
-       
-                
+
+
             </ul>
 
             <button id="open_btn">
@@ -424,7 +405,7 @@
             <form action="{{url_for('auth.logout')}}" method="POST">
                 <button id="logout_btn" type="submit">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <span class="item-description" style="color: black;">Sair</span>
+                    <span class="item-description">Sair</span>
                 </button>
             </form>
         </div>                   
@@ -436,7 +417,7 @@
         </button>
         <h1>{% block titlePage %} {% endblock %}</h1>
     </header>
-    
+
 
     <main class="fade-in">
         {% block content %}{% endblock %}
@@ -449,7 +430,7 @@
             const openBtn = document.getElementById('open_btn');
             const openBtn2 = document.getElementById('open_btn2');
             const closeSidebarBtn = document.getElementById('close-sidebar');
-            
+
 
             logo.style.width = "55px";
             logo.style.height = "55px";
