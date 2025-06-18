@@ -480,25 +480,7 @@ def visualizar_treino(aluno_id):
     
     return render_template('visualizar_treino.html', treinos=treinos)
 
-# @profile_bp.route('/meus_treinos')
-# @login_required
-# def meus_treinos():
-#     if current_user.tipo_usuario.lower() != 'aluno':
-#         flash('Acesso restrito a alunos', 'error')
-#         return redirect(url_for('index'))
-    
-#     conn = obter_conexao()
-#     treinos = conn.execute('''
-#         SELECT t.id, t.data_treino, e.exe_nome, te.series, te.repeticoes 
-#         FROM dias_treino t
-#         JOIN treino_exercicios te ON t.id = te.treino_id
-#         JOIN exercicios e ON te.exercicio_id = e.exe_id
-#         WHERE t.user_id = ?
-#         ORDER BY t.data_treino DESC
-#     ''', (current_user.id,)).fetchall()
-#     conn.close()
-    
-#     return render_template('treinos.html', treinos=treinos)
+
 
 @profile_bp.route('/meus_treinos')
 @login_required
