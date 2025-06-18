@@ -170,7 +170,7 @@ class User(UserMixin):
                             formacao, cursos, tempo_trabalho, tipo_aluno, ambiente_trabalho, id):
         conn = obter_conexao()
         try:
-            # Update basic user data
+
             conn.execute(
                 'UPDATE users SET use_nome = ?, use_email = ?, use_telefone = ?, '
                 'use_data_nascimento = ?, use_idade = ?, use_peso = ?, use_altura = ? '
@@ -178,14 +178,14 @@ class User(UserMixin):
                 (nome, email, telefone, data_nascimento, idade, peso, altura, id)
             )
             
-            # Check if personal data exists
+           
             existing_data = conn.execute(
                 "SELECT 1 FROM dados_users_personais WHERE dau_per_use_id = ?",
                 (id,)
             ).fetchone()
             
             if existing_data:
-                # Update existing data
+               
                 conn.execute(
                     'UPDATE dados_users_personais SET dau_per_formacao = ?, dau_per_cursos = ?, '
                     'dau_per_tempo_trabalho = ?, dau_per_tipo_aluno = ?, dau_per_ambiente_trabalho = ? '
@@ -193,7 +193,7 @@ class User(UserMixin):
                     (formacao, cursos, tempo_trabalho, tipo_aluno, ambiente_trabalho, id)
                 )
             else:
-                # Insert new data
+              
                 conn.execute(
                     'INSERT INTO dados_users_personais (dau_per_formacao, dau_per_cursos, '
                     'dau_per_tempo_trabalho, dau_per_tipo_aluno, dau_per_ambiente_trabalho, dau_per_use_id) '
